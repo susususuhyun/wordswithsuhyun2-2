@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ko" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>워드마스터 중등고난도 어원 단어장 (Day 4-5)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- React & ReactDOM CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <!-- Babel for Live JSX Parsing -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Premium Font Integration -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    }
+    .zebra-header {
+      background-image: repeating-linear-gradient(45deg, #090d16, #090d16 10px, #10b981 10px, #10b981 12px);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #10b981;
+    }
+    .glow-emerald {
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+    }
+    .fade-in {
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .preserve-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body class="h-full text-slate-100 antialiased overflow-hidden bg-[#05070c]">
+  <div id="root" class="h-full"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useMemo, useRef } = React;
+
+    // Premium Pre-generated Vocabulary Database for Day 4 - Day 5 (Total 60 Words 100% Pre-loaded)
+    const WORDS_DATABASE = [
+      // === DAY 4 (Food & Daily Life 1) ===
+      { id: 1, day: 4, word: "kettle", meaning: "주전자", prefix: "Kettle (가마솥 기원)", root: "catillus (라틴어: 깊은 그릇)", story: "물이나 차를 보글보글 끓이기 위해 주둥이와 손잡이가 달린 깊게 파인 쇠 그릇, 즉 '주전자'를 의미합니다.", related: "pot (단지, 냄비), canteen (식기, 수통)" },
+      { id: 2, day: 4, word: "fade", meaning: "(색이) 바래다, 바래게 하다", prefix: "Fade (창백한, 힘없는)", root: "vadius (라틴어: 연한 황색의)", story: "강렬한 한여름의 햇볕에 노출되거나 낡아서 본연의 붉은 색이 힘없이 잃고 서서히 창백해지며 '바래다'입니다.", related: "faint (기절하다, 희미한), vanish (사라지다), wither (시들다)" },
+      { id: 3, day: 4, word: "beverage", meaning: "음료", prefix: "bever (마시다)", root: "bibere (라틴어: 마실 것)", story: "갈증을 해소하기 위해 컵에 따라 시원하게 목구멍으로 꿀꺽꿀꺽 넘겨 마시는 물 외의 '모든 종류의 음료'를 뜻합니다.", related: "beer (맥주), imbibe (마시다, 흡수하다), potion (물약)" },
+      { id: 4, day: 4, word: "casual", meaning: "격식을 차리지 않은, 평상복의; 우연의", prefix: "casu- (발생하다, 떨어지다)", root: "cadere (라틴어: 떨어지다)", story: "어떤 정해진 각본 없이 하늘에서 툭 떨어지듯 무작위로 우연히 발생하여 정해진 격식 없이 입는 '편안한 평상복'입니다.", related: "accident (사고 - 뜻밖의 추락), case (경우, 사건), occasion (특별한 기회, 행사)" },
+      { id: 5, day: 4, word: "blend", meaning: "섞다; 조화되다", prefix: "Blend (혼합하다)", root: "blandan (원시 게르만어: 눈이 멀다, 뒤섞다)", story: "물감이나 원두 가루를 한 통에 세차게 쏟아부어, 각각의 경계가 구분되지 않도록 정성껏 '뒤섞다'입니다.", related: "blender (믹서기), blind (눈이 먼 - 시야가 섞여 구분이 안 되는)" },
+      { id: 6, day: 4, word: "cuisine", meaning: "요리", prefix: "coquere (라틴어: 요리하다)", root: "cocina (라틴어: 주방, 요리 영역)", story: "고유한 지역이나 국가의 주방 환경에서 조리 도구로 정갈하게 완성해 낸 고급스럽고 독특한 '요리 방식'입니다.", related: "cook (요리사), kitchen (부엌, 주방), concoct (지어내다, 혼합 요리하다)" },
+      { id: 7, day: 4, word: "dairy", meaning: "우유의, 유제품의; 유제품 판매점", prefix: "deye (젖 짜는 하녀)", root: "daege (고대 영어: 빵을 굽는 여성, 유모)", story: "이른 아침 목장에서 하녀가 부지런히 젖소로부터 신선한 우유를 짜서 버터나 치즈로 가공해 파는 '유제품'입니다.", related: "milk (우유), dairy farm (낙농장), milkmaid (우유 짜는 처녀)" },
+      { id: 8, day: 4, word: "comfort", meaning: "편안함; 위로, 위안; 편하게 하다; 위로하다", prefix: "com- (완전히, 가득히)", root: "fortis (라틴어: 마음을 든든하게 하다, 강한)", story: "슬픔에 빠져 힘없는 사람에게 완전히(com-) 든든한 힘(fort)을 실어주어 마음을 따뜻하고 '편안하게 위로하다'입니다.", related: "force (힘), fort (요새 - 든든한 성벽), effort (노력 - 힘을 밖으로 쏟다)" },
+      { id: 9, day: 4, word: "uniform", meaning: "유니폼, 제복; 일정한, 균등한", prefix: "uni- (오직 하나로 동일한)", root: "forma (라틴어: 형태, 모습)", story: "학교나 군대에서 소속감을 주기 위해 모두가 오직 똑같은 단 하나의 형태(form)로 맞춰 입은 옷 '제복'입니다.", related: "unit (단위), form (형태), transform (변형하다), reform (개혁하다 - 다시 형태를 만들다)" },
+      { id: 10, day: 4, word: "vest", meaning: "조끼", prefix: "vestis (옷, 의류)", root: "vestire (라틴어: 옷을 입다)", story: "거추장스러운 긴 소매가 없으며 셔츠 위에 가볍게 덧입어 따뜻하게 몸을 감싸주는 상의인 '조끼'를 뜻합니다.", related: "invest (투자하다 - 황제의 옷을 수여하다), investiture (임명식), divest (박탈하다 - 옷을 벗기다)" },
+      { id: 11, day: 4, word: "instant", meaning: "즉석요리의, 인스턴트의; 즉각적인; 순간", prefix: "in- (~의 위에, 바로 앞에)", root: "sistere (라틴어: 우뚝 서 있다)", story: "주문하자마자 내 눈앞에(in) 곧바로 서서(sist) 준비되어, 오랜 시간 기다리지 않고 곧장 먹을 수 있는 '즉석의' 상태입니다.", related: "insist (주장하다), assist (도와 서다), consist (구성되다 - 함께 서 있다)" },
+      { id: 12, day: 4, word: "outfit", meaning: "(특별한 날 입는) 옷, 의상 한 벌", prefix: "out (바깥으로 보여주는)", root: "fit (영어: 꼭 맞게 채비를 갖추다)", story: "소풍이나 파티 같은 특별한 행사에 참가하기 위해 머리끝부터 발끝까지 채비를 완벽히 장만하여 입은 '의상'입니다.", related: "fit (적합하다, 알맞은), fitting room (탈의실), unfit (부적합한)" },
+      { id: 13, day: 4, word: "paste", meaning: "반죽; 풀; 붙이다", prefix: "Paste (진흙처럼 이겨 만든 것)", root: "pastas (그리스어: 보리 죽, 밀가루 반죽)", story: "밀가루에 따뜻한 물을 붓고 끈적끈적해질 때까지 세차게 치대어 주어 무언가를 고정할 때 바르는 '풀, 반죽'입니다.", related: "pastry (페이스트리 과자), pasta (파스타), pastel (파스텔)" },
+      { id: 14, day: 4, word: "feed on", meaning: "~을 먹고 살다", prefix: "feed (먹이를 주다)", root: "foda (원시 게르만어: 곡식, 음식)", story: "풀밭에 방목된 양이나 소가 고유한 먹이를 기분 좋게 씹어 삼키며 영양분을 섭취해 '생명을 유지하고 살아가다'입니다.", related: "food (음식), fodder (사료, 꼴), foster (양육하다, 기르다)" },
+      { id: 15, day: 4, word: "nutrition", meaning: "영양, 영양물 섭취", prefix: "nutri- (젖을 물리다, 기르다)", root: "nutrire (라틴어: 양분을 공급하다)", story: "아기가 무럭무럭 건강하게 자랄 수 있도록 엄마가 따뜻한 모유나 음식을 입에 직접 먹여 공급하는 '영양 상태'입니다.", related: "nourish (영양분을 공급하다), nurse (간호사, 유모), nursery (어린이집, 묘목장)" },
+      { id: 16, day: 4, word: "length", meaning: "길이, 기간", prefix: "lang (긴)", root: "-th (명사형 접미사)", story: "가장 먼 가장자리를 가진 형용사 long(긴)의 명사형으로, 물체의 끝에서 끝까지 도달하는 물리적/시간적 '길이'입니다.", related: "long (긴), linger (오래 머물다), longevity (장수)" },
+      { id: 17, day: 4, word: "cotton", meaning: "솜, 면화; 면직물, 무명실", prefix: "qutn (아랍어: 목화 식물)", root: "coton (고대 프랑스어: 부드러운 목화 솜)", story: "가을철 밭에서 하얗게 부풀어 오른 목화송이를 수확해 실을 뽑고, 피부에 닿을 때 부드러운 천을 짜내는 '솜, 면화'입니다.", related: "cot (아기 침대 - 부드러운 목화 패드), cottier (목화 소작농)" },
+      { id: 18, day: 4, word: "sew", meaning: "바느질하다, (바느질로) 만들다", prefix: "sew (바늘로 꿰매다)", root: "siwian (원시 게르만어: 옷을 바늘로 잇다)", story: "벌어진 옷감 틈새로 실을 꿴 뾰족한 바늘을 이리저리 통과시켜 단단하게 고정하고 옷을 '바느질해 만들다'입니다.", related: "sewing machine (재봉틀), seam (솔기, 꿰맨 선), seamstress (재봉사)" },
+      { id: 19, day: 4, word: "chop", meaning: "자르다, 썰다", prefix: "chop (도끼로 내리치다)", root: "choppen (중세 영어: 한 번에 자르다)", story: "도마 위에 단단한 당근이나 고기를 올려놓고 칼이나 칼날을 세차게 내리쳐 잘게 조각조각으로 '자르고 썰다'입니다.", related: "chopper (도끼, 헬리콥터), chopstick (젓가락), chip (조각, 칩)" },
+      { id: 20, day: 4, word: "ripen", meaning: "익다; 익히다", prefix: "ripe (수확하기에 알맞은)", root: "ripan (고대 영어: 성숙하다)", story: "밭에 걸린 초록색 열매가 기나긴 계절의 햇볕을 받아 마침내 노랗고 단맛이 들도록 먹기 알맞게 '무르익다'입니다.", related: "ripe (익은), reap (수확하다, 베어 들이다), reaper (수확기, 사신)" },
+      { id: 21, day: 4, word: "roast", meaning: "굽다, 볶다; 구운", prefix: "roast (불판에 올리다)", root: "rostir (고대 프랑스어: 불 위에 올리다)", story: "사냥한 고기나 원두를 뜨겁고 시뻘건 불길 위에 직접 혹은 오븐에 올려 기름기를 빼며 고소하게 '굽고 볶다'입니다.", related: "roaster (로스터), rotisserie (회전구이 기구)" },
+      { id: 22, day: 4, word: "stripe", meaning: "줄무늬", prefix: "stripe (채찍질 자국)", root: "stribe (원시 게르만어: 일직선의 띠)", story: "사나운 맹수나 채찍을 맞았을 때 피부에 일직선으로 길게 그어지듯 생기는 평행한 색깔의 선 '줄무늬'입니다.", related: "strip (가느다란 조각, 옷을 벗기다), stripy (줄무늬가 있는)" },
+      { id: 23, day: 4, word: "dress up", meaning: "옷을 갖춰[격식을 차려] 입다", prefix: "directus (라틴어: 똑바로 정돈된)", root: "dress (정돈하다) + up (완전히)", story: "아무렇게나 입던 평상복을 피하고, 중요한 파티를 위해 머리끝부터 발끝까지 옷을 아주 완벽하게 갖추어 입는 모양새입니다.", related: "direct (지시하다), address (주소, 연설하다), redress (시정하다)" },
+      { id: 24, day: 4, word: "tray", meaning: "쟁반", prefix: "tray (나무 그릇 기원)", root: "trig (고대 영어: 평평한 나무 상자)", story: "여러 개의 찻잔이나 음식을 한꺼번에 흘리지 않고 무사히 운반하기 위해 만들어진 평평한 판 '쟁반'입니다.", related: "trough (여물통), tree (나무 - 옛날엔 나무로 쟁반을 만듦)" },
+      { id: 25, day: 4, word: "vegetarian", meaning: "채식주의자; 채식주의(자)의", prefix: "vegetable (신선한 채소)", root: "vegetus (라틴어: 생기 가득한, 활기찬)", story: "고기나 육식을 일절 입에 대지 않고, 대지에서 자라난 초록빛의 신선하고 생기 넘치는 채소(vegetable)만 골라 먹는 사람입니다.", related: "vegetable (야채), vegetate (단조로운 생활을 하다), vigor (활기, 활력)" },
+      { id: 26, day: 4, word: "leftover", meaning: "남은; 남은 음식", prefix: "left (떠나고 남겨진)", root: "leave + over (초과하여 머무른)", story: "풍성한 잔치가 끝난 후 손님들이 다 먹지 못해 식탁 위에 그대로 남겨두고 간 아까운 '남은 음식'을 말합니다.", related: "leave (떠나다, 남겨두다), over (너머로), overlap (중복되다)" },
+      { id: 27, day: 4, word: "costume", meaning: "의상, 복장; 분장", prefix: "con- (함께 굳어진 지역의)", root: "consuetudo (라틴어: 지역의 오랜 관습, 생활양식)", story: "특정한 국가나 지역의 배우들이 연극 무대 위에서 자기 역할을 뽐내기 위해 특별히 관습적으로 맞춰 입은 '의상'입니다.", related: "custom (관습, 세관), accustom (익숙해지다), customer (고객)" },
+      { id: 28, day: 4, word: "wear out", meaning: "많이 써서 낡게 하다, 닳다; 지치게 하다", prefix: "wear (옷을 입다)", root: "werian (고대 영어: 소진시키다) + out (완전히)", story: "아무리 튼튼한 가죽 신발이라도 오랫동안 길바닥을 누비며 입고 신다 보면 완전히(out) 마찰되어 '닳아 없어지다'입니다.", related: "wear (입다), worn-out (닳아빠진, 녹초가 된)" },
+      { id: 29, day: 4, word: "rotten", meaning: "썩은, 부패한", prefix: "rot (부패하다)", root: "rotian (원시 게르만어: 문드러지다)", story: "사과나 야채가 기온이 높은 여름철에 세균이나 공기에 노출되어 고약한 악취를 풍기며 완전히 녹아 흐르고 '썩은' 상태입니다.", related: "rot (부패하다), rotter (야비한 놈), moldy (곰팡이 핀)" },
+      { id: 30, day: 4, word: "premium", meaning: "고가의, 고급의; 할증금, 포상금", prefix: "pre- (다른 사람들보다 앞서서)", root: "emere (라틴어: 값을 치르고 가져가다, 구매하다)", story: "일반적인 경쟁률을 가볍게 뚫고 남들보다 훨씬 먼저(pre) 좋은 상품을 손에 낚아채기 위해 추가로 얹어 지불하는 '고급의 요금'입니다.", related: "exemption (면제), redeem (상환하다), prompt (즉각적인)" },
+
+      // === DAY 5 (Food & Daily Life 2) ===
+      { id: 31, day: 5, word: "edible", meaning: "먹을 수 있는", prefix: "ed- (입으로 맛나게 씹다)", root: "edere (라틴어: 음식을 먹다)", story: "숲속에서 발견한 버섯이 강력한 독성이 없어, 사람이 안심하고 입안에 넣어 씹고 삼키며 '먹을 수 있는' 상태입니다.", related: "eat (먹다), obese (비만의 - 가득 먹은), edible oil (식용유)" },
+      { id: 32, day: 5, word: "detergent", meaning: "세탁 세제, 세정제", prefix: "de- (때를 완전히 바깥으로)", root: "tergere (라틴어: 문질러서 깨끗하게 닦아내다)", story: "옷감 틈새에 검게 묻은 초콜릿이나 기름때를 강한 마찰력으로 완전히(de) 깨끗하게 문질러 지워주는 화학 가루 '세제'입니다.", related: "terse (간결한 - 군더더기를 깎아낸), detergent powder (가루세제)" },
+      { id: 33, day: 5, word: "flavor", meaning: "(재료 특유의) 맛과 향; 풍미를 더하다(with)", prefix: "flat- (코끝을 자극하는 향기)", root: "flare (라틴어: 바람을 세차게 불다, 불어넣다)", story: "주방의 음식이 보글보글 끓으며 공기 중에 바람(flare)을 타고 코끝으로 고소하게 확 다가와 느껴지는 음식 특유의 '풍미'입니다.", related: "inflate (부풀리다), deflate (공기를 빼다), flatulence (가스, 헛배부름)" },
+      { id: 34, day: 5, word: "loose", meaning: "헐거운, 느슨한; 풀린, 벗겨진", prefix: "loos- (끈이 완전히 풀려 자유로운)", root: "leus (라틴어: 묶은 끈을 풀어주다)", story: "사나운 개목줄이나 바지 벨트를 단단히 조이지 않아, 틈새가 벌어지고 줄이 아래로 길게 '풀리고 헐거운' 상태입니다.", related: "lose (잃다), loss (손실), loosen (느슨하게 풀다), lease (임대하다)" },
+      { id: 35, day: 5, word: "alter", meaning: "변경하다, (옷을) 고쳐 만들다", prefix: "alter (나와 다른 다른 하나)", root: "alius (라틴어: 다르게 만들다, 변형하다)", story: "원래 마음에 들지 않던 낡은 계획이나 기성복을 버리고 나를 위한 새로운 모습으로 '다르게 바꾸고 변경하다'입니다.", related: "alternative (대안), alien (외계인, 이방인), alias (가명)" },
+      { id: 36, day: 5, word: "fancy", meaning: "화려한, 장식적인; 값비싼", prefix: "fan- (머릿속으로 상상하다)", root: "phantazein (그리스어: 눈앞에 환상을 펼쳐 보여주다)", story: "현실에서는 감히 볼 수 없을 만큼 환상적이고 화려해, 장식이 주렁주렁 박혀 어마어마하게 '비싼' 가치를 가진 물건입니다.", related: "fantasy (판타지), phantom (유령), phenomenon (경이로운 현상)" },
+      { id: 37, day: 5, word: "plain", meaning: "(의복 등이) 수수한; 무늬가 없는; 명백한, 분명한", prefix: "plain (납작하고 평평한)", root: "planus (라틴어: 평평한, 아무런 장식이 없는)", story: "지평선처럼 아무런 울퉁불퉁함 없이 납작하고 정갈하여, 무늬나 장식이 일절 섞이지 않아 겉보기에 아주 '수수한' 상태입니다.", related: "plane (평면, 비행기), planet (행성), explain (쉽고 평평하게 풀어 설명하다)" },
+      { id: 38, day: 5, word: "peel", meaning: "(과일·채소 등의) 껍질을 벗기다; 벗겨지다; 과일 껍질", prefix: "pel- (가죽이나 껍질)", root: "pellis (라틴어: 동물의 얇은 가죽)", story: "맛있는 사과나 감자를 한 손에 꼭 쥐고, 과일 칼로 겉면을 둘러싸고 있는 거친 바깥의 '가죽(껍질)을 벗겨내다'입니다.", related: "pelt (가죽), film (얇은 가죽 필름), fell (가죽)" },
+      { id: 39, day: 5, word: "go off", meaning: "(음식 등이) 상하다, 부패하다", prefix: "go (시간이 지나 흘러가다)", root: "off (원래 정상적인 상태에서 뚝 떨어져 벗어난)", story: "상온에 오랫동안 방치한 영양식이나 신선한 모유가 원래의 건강한 궤도에서 완전히 벗어나 썩어버리고 '상하다'입니다.", related: "go (가다), off (떨어져), turn off (불을 끄다)" },
+      { id: 40, day: 5, word: "fur", meaning: "모피", prefix: "fodder (가죽 옷, 집)", root: "fodr (고대 프랑스어: 칼집, 가죽 덮개)", story: "한겨울의 혹독한 북풍과 눈보라를 버티기 위해, 곰이나 여우의 복실복실한 가죽 덮개를 그대로 가공해 만든 '모피 옷'입니다.", related: "furry (털북숭이의), fur coat (모피 코트)" },
+      { id: 41, day: 5, word: "fiber", meaning: "섬유, 섬유질", prefix: "fiber (가느다란 실)", root: "fibra (라틴어: 식물의 가느다란 뿌리, 잎맥)", story: "옷을 짜거나 소화를 촉진할 때 필요한 가늘고 길며 질긴 실 뭉치인 식물의 '섬유질'을 가리킵니다.", related: "fibril (미세 섬유), fibrous (섬유질의)" },
+      { id: 42, day: 5, word: "trousers", meaning: "바지", prefix: "trews (두 다리로 나뉜 가죽 옷)", root: "truis (아일랜드어: 허벅지부터 발목까지 감싸는 기마용 옷)", story: "말안장 위에 올라탈 때 쓸리지 않도록 두 다리를 각각 안전하고 반듯하게 감싸 설계된 가죽 '바지'입니다.", related: "trouser (바지 조각), trews (격자무늬 바지)" },
+      { id: 43, day: 5, word: "show off", meaning: "~을 과시하다", prefix: "show (남들에게 내보이다)", root: "off (사람들 눈길을 다 낚아채어 강조)", story: "명품 백이나 어마어마한 점수 시험지를 끄집어내어, 사람들의 질투심을 유발하고자 밖으로 보이며 힘껏 '자랑하고 과시하다'입니다.", related: "showcase (쇼케이스), off (떨어져), shower (소나기, 샤워)" },
+      { id: 44, day: 5, word: "squeeze", meaning: "짜다, 압착하다", prefix: "cwisan (원시 게르만어: 세차게 짓이기다)", root: "squissen (중세 영어: 압박하여 으깨다)", story: "노란 레몬이나 물기 가득한 걸레를 주먹에 온 힘을 주어 꽉 움켜쥐고 짓눌러 즙과 물을 바깥으로 '짜내다'입니다.", related: "squash (짓이기다), squish (뭉개다), squeeze bottle (짜는 소스병)" },
+      { id: 45, day: 5, word: "raw", meaning: "날것의; 가공하지 않은", prefix: "raw (피가 비치는)", root: "hreaw (원시 게르만어: 불에 익히지 않은)", story: "불을 피워 바비큐로 굽지 않고, 자연에서 갓 채취하거나 잡은 상태 그대로의 가공하지 않은 '날것의' 육류나 자재입니다.", related: "raw material (원자재), crude (원유의, 가공하지 않은)" },
+      { id: 46, day: 5, word: "formal", meaning: "공식적인, 격식을 차린", prefix: "forma (인간이 제정한 올바른 규격)", root: "formalis (라틴어: 일정한 틀과 양식을 완벽히 갖춘)", story: "아무렇게나 제멋대로 행동하지 않고, 사법 기관이나 엄숙한 국가 행사에서 정해둔 예법의 틀(form)을 칼같이 맞춘 '공식적인' 모습입니다.", related: "form (형태), informal (비공식적인), formula (공식, 공식적인 규칙)" },
+      { id: 47, day: 5, word: "fashion", meaning: "유행, 인기; 패션", prefix: "factio (정교하게 다듬어 제조함)", root: "facere (라틴어: 손으로 만들다)", story: "아름답고 멋진 디자이너가 정성스레 제작해 놓은 최신의 세련된 옷차림을 세상 사람들이 동경하며 따라 입는 '유행'입니다.", related: "factory (공장), facilitate (용이하게 하다), defeat (패배시키다)" },
+      { id: 48, day: 5, word: "contain", meaning: "담고 있다, 포함하다", prefix: "con- (한자리에 함께 모아)", root: "tenere (라틴어: 단단히 붙잡아 보관하다)", story: "바깥으로 흩어져 흘러넘치지 않도록, 튼튼한 유리 수조 안에 액체나 사물을 가두어 '포함하여 지니고 있다'입니다.", related: "content (내용물, 만족하는), retain (보존하다), obtain (얻다), sustain (지속하다)" },
+      { id: 49, day: 5, word: "scent", meaning: "향기", prefix: "senti- (감각으로 느끼다)", root: "sentire (라틴어: 냄새를 감지하다)", story: "숲속 가득 핀 하얀 백합 송이가 바람을 타고 코끝에 전해질 때, 뇌가 유쾌하고 기분 좋게 냄새를 감각적으로 인지하는 '향기'입니다.", related: "sense (감각), sensory (감각의), resent (분개하다), consent (동의하다 - 같이 느끼다)" },
+      { id: 50, day: 5, word: "swallow", meaning: "삼키다; 삼키기", prefix: "swelg- (목구멍 속으로)", root: "swelgan (고대 영어: 물이나 음식을 빨아들이다)", story: "입안에 들어와 이빨로 꼭꼭 잘게 씹은 고기 덩어리를 목구멍에 침을 묻혀 꿀꺽 소리 나게 목 밑으로 '삼키다'입니다.", related: "swill (벌컥벌컥 마시다), engulf (삼키다)" },
+      { id: 51, day: 5, word: "suit", meaning: "정장; 어울리다, 잘 맞다", prefix: "secut- (남의 뒤를 쫄래쫄래 따라가다)", root: "sequi (라틴어: 순서대로 이어지다)", story: "상의와 하의의 재질, 색상이 서로 어색하게 틀어지지 않고 순서대로 세트처럼 일치하여 몸에 착 '잘 맞는 정장'입니다.", related: "sequence (순서), consequence (결과), pursue (추구하다), prosecute (기소하다)" },
+      { id: 52, day: 5, word: "collar", meaning: "깃, 칼라", prefix: "collum (인간의 신성한 목)", root: "collare (라틴어: 목을 두른 고리)", story: "겨울바람이 옷깃 안쪽으로 사정없이 밀고 들어오지 못하게 옷의 목(collar) 주변을 단정하게 감싸 정돈해 둔 '깃'입니다.", related: "collate (대조하다), accolade (찬사 - 목을 감싸 안는 포옹)" },
+      { id: 53, day: 5, word: "laundry", meaning: "세탁물; 세탁소", prefix: "lavare (물로 씻어 흐르게 하다)", root: "lavandaria (라틴어: 씻어야 할 더러운 옷 상자)", story: "들판을 쏘다니며 진흙과 먼지가 엉망으로 묻은 겉옷들을 시원한 냇물에 사정없이 헹궈 말끔히 빠는 '세탁물'입니다.", related: "lavatory (세면장, 화장실), lava (용암 - 녹아 흘러내리는 것), lavish (호화로운)" },
+      { id: 54, day: 5, word: "grill", meaning: "석쇠; 석쇠에 굽다", prefix: "graticula (격자형 철망)", root: "craticula (라틴어: 격자로 짜인 쇠그물)", story: "기름진 갈비 사이로 불길과 붉은 훈연 향이 솔솔 고르게 스며들도록 만든 바둑판 격자 모양의 철망 '석쇠'입니다.", related: "grid (그리드, 격자), grate (쇠창살)" },
+      { id: 55, day: 5, word: "nourish", meaning: "영양분을 공급하다, (사람·생물을) 기르다", prefix: "nutri- (어린아이에게 영양을 먹여 기르다)", root: "nutrire (라틴어: 세포를 키우다)", story: "가물어 비쩍 마른 나무에 맑은 영양수를 뿌리고 물려주어, 생명이 시들지 않고 무럭무럭 자랄 수 있게 '양분을 공급하다'입니다.", related: "nutrition (영양), nurse (간호사, 키우다), nursery (육아실, 묘목장)" },
+      { id: 56, day: 5, word: "grind", meaning: "잘게 갈다[빻다], 가루로 만들다", prefix: "grind (맷돌로 부수다)", root: "grindan (원시 게르만어: 단단한 낟알을 가루내다)", story: "단단한 가을 밀알이나 커피 원두를 거대한 화강암 맷돌 사이에 집어넣고 마찰을 주어 미세하게 '갈고 빻다'입니다.", related: "grinder (그라인더, 맷돌), grist (방앗간의 곡물), grit (모래, 기개)" },
+      { id: 57, day: 5, word: "seasoning", meaning: "조미료, 양념", prefix: "season (가장 수확이 무르익은 최적의 제철)", root: "sation- (라틴어: 씨앗을 뿌려 열매를 맺는 계절)", story: "음식의 맛을 극대화하기 위해 가장 열매가 잘 익은 제철(season) 수확한 맛난 소금과 이국적인 후추를 쳐서 뿌리는 '양념'입니다.", related: "season (계절, 철), seasonal (계절적인), seasoning powder (다시다)" },
+      { id: 58, day: 5, word: "thread", meaning: "실; 실을 꿰다", prefix: "thrae- (물레를 돌려 실을 비틀다)", root: "thrawan (고대 영어: 길게 꼬아 늘이다)", story: "양털이나 솜뭉치를 팽팽하게 돌리고 배배 꼬아서, 끊어지지 않는 튼튼하고 아주 길게 완성해 낸 바느질용 '실'입니다.", related: "throw (던지다 - 팽이 채찍을 꼬아 돌려 던지다), threadbare (올이 다 드러난)" },
+      { id: 59, day: 5, word: "fold", meaning: "(종이·천 등을) 접다", prefix: "fald- (겹치다)", root: "faldan (원시 게르만어: 이중으로 겹을 포개다)", story: "널따란 지도나 갓 다림질한 무명천의 면적을 보관하기 편리하도록 포개어 차곡차곡 사각형태로 '접다'입니다.", related: "folder (폴더), twofold (두 배의), blindfold (안대로 눈을 가리다)" },
+      { id: 60, day: 5, word: "fabric", meaning: "천, 직물; 직물의 짜임새", prefix: "faber (연장을 다루는 숙련된 대장장이)", root: "fabrica (라틴어: 물건을 제조하는 워크샵, 작업소)", story: "숙련된 장인이 베틀 앞에 앉아 날카로운 실들을 촘촘하게 엮어 완성해 낸 튼튼하고 예쁜 옷감 '천, 직물'입니다.", related: "forge (위조하다, 용광로), fabricate (위조하다, 제작하다), fabricator (제조자)" }
+    ];
+
+    function App() {
+      const [selectedDay, setSelectedDay] = useState(4);
+      const [currentIndex, setCurrentIndex] = useState(0);
+      const [searchQuery, setSearchQuery] = useState("");
+      const [bookmarked, setBookmarked] = useState(new Set());
+      const [memorized, setMemorized] = useState(new Set());
+      const [showMeaning, setShowMeaning] = useState(true);
+      const [filterMode, setFilterMode] = useState("all"); 
+      const [isPlaying, setIsPlaying] = useState(false);
+      const [speechRate, setSpeechRate] = useState(0.9);
+      
+      // Responsive layout tab controller: "list" or "card"
+      const [mobileTab, setMobileTab] = useState("list");
+
+      const autoPlayTimer = useRef(null);
+
+      // Web Speech API Pronunciation
+      const playPronunciation = (text) => {
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const cleanText = text.replace(/\[.*?\]/g, '').replace(/\(.*?\)/g, '').trim();
+          const utterance = new SpeechSynthesisUtterance(cleanText);
+          utterance.lang = 'en-US';
+          utterance.rate = speechRate;
+          window.speechSynthesis.speak(utterance);
+        }
+      };
+
+      const playMeaning = (text) => {
+        if ('speechSynthesis' in window) {
+          const cleanText = text.replace(/[\(\)·\[\]~]/g, '');
+          const utterance = new SpeechSynthesisUtterance(cleanText);
+          utterance.lang = 'ko-KR';
+          utterance.rate = 1.0;
+          window.speechSynthesis.speak(utterance);
+        }
+      };
+
+      const handleNext = () => {
+        if (filteredWords.length === 0) return;
+        setCurrentIndex(prev => (prev + 1) % filteredWords.length);
+        setShowMeaning(true);
+      };
+
+      const handlePrev = () => {
+        if (filteredWords.length === 0) return;
+        setCurrentIndex(prev => (prev - 1 + filteredWords.length) % filteredWords.length);
+        setShowMeaning(true);
+      };
+
+      // Reset index safely when changing parameters
+      useEffect(() => {
+        setCurrentIndex(0);
+        setShowMeaning(true);
+      }, [selectedDay, filterMode, searchQuery]);
+
+      // Key Listener for desktops
+      useEffect(() => {
+        const handleKeyDown = (e) => {
+          if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+          if (e.key === "ArrowRight") {
+            handleNext();
+          } else if (e.key === "ArrowLeft") {
+            handlePrev();
+          } else if (e.key === " ") {
+            e.preventDefault();
+            setShowMeaning(prev => !prev);
+          }
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+      }, [currentIndex, filterMode, searchQuery, selectedDay, filteredWords]);
+
+      // Processing Filtered Words
+      const filteredWords = useMemo(() => {
+        return WORDS_DATABASE.filter(item => {
+          if (item.day !== selectedDay) return false;
+          
+          const matchesSearch = item.word.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                item.meaning.includes(searchQuery) ||
+                                item.related.toLowerCase().includes(searchQuery.toLowerCase());
+          if (!matchesSearch) return false;
+
+          if (filterMode === "bookmarked") return bookmarked.has(item.id);
+          if (filterMode === "not_memorized") return !memorized.has(item.id);
+          return true;
+        });
+      }, [selectedDay, searchQuery, filterMode, bookmarked, memorized]);
+
+      const currentWord = filteredWords[currentIndex] || filteredWords[0] || null;
+
+      // Autoplay Loop Engine
+      useEffect(() => {
+        if (isPlaying && currentWord) {
+          playPronunciation(currentWord.word);
+          autoPlayTimer.current = setTimeout(() => {
+            if (showMeaning) playMeaning(currentWord.meaning);
+            autoPlayTimer.current = setTimeout(() => {
+              handleNext();
+            }, 3500);
+          }, 2000);
+        }
+        return () => {
+          if (autoPlayTimer.current) clearTimeout(autoPlayTimer.current);
+        };
+      }, [isPlaying, currentIndex, currentWord]);
+
+      const toggleBookmark = (id) => {
+        setBookmarked(prev => {
+          const next = new Set(prev);
+          if (next.has(id)) next.delete(id);
+          else next.add(id);
+          return next;
+        });
+      };
+
+      const toggleMemorized = (id) => {
+        setMemorized(prev => {
+          const next = new Set(prev);
+          if (next.has(id)) next.delete(id);
+          else next.add(id);
+          return next;
+        });
+      };
+
+      return (
+        <div class="h-screen flex flex-col bg-[#05070c] text-slate-100 overflow-hidden">
+          
+          {/* MOBILE VIEW TOGGLE TABS (Only visible on screens < md) */}
+          <div class="md:hidden flex bg-[#090d16] border-b border-slate-800 p-2 gap-2 flex-shrink-0">
+            <button 
+              onClick={() => setMobileTab("list")}
+              class={`flex-1 py-2.5 text-center text-xs font-bold rounded-xl transition-all ${mobileTab === "list" ? "bg-emerald-500 text-[#05070c] shadow-lg" : "bg-[#0f1524] text-slate-400 border border-slate-800"}`}
+            >
+              📋 단어 목록 ({filteredWords.length})
+            </button>
+            <button 
+              onClick={() => {
+                setMobileTab("card");
+                setShowMeaning(true);
+              }}
+              class={`flex-1 py-2.5 text-center text-xs font-bold rounded-xl transition-all ${mobileTab === "card" ? "bg-emerald-500 text-[#05070c] shadow-lg" : "bg-[#0f1524] text-slate-400 border border-slate-800"}`}
+            >
+              🃏 카드 학습 하기
+            </button>
+          </div>
+
+          <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+            
+            {/* SIDEBAR: Hidden on Mobile unless mobileTab is 'list' */}
+            <div class={`w-full md:w-80 flex-shrink-0 flex flex-col border-r border-slate-800 bg-[#0c101b] overflow-hidden ${mobileTab === 'list' ? 'flex h-full' : 'hidden md:flex'}`}>
+              
+              <div class="p-5 border-b border-slate-800 bg-[#090d16] relative">
+                <div class="absolute inset-x-0 top-0 h-1 zebra-header"></div>
+                <div class="flex items-center gap-2 mt-2">
+                  <span class="px-2.5 py-0.5 bg-emerald-500 text-[#05070c] font-black text-[10px] rounded tracking-widest uppercase">ZEBRA CORE</span>
+                  <span class="text-xs text-emerald-400 font-mono">중등 고난도 [22개정]</span>
+                </div>
+                <h1 class="text-base font-extrabold text-slate-100 mt-2">중학고난도 4-5과 어원 단어장</h1>
+                
+                <div class="mt-4">
+                  <div class="flex justify-between text-[11px] text-slate-400 mb-1">
+                    <span>Day {selectedDay} 암기 진행도</span>
+                    <span>
+                      {Math.round((WORDS_DATABASE.filter(w => w.day === selectedDay && memorized.has(w.id)).length / WORDS_DATABASE.filter(w => w.day === selectedDay).length) * 100)}%
+                    </span>
+                  </div>
+                  <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
+                    <div 
+                      class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-300" 
+                      style={{ width: `${(WORDS_DATABASE.filter(w => w.day === selectedDay && memorized.has(w.id)).length / WORDS_DATABASE.filter(w => w.day === selectedDay).length) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Selector Buttons for Days 4-5 */}
+              <div class="p-3 bg-slate-950/50 border-b border-slate-800">
+                <label class="text-[10px] font-extrabold text-slate-500 uppercase tracking-widest mb-1.5 block">Day 선택 (4-5)</label>
+                <div class="grid grid-cols-2 gap-2">
+                  {[4, 5].map(dayNum => (
+                    <button
+                      key={dayNum}
+                      onClick={() => { setSelectedDay(dayNum); }}
+                      class={`py-2 text-xs font-bold rounded-xl border transition-all ${selectedDay === dayNum ? "bg-emerald-500/15 border-emerald-500 text-emerald-300 shadow-md" : "border-slate-800 bg-[#0f1524] text-slate-400 hover:border-slate-700"}`}
+                    >
+                      Day {dayNum} (30단어)
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Option Filters */}
+              <div class="p-2.5 bg-[#0a0e18] border-b border-slate-800 grid grid-cols-3 gap-1">
+                <button onClick={() => { setFilterMode("all"); }} class={`py-1 text-center text-[11px] rounded-lg font-medium transition-colors ${filterMode === "all" ? "bg-slate-800 text-emerald-400 font-bold" : "text-slate-500 hover:bg-slate-800/20"}`}>전체</button>
+                <button onClick={() => { setFilterMode("bookmarked"); }} class={`py-1 text-center text-[11px] rounded-lg font-medium transition-colors flex items-center justify-center gap-1 ${filterMode === "bookmarked" ? "bg-slate-800 text-amber-400 font-bold" : "text-slate-500 hover:bg-slate-800/20"}`}>★ 북마크</button>
+                <button onClick={() => { setFilterMode("not_memorized"); }} class={`py-1 text-center text-[11px] rounded-lg font-medium transition-colors ${filterMode === "not_memorized" ? "bg-slate-800 text-emerald-300 font-bold" : "text-slate-500 hover:bg-slate-800/20"}`}>미암기</button>
+              </div>
+
+              {/* Search Input */}
+              <div class="p-3 bg-slate-950/20 relative">
+                <input 
+                  type="text" 
+                  placeholder="단어, 뜻, 파생어 검색..." 
+                  value={searchQuery}
+                  onChange={(e) => { setSearchQuery(e.target.value); }}
+                  class="w-full pl-8 pr-4 py-2 bg-[#090d16] border border-slate-800 rounded-xl text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
+                />
+                <svg class="w-3.5 h-3.5 absolute left-6 top-5.5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+
+              {/* Word List View */}
+              <div class="flex-1 overflow-y-auto divide-y divide-slate-900 bg-[#080b12]">
+                {filteredWords.length === 0 ? (
+                  <div class="p-8 text-center text-xs text-slate-600">해당 단어가 없습니다.</div>
+                ) : (
+                  filteredWords.map((item, idx) => {
+                    const isActive = currentWord && currentWord.id === item.id;
+                    const wordIndex = WORDS_DATABASE.filter(w => w.day === selectedDay).indexOf(item) + 1;
+                    return (
+                      <div 
+                        key={item.id}
+                        onClick={() => { 
+                          setCurrentIndex(idx); 
+                          setShowMeaning(true); 
+                          setMobileTab("card"); // Auto-switch on mobile so card is instantly visible!
+                        }}
+                        class={`p-3 text-left cursor-pointer transition-all flex items-center justify-between ${isActive ? "bg-emerald-950/20 border-l-4 border-emerald-500 pl-2" : "hover:bg-slate-800/10"}`}
+                      >
+                        <div class="min-w-0 pr-2">
+                          <span class="text-[10px] font-mono text-slate-600 mr-1.5">#{wordIndex}</span>
+                          <span class={`font-bold text-xs tracking-tight ${isActive ? "text-emerald-300" : "text-slate-300"}`}>{item.word}</span>
+                          <p class="text-[11px] text-slate-500 truncate mt-0.5 pl-5">{item.meaning}</p>
+                        </div>
+                        <div class="flex items-center gap-1" onClick={e => e.stopPropagation()}>
+                          <button onClick={() => toggleBookmark(item.id)} class={`p-1 text-xs ${bookmarked.has(item.id) ? "text-amber-400" : "text-slate-700"}`}>★</button>
+                          <button onClick={() => toggleMemorized(item.id)} class={`p-1 text-xs ${memorized.has(item.id) ? "text-emerald-400" : "text-slate-700"}`}>✔</button>
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            </div>
+
+            {/* MAIN STUDY CARDS PANEL: Hidden on Mobile unless mobileTab is 'card' */}
+            <div class={`flex-1 flex flex-col bg-[#05070c] relative overflow-y-auto ${mobileTab === 'card' ? 'flex h-full' : 'hidden md:flex'}`}>
+              
+              <div class="p-4 bg-[#090d16] border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-mono font-bold text-emerald-400">Day {selectedDay}</span>
+                  <span class="text-[10px] text-slate-600 font-mono">({currentIndex + 1} / {filteredWords.length || 0} Card)</span>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                  <select 
+                    value={speechRate} 
+                    onChange={(e) => setSpeechRate(parseFloat(e.target.value))}
+                    class="bg-[#0f1524] text-[10px] text-slate-300 rounded border border-slate-800 px-1 py-0.5 focus:outline-none"
+                  >
+                    <option value="0.7">0.7x (느리게)</option>
+                    <option value="0.9">0.9x (보통)</option>
+                    <option value="1.1">1.1x (빠르게)</option>
+                  </select>
+                  <button 
+                    onClick={() => setIsPlaying(!isPlaying)}
+                    class={`px-3 py-1.5 text-xs font-bold rounded-full flex items-center gap-1.5 transition-all ${isPlaying ? "bg-red-500 text-white shadow-md shadow-red-500/20" : "bg-emerald-500 text-[#05070c] hover:bg-emerald-400"}`}
+                  >
+                    {isPlaying ? "정지" : "▶ 자동 재생"}
+                  </button>
+                </div>
+              </div>
+
+              <div class="flex-1 flex flex-col items-center justify-center p-4 md:p-8 max-w-2xl mx-auto w-full">
+                {currentWord ? (
+                  <div class="w-full flex flex-col gap-5">
+                    
+                    {/* Flip Card Section */}
+                    <div onClick={() => setShowMeaning(prev => !prev)} class="perspective-1000 w-full cursor-pointer h-64 select-none active:scale-98 transition-transform duration-200">
+                      <div class={`relative w-full h-full duration-500 preserve-3d transition-transform ${!showMeaning ? "rotate-y-180" : ""}`}>
+                        
+                        {/* CARD FRONT */}
+                        <div class="absolute w-full h-full bg-[#0c101b] border border-slate-800 rounded-3xl flex flex-col justify-between p-6 shadow-2xl backface-hidden glow-emerald">
+                          <div class="flex justify-between w-full">
+                            <button onClick={(e) => { e.stopPropagation(); toggleBookmark(currentWord.id); }} class={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${bookmarked.has(currentWord.id) ? "border-amber-500/30 bg-amber-500/10 text-amber-400" : "border-slate-800 text-slate-500"}`}>
+                              ★ {bookmarked.has(currentWord.id) ? "북마크됨" : "북마크"}
+                            </button>
+                            <span class="text-[10px] font-mono text-slate-600 font-bold uppercase tracking-wider">Word Card</span>
+                          </div>
+                          <div class="text-center">
+                            <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight select-all">{currentWord.word}</h2>
+                            <p class="text-[11px] text-slate-500 mt-2">카드 클릭 또는 Space바로 한글 뜻을 뒤집어 확인하세요</p>
+                          </div>
+                          <div class="flex justify-center">
+                            <button onClick={(e) => { e.stopPropagation(); playPronunciation(currentWord.word); }} class="p-2 rounded-full bg-[#131929] border border-slate-800 text-emerald-400 hover:bg-[#1b243b]">
+                              🔊 발음 청취
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* CARD BACK */}
+                        <div class="absolute w-full h-full bg-[#0c101b] border border-emerald-500/30 rounded-3xl flex flex-col justify-between p-6 shadow-2xl backface-hidden rotate-y-180">
+                          <div class="flex justify-between w-full">
+                            <span class="text-[10px] font-mono text-emerald-500 font-bold uppercase tracking-wider">Meaning Card</span>
+                            <button onClick={(e) => { e.stopPropagation(); toggleMemorized(currentWord.id); }} class={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${memorized.has(currentWord.id) ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400" : "border-slate-800 text-slate-500"}`}>
+                              ✔ {memorized.has(currentWord.id) ? "암기 완료!" : "외웠음"}
+                            </button>
+                          </div>
+                          <div class="text-center">
+                            <p class="text-2xl md:text-3xl font-black text-emerald-400 tracking-tight leading-snug">{currentWord.meaning}</p>
+                            <button onClick={(e) => { e.stopPropagation(); playMeaning(currentWord.meaning); }} class="text-[10px] text-slate-500 hover:text-slate-400 mt-2.5 inline-flex items-center gap-1">🔊 뜻 소리 듣기</button>
+                          </div>
+                          <div class="text-center text-[10px] text-slate-600">다시 누르면 영단어가 표시됩니다</div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    {/* ETYMOLOGY CARD (Always Pre-loaded, 100% Reliable Offline) */}
+                    <div class="w-full bg-[#0c101b] border border-slate-800 rounded-3xl p-5 md:p-6 shadow-xl text-left">
+                      <div class="flex items-center gap-2 mb-3.5">
+                        <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span class="text-xs uppercase font-extrabold tracking-widest text-emerald-400">Zebra 프리미엄 오프라인 어원 가이드</span>
+                      </div>
+
+                      <div class="space-y-3.5 fade-in">
+                        <div class="flex flex-wrap items-center gap-2 text-[11px] font-semibold">
+                          <span class="px-2.5 py-0.5 bg-slate-900 rounded-lg text-slate-300 border border-slate-800">형태 구조: <b class="text-emerald-400 font-black">{currentWord.prefix}</b></span>
+                          <span class="text-slate-700">+</span>
+                          <span class="px-2.5 py-0.5 bg-slate-900 rounded-lg text-slate-300 border border-slate-800">기원어근: <b class="text-emerald-400 font-black">{currentWord.root}</b></span>
+                        </div>
+
+                        <p class="text-slate-300 text-xs md:text-[13px] leading-relaxed font-normal">
+                          {currentWord.story}
+                        </p>
+
+                        <div class="pt-3 border-t border-slate-800/80">
+                          <span class="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider block mb-1">같은 어근 공유 단어 (Cognates)</span>
+                          <div class="text-xs text-slate-300 font-medium tracking-tight bg-slate-950/40 p-2.5 rounded-xl border border-slate-900/60 leading-normal">
+                            {currentWord.related}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                ) : (
+                  <div class="text-center p-8 bg-[#0c101b] rounded-2xl border border-slate-800">
+                    <p class="text-slate-400 mb-2">조건에 맞는 단어가 없습니다.</p>
+                    <button onClick={() => { setFilterMode("all"); setSearchQuery(""); }} class="mt-2 text-xs text-emerald-400 font-semibold underline">필터 및 검색 초기화</button>
+                  </div>
+                )}
+              </div>
+
+              {/* Bottom Controllers */}
+              <div class="p-5 bg-[#090d16] border-t border-slate-800/80 flex items-center justify-between mt-auto w-full">
+                <button onClick={handlePrev} disabled={filteredWords.length <= 1} class="px-4 py-2 rounded-xl bg-[#0f1524] border border-slate-800 hover:border-slate-700 text-slate-200 text-xs font-semibold disabled:opacity-30 active:scale-95 transition-all">◀ 이전 카드</button>
+                <div class="hidden sm:flex items-center gap-2 text-xs text-slate-600">
+                  <span class="px-2 py-0.5 bg-slate-950 border border-slate-800 rounded font-mono">←</span>
+                  <span class="px-2 py-0.5 bg-slate-950 border border-slate-800 rounded font-mono">→</span>
+                  <span class="px-2 py-0.5 bg-slate-950 border border-slate-800 rounded font-mono">Space 바</span>
+                </div>
+                <button onClick={handleNext} disabled={filteredWords.length <= 1} class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[#05070c] text-xs font-bold disabled:opacity-30 active:scale-95 transition-all">다음 카드 ▶</button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      );
+    }
+
+    const container = document.getElementById('root');
+    const root = ReactDOM.createRoot(container);
+    root.render(<App />);
+  </script>
+</body>
+</html>
