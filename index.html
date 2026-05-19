@@ -21,15 +21,14 @@
         
         <header class="bg-indigo-600 text-white p-4 text-center shadow-md">
             <h1 class="text-xl font-bold tracking-wide">🦓 얼룩말영어학원</h1>
-            <p class="text-xs text-indigo-200 mt-1 font-medium">중등 고난도 3, 4, 5과 전체 단어장 (어원·동계어)</p>
+            <p class="text-xs text-indigo-200 mt-1 font-medium">중등 고난도 5, 6과 단어장 (어원·동계어)</p>
         </header>
 
         <main class="flex-1 p-4 overflow-y-auto">
             
-            <div class="grid grid-cols-3 gap-2 mb-4">
-                <button onclick="switchDay(3)" id="tab-3" class="tab-btn bg-indigo-600 text-white font-semibold py-2 rounded-lg text-sm transition">Day 3</button>
-                <button onclick="switchDay(4)" id="tab-4" class="tab-btn bg-slate-100 text-slate-600 font-semibold py-2 rounded-lg text-sm transition">Day 4</button>
-                <button onclick="switchDay(5)" id="tab-5" class="tab-btn bg-slate-100 text-slate-600 font-semibold py-2 rounded-lg text-sm transition">Day 5</button>
+            <div class="grid grid-cols-2 gap-2 mb-4">
+                <button onclick="switchDay(5)" id="tab-5" class="tab-btn bg-indigo-600 text-white font-semibold py-2 rounded-lg text-sm transition">Day 5</button>
+                <button onclick="switchDay(6)" id="tab-6" class="tab-btn bg-slate-100 text-slate-600 font-semibold py-2 rounded-lg text-sm transition">Day 6</button>
             </div>
 
             <div class="flex justify-end gap-2 mb-4 text-xs font-medium">
@@ -48,70 +47,6 @@
 
     <script>
         const vocabData = {
-            3: [
-                { word: "panic", meaning: "공황, 극심한 공포", etymology: "그리스 신화의 목신 '판(Pan)'에서 유래. 판이 내지르는 괴성이 유발하는 갑작스러운 공포심을 뜻함.", cognates: "panicky (공황 상태의), panic-stricken (공황에 빠진)" },
-                { word: "nerve", meaning: "신경, 용기", etymology: "라틴어 nervus(힘줄, 신경)에서 유래. 과거 힘줄을 '힘과 용기'의 원천으로 본 데서 유래.", cognates: "nervous (불안해하는), nervousness (신경과민)" },
-                { word: "astound", meaning: "경악시키다, 큰 충격을 주다", etymology: "라틴어 ex-(밖으로) + tonare(천둥 치다)의 결합. '천둥을 맞아 정신을 나가게 하다'에서 유래.", cognates: "astounding (경악스러운), astonishment (놀람)" },
-                { word: "depression", meaning: "우울증, 불경기", etymology: "de-(아래로) + press(누르다) + ion. 마음이나 경제 활동을 '아래로 꾹 짓누르는 상태'를 의미.", cognates: "depress (우울하게 하다), depressive (우울증의)" },
-                { word: "weep", meaning: "울다, 눈물을 흘리다", etymology: "고대 영어 wēpan(비탄하다, 소리쳐 울다)에서 유래하여 소리 내어 깊이 슬퍼하는 행위.", cognates: "weeper (우는 사람), weepy (눈물이 고인)" },
-                { word: "ashamed", meaning: "부끄러워하는, 창피한", etymology: "a-(강조) + shame(수치심). 도덕적 가치나 사회적 기준을 어겼을 때 느끼는 내면의 부끄러움.", cognates: "shameful (부끄러운), shameless (뻔뻔한)" },
-                { word: "amaze", meaning: "놀라게 하다", etymology: "a-(~에) + maze(미로). 사람을 미로 한가운데에 둔 것처럼 '정신을 못 차리고 어리둥절하게 만들다'에서 유래.", cognates: "amazing (놀라운), amazement (놀람)" },
-                { word: "sympathy", meaning: "동정, 공감, 연민", etymology: "sym-(함께) + pathos(감정, 고통). 타인의 아픔 및 비극을 '같은 감정으로 나누어 가지다'라는 의미.", cognates: "sympathetic (동정적인), sympathize (동정하다)" },
-                { word: "be tired of", meaning: "~에 실증이 나다, 지치다", etymology: "tire(피곤하게 만들다)에서 유래하여, 특정 대상에 에너지를 소진해 진저리가 난 상태를 표현.", cognates: "tiredness (피로), tiresome (지루한)" },
-                { word: "disgust", meaning: "혐오감, 메스꺼움; 혐오감을 주다", etymology: "dis-(반대, 부정) + gust(맛). 입에 맞지 않는 음식을 먹었을 때 구역질이 나는 감정에서 유래.", cognates: "disgusting (역겨운), disgusted (혐오감을 느끼는)" },
-                { word: "jealous", meaning: "질투하는, 시기하는", etymology: "그리스어 zelos(열정, 열의, 시기)에서 파생됨. 남의 것을 탐내거나 시샘하는 타오르는 마음.", cognates: "jealousy (질투), jealously (질투하여)" },
-                { word: "warm-hearted", meaning: "마음이 따뜻한", etymology: "warm(따뜻한) + hearted(마음을 가진). 타인에게 냉정하지 않고 친절하며 온정적인 성품을 묘사.", cognates: "warm-heartedness (따뜻한 마음씨)" },
-                { word: "scream", meaning: "비명을 지르다; 비명", etymology: "고대 노르드어 skreama(날카로운 소리를 내다)에서 유래하여 공포나 고통으로 소리 지르는 행위.", cognates: "screamer (비명 지르는 사람), screaming (비명 지르는)" },
-                { word: "burst into", meaning: "갑자기 ~하기 시작하다, 터뜨리다", etymology: "burst(파열하다) + into. 억누르던 감정이나 행동이 껍질을 깨고 '갑자기 확 터져 나오는 양상'.", cognates: "outburst (폭발, 분출)" },
-                { word: "ridicule", meaning: "조롱하다, 비웃다; 조롱", etymology: "라틴어 ridere(웃다)에서 유래됨. 타인을 우스꽝스럽게 만들어 '공개적으로 비웃음거리로 만들다'.", cognates: "ridiculous (말도 안 되는, 터무니없는)" },
-                { word: "annoy", meaning: "짜증 나게 하다, 귀찮게 하다", etymology: "라틴어 in odio(증오 속에)에서 파생되어 남을 지속적으로 괴롭히고 귀찮게 군다는 의미로 발전.", cognates: "annoyance (짜증), annoying (짜증스러운)" },
-                { word: "severe", meaning: "지독한, 아주 심한", etymology: "라틴어 severus(엄격한, 가혹한)에서 유래하여 날씨, 통증, 처벌 등이 타협 없이 매우 혹독함을 뜻함.", cognates: "severity (격렬함, 엄격함), severely (심하게)" },
-                { word: "mood", meaning: "기분, 분위기", etymology: "고대 영어 mod(마음, 마음가짐, 용기)에서 유래하여 일정 기간 지속되는 내면의 감정 상태.", cognates: "moody (침울한, 변덕스러운)" },
-                { word: "resent", meaning: "화를 내다, 분개하다", etymology: "re-(강조) + sent(느끼다). 부당한 대우를 받았을 때 그 나쁜 감정을 가슴 속에서 '다시 강하게 느끼다'.", cognates: "resentment (분개), resentful (분개하는)" },
-                { word: "temper", meaning: "성질, 기질, 화", etymology: "라틴어 temperare(조절하다, 올바른 비율로 섞다)에서 유래. 사람의 마음 속 요소들의 섞임 형태(체질).", cognates: "temperament (기질), temperate (차분한, 절제하는)" },
-                { word: "emotion", meaning: "감정", etymology: "e-(밖으로) + motion(움직임). 내면의 고요한 마음에 자극이 와서 '밖으로 요동치며 흘러나오는 상태'.", cognates: "emotional (감정적인), emotionally (감정적으로)" },
-                { word: "frighten", meaning: "겁먹게 하다, 놀라게 하다", etymology: "fright(공포) + en(만들다). 갑작스러운 자극이나 위협으로 상대방의 마음에 극심한 공포심을 심어주다.", cognates: "frightening (무서운), frightened (겁먹은)" },
-                { word: "miserable", meaning: "비참한, 불행한", etymology: "라틴어 miser(불쌍한, 비참한)에서 유래하여 물질적·정신적으로 완전히 황폐해진 비극적인 상태.", cognates: "misery (비참함, 고통), miser (구두쇠)" },
-                { word: "endure", meaning: "~을 참다, 참고 견디다", etymology: "en-(안에) + dure(단단한). 외부에서 가해지는 압박이나 고통 속에서도 마음을 '단단하게 유지하며 버티다'.", cognates: "endurance (인내), endurable (견딜 수 있는)" },
-                { word: "desperate", meaning: "필사적인, 절망적인", etymology: "de-(없이) + sper(희망) + ate. 마음 속에 '희망이 전혀 남아있지 않아' 목숨을 걸고 막무가내로 덤비는 상태.", cognates: "desperation (필사함, 절망), desperately (필사적으로)" },
-                { word: "anxious", meaning: "불안해하는, 걱정하는; 갈망하는", etymology: "라틴어 anxius(숨이 막히는, 괴로운)에서 유래. 마음이 죄어와 불안하거나 간절히 바라는 상태.", cognates: "anxiety (불안, 염려), anxiously (근심스럽게)" },
-                { word: "sentiment", meaning: "감정, 정서", etymology: "라틴어 sentire(느끼다) + ment. 논리적 이성보다는 가슴 깊은 곳에서 은은하게 일어나는 생각이나 정서.", cognates: "sentimental (감상적인), sentimentalism (감상주의)" },
-                { word: "envy", meaning: "부러워하다; 부러움, 질투", etymology: "in-(안을) + videre(쳐다보다). 남이 가진 좋은 것을 악의적인 시선으로 '째려보며 부러워하다'에서 유래.", cognates: "envious (부러워하는), enviable (부러워할 만한)" },
-                { word: "grief", meaning: "슬픔, 비애", etymology: "라틴어 gravare(무겁게 하다, 슬프게 하다)에서 유래. 소중한 것을 잃고 마음이 무겁게 짓눌리는 거대한 슬픔.", cognates: "grieve (슬퍼하다), grievous (통탄할)" },
-                { word: "relieve", meaning: "완화하다, 긴장을 풀게 하다", etymology: "re-(다시) + levare(가볍게 하다). 억누르던 무거운 짐을 들어 올려 마음이나 통증을 '다시 가볍게 만들어주다'.", cognates: "relief (안도, 완화), reliever (구원투수, 완화제)" }
-            ],
-            4: [
-                { word: "fiber", meaning: "섬유, 섬유질", etymology: "라틴어 fibra(엽, 실 가닥)에서 유래하여 생물체나 직물을 구성하는 가느다란 실 모양의 구조.", cognates: "fibrous (섬유질의), fiberglass (유리섬유)" },
-                { word: "contain", meaning: "담고 있다, 포함하다", etymology: "con-(함께) + tain(보유하다, 쥐다). '어떤 테두리 안에 함께 모아서 쥐고 있다'는 뜻.", cognates: "container (용기, 컨테이너), containment (봉쇄, 억제)" },
-                { word: "instant", meaning: "즉석요리의, 인스턴트의; 즉각적인; 순간", etymology: "in-(위에) + stant(서 있다). 바로 머리 위에 다다라 있어 '즉각적인 행동이나 찰나의 순간'을 의미.", cognates: "instantly (즉시), instance (사례, 경우)" },
-                { word: "peel", meaning: "(과일·채소 등의) 껍질을 벗기다; 벗겨지다; 과일 껍질", etymology: "라틴어 pilare(털을 뽑다, 가죽을 벗기다)에서 유래하여 표면을 감싼 층을 떼어내는 행위.", cognates: "peeler (껍질 벗기는 칼)" },
-                { word: "nourish", meaning: "영양분을 공급하다, (사람·생물을) 기르다", etymology: "라틴어 nutrire(젖을 먹이다, 기르다)에서 유래하여 생명체에 필요한 영양을 주어 키우다.", cognates: "nourishment (영양분), nutritious (영양가 높은)" },
-                { word: "chop", meaning: "자르다, 썰다", etymology: "칼이나 도끼로 무언가를 세차게 내려칠 때 나는 의성어적인 기원에서 파생된 단어.", cognates: "chopper (작두, 헬기), choppy (물결이 거친)" },
-                { word: "grind", meaning: "잘게 갈다[빻다], 가루로 만들다", etymology: "고대 영어 grindan(갈다, 마찰하다)에서 유래하여 단단한 곡물이나 재료를 짓눌러 분쇄하는 것.", cognates: "grinder (분쇄기), millstone (맷돌)" },
-                { word: "roast", meaning: "굽다, 볶다; 구운", etymology: "서게르만어 rostjan(석쇠 위에 올리다)에서 유래하여 불이나 오븐의 건열을 이용해 음식을 익히는 방식.", cognates: "roaster (로스터, 굽는 기구)" },
-                { word: "rotten", meaning: "썩은, 부패한", etymology: "고대 노르드어 rotinn(부패한)에서 유래하여 유기물이 박테리아에 의해 분해되어 변질된 상태.", cognates: "rot (썩다), rotting (부패해가는)" },
-                { word: "cuisine", meaning: "요리, 요리법", etymology: "라틴어 coquina(부엌)에서 프랑스어를 거쳐 유래됨. 특정 지역이나 문화권의 전문적인 요리 스타일.", cognates: "cook (요리하다), kitchen (부엌)" },
-                { word: "raw", meaning: "날것의; 가공하지 않은", etymology: "고대 영어 hrēaw(익히지 않은)에서 유래하여 불로 조리되지 않은 자연 그대로의 상태.", cognates: "rawness (날것 상태, 미숙함)" },
-                { word: "grill", meaning: "석쇠; 석쇠에 굽다", etymology: "프랑스어 gril(격자무늬 창살)에서 유래하여, 금속 살대 위에 음식을 올리고 아래서 직접 열을 가하는 도구.", cognates: "grilled (석쇠에 구운)" },
-                { word: "edible", meaning: "먹을 수 있는", etymology: "라틴어 edere(먹다) + ible(할 수 있는). 독성이 없거나 조리가 완료되어 사람이 섭취하기에 안전한.", cognates: "edibility (식용 가능성), inedible (먹을 수 없는)" },
-                { word: "nutrition", meaning: "영양, 영양물 섭취", etymology: "라틴어 nutrire(기르다) + tion. 생명체가 살아가는 데 필요한 외부 물질을 받아들이고 소화하는 전 과정.", cognates: "nutrient (영양소), nutritional (영양상의)" },
-                { word: "vegetarian", meaning: "채식주의자; 채식주의(자)의", etymology: "vegetable(채소) + arian(~하는 사람). 고기류를 배제하고 식물성 음식만을 섭취하는 사람.", cognates: "vegetarianism (채식주의)" },
-                { word: "dairy", meaning: "우유의, 유제품의; 유제품 판매점", etymology: "중세 영어 deierie(우유 짜는 하녀가 일하는 방)에서 유래하여 낙농업 및 유제품 관련 품목을 뜻함.", cognates: "dairymaid (낙농업 종사 여성)" },
-                { word: "kettle", meaning: "주전자", etymology: "라틴어 catillus(깊이가 깊은 작은 냄비)에서 유래하여 물을 끓이기 위해 주둥이와 손잡이를 단 용기.", cognates: "kettledrum (팀파니, 큰 북)" },
-                { word: "tray", meaning: "쟁반", etymology: "고대 영어 trieg(나무로 만든 얕은 그릇)에서 유래하여 음식이나 물건을 받쳐 들고 나르는 평평한 판.", cognates: "trayful (쟁반 하나 가득한 양)" },
-                { word: "seasoning", meaning: "조미료, 양념", etymology: "season(계절, 시기를 맞추다)에서 유래. 음식을 가장 알맞은 때처럼 '맛이 최정상에 오르도록 가미하다'.", cognates: "season (양념하다, 계절)" },
-                { word: "flavor", meaning: "(재료 특유의) 맛과 향; 풍미를 더하다(with)", etymology: "라틴어 flare(바람이 불다)에서 파생되어 입안 가득 향기가 퍼져 나가는 맛의 감각을 표현.", cognates: "flavorful (풍미가 좋은), flavoring (향료)" },
-                { word: "scent", meaning: "향기", etymology: "라틴어 sentire(느끼다, 감지하다)에서 유래하여 사냥개들이 코로 냄새를 맡아 추적하는 유익한 향.", cognates: "scented (향기가 나는)" },
-                { word: "leftover", meaning: "남은; 남은 음식", etymology: "left(남겨진) + over(이자나 잉여의). 식사 후 다 먹지 못하고 밀폐용기 등에 보관해 둔 음식물.", cognates: "leave (남겨두다, 떠나다)" },
-                { word: "swallow", meaning: "삼키다; 삼키기", etymology: "고대 영어 swelgan(꿀꺽 삼키다, 흡수하다)에서 유래하여 음식물을 목구멍 뒤로 넘겨 위로 보내는 행위.", cognates: "swallowable (삼킬 수 있는)" },
-                { word: "beverage", meaning: "음료", etymology: "라틴어 bibere(마시다)에서 유래하여 물을 제외하고 사람이 마실 수 있도록 가공된 모든 종류의 액체.", cognates: "brew (맥주 등을 양조하다)" },
-                { word: "squeeze", meaning: "짜다, 압착하다", etymology: "고대 영어 cwiesan(짓누르다, 부수다)에서 강세형으로 변형됨. 사방에서 압력을 주어 즙을 내는 행위.", cognates: "squeezer (즙 짜는 기구)" },
-                { word: "ripen", meaning: "익다; 익히다", etymology: "ripe(익은) + en(되다). 과일이나 곡식이 내외부적으로 성숙하여 먹기 좋은 최상의 상태가 되다.", cognates: "ripeness (숙성도, 익음)" },
-                { word: "paste", meaning: "반죽; 풀; 붙이다", etymology: "그리스어 pastē(밀가루와 물을 섞어 만든 끈적한 죽)에서 유래하여 점성이 높은 부드러운 물질.", cognates: "pastry (페이스트리 과자류)" },
-                { word: "blend", meaning: "섞다; 조화되다", etymology: "고대 노르드어 blanda(혼합하다)에서 유래하여 여러 성분이 경계 없이 자연스럽고 조화롭게 하나로 뭉침.", cognates: "blender (믹서기), blendable (섞이기 쉬운)" },
-                { word: "go off", meaning: "(음식 등이) 상하다, 부패하다", etymology: "go(진행하다) + off(정상 궤도에서 이탈하여). 음식을 먹을 수 있는 신선한 상태를 벗어나 부패하다.", cognates: "off-flavor (변질된 맛)" },
-                { word: "feed on", meaning: "~을 먹고 살다", etymology: "feed(먹이를 주다) + 의존 및 대상을 나타내는 전치사 on. 어떤 특정한 먹잇감이나 영양원을 주식으로 삼아 생명을 유지하다.", cognates: "food (음식), feeder (급여기)" }
-            ],
             5: [
                 { word: "uniform", meaning: "유니폼, 제복; 일정한, 균등한", etymology: "uni-(하나의) + form(형태). 모두가 '하나의 똑같은 형태'를 취하는 옷 또는 일관된 상태.", cognates: "uniformity (균일성), uniformly (균일하게)" },
                 { word: "costume", meaning: "의상, 복장; 분장", etymology: "라틴어 consuetudo(관습, 관례)에서 유래. 특정 시대나 지역의 관습적이고 특별한 옷차림을 뜻함.", cognates: "custom (관습), customary (관습적인)" },
@@ -143,16 +78,48 @@
                 { word: "dress up", meaning: "옷을 갖춰[격식을 차려] 입다", etymology: "dress(올바르게 정돈하다) + 부사 up(완전히). 파티나 공식 석상에 맞춰 아주 단정하고 화려하게 입다.", cognates: "dressy (옷을 잘 입는)" },
                 { word: "wear out", meaning: "많이 써서 낡게 하다, 닳다; 지치게 하다", etymology: "wear(입다, 마찰로 닳다) + out(소진하여 밖으로 폐기하다). 마찰로 물건의 수명이 다하거나 에너지를 다 쓰다.", cognates: "worn-out (닳아해진, 녹초가 된)" },
                 { word: "show off", meaning: "~을 과시하다", etymology: "show(보여주다) + off(분리하여 도드라지게). 자기가 가진 장점이나 재산을 남들 앞에 돋보이도록 자랑하다.", cognates: "show-off (과시가 심한 사람)" }
+            ],
+            6: [
+                { word: "cottage", meaning: "(시골의) 작은 집, 오두막집; (교외의) 작은 주택 [별장]", etymology: "중세 영어 cot(막사, 작은 집)에서 유래. 주로 시골이나 전원에 있는 아담하고 소박한 가옥.", cognates: "cot (아기 침대), cottager (시골집 거주자)" },
+                { word: "priceless", meaning: "값을 매길 수 없는, 대단히 귀중한", etymology: "price(가격, 가치) + less(~이 없는). 가치가 너무나 압도적이어서 숫자로 가격을 매길 수 없음을 의미.", cognates: "pricey (비싼), pricelessness (돈으로 살 수 없음)" },
+                { word: "tap", meaning: "(수도 등의) 꼭지, (통의) 주둥이, 마개", etymology: "고대 영어 tæppa(통의 마개)에서 유래. 액체의 흐름을 통제하기 위해 끼우거나 돌리는 장치.", cognates: "tap water (수도수), tap dance (탭댄스)" },
+                { word: "alarm", meaning: "경보기; 자명종; 놀람, 공포; 놀라게 하다", etymology: "이탈리아어 all'arme(무기 앞으로!, 무장하라!)에서 유래. 비상상황이 발생했음을 알리는 다급한 신호.", cognates: "alarming (우려스러운), alarmist (공포 조장자)" },
+                { word: "mess", meaning: "어질러진 것, 쓰레기 더미; 어수선함, 혼잡", etymology: "라틴어 missus(한 코스의 요리, 내놓은 음식)에서 유래. 음식을 마구 섞어 먹거나 남겨서 지저분해진 상태로 의미가 변형.", cognates: "messy (지저분한)" },
+                { word: "usual", meaning: "평소의, 일상의", etymology: "라틴어 usus(사용, 습관)에서 유래. 늘 사용하거나 반복하여 굳어진 습관적인 상태를 뜻함.", cognates: "usually (보통, 대개), unusual (특이한)" },
+                { word: "routine", meaning: "판에 박힌 일, 일과; 일상적인, 판에 박힌", etymology: "route(길, 정해진 행로) + 명사형 접미사 ine. 매일 똑같이 밟아 나가는 '정해진 일상의 길'.", cognates: "routinely (일상적으로, 틀에 박혀)" },
+                { word: "rely", meaning: "믿다, 의지[의존]하다", etymology: "re-(다시/뒤로) + ligare(묶다). 서로 단단하게 끈으로 연결되어 있어 '등을 기대고 전적으로 믿다'.", cognates: "reliable (믿을 수 있는), reliance (의존), reliant (의존하는)" },
+                { word: "dust", meaning: "먼지를 털다; 먼지, 흙", etymology: "고대 영어 dust(공중에 날리는 미세한 입자)에서 유래하여, 명사로 '먼지'이자 동사로 '먼지를 제거하다'라는 상반된 의미를 모두 가짐.", cognates: "dusty (먼지투성이의), duster (먼지떨이)" },
+                { word: "spread", meaning: "펴다, 펼치다, 퍼지다", etymology: "고대 영어 sprædan(넓게 확장하다)에서 유래. 한 지점에 뭉쳐 있던 것을 사방으로 넓게 두루 펼치는 행위.", cognates: "widespread (광범위한), spreadsheet (스프레드시트)" },
+                { word: "cleanse", meaning: "세척하다, 씻다; 정화하다", etymology: "clean(깨끗한) + 동사형 접미사 se. 표면의 오염물질을 제거하여 도덕적이나 물리적으로 완전히 깨끗하게 만들다.", cognates: "cleanser (클렌저), cleansing (정화)" },
+                { word: "wipe", meaning: "닦다, 훔치다, 가볍게 문지르다", etymology: "고대 영어 wipian(문지르다)에서 유래. 천이나 손을 사용하여 표면에 묻은 액체나 더러운 것을 쓸어내는 행위.", cognates: "wiper (와이퍼)" },
+                { word: "mop", meaning: "(대걸레로) 닦다; 대걸레", etymology: "라틴어 mappa(천, 냅킨)에서 유래. 바닥을 닦기 위해 자루 끝에 끈이나 천 뭉치를 달아놓은 청소 도구.", cognates: "mopping (걸레질)" },
+                { word: "drawer", meaning: "서랍; (항상 복수형) 장롱", etymology: "draw(끌어당기다) + er(물건). 사용하기 위해 앞으로 '잡아당겨 열 수 있도록 만든 수납함'.", cognates: "draw (당기다), drawing (데생, 인출)" },
+                { word: "stair", meaning: "(보통 복수형) 계단", etymology: "고대 영어 stæger(오르다)에서 유래. 높은 곳으로 걸어 올라갈 수 있도록 단을 만들어 놓은 구조물.", cognates: "staircase (계단), stairway (계단 통로)" },
+                { word: "rubbish", meaning: "쓰레기, 폐물", etymology: "고대 프랑스어 robe(약탈품, 버려진 옷가지)에서 파생됨. 가치를 잃어 쓸모없어진 잡동사니나 찌꺼기.", cognates: "rubbishy (형편없는)" },
+                { word: "dispose", meaning: "처리하다, 처분하다", etymology: "dis-(사방으로) + pose(놓다). 물건들을 각각 있어야 할 자리에 적절히 분류하여 배치하거나 없애다.", cognates: "disposal (처분), disposable (일회용의)" },
+                { word: "discard", meaning: "(불필요한 것을) 버리다, 처분하다", etymology: "dis-(벗어나다) + card(카드). 카드 게임을 할 때 쓸모없는 패를 손쥐고 있던 더미 밖으로 '버리는 행위'에서 유래.", cognates: "card (카드)" },
+                { word: "appliance", meaning: "(가정용) 기구, 장치, 전기 제품", etymology: "apply(적용하다, 사용하다) + ance. 특정한 가사 노동의 목적을 달성하기 위해 알맞게 갖추어 쓰는 기계 장치.", cognates: "apply (적용하다), applicable (적용 가능한)" },
+                { word: "spacious", meaning: "넓은, 광대한", etymology: "space(공간) + ious(가득 찬). 공간적 여유가 넘쳐나서 사방이 탁 트이고 시원한 상태를 묘사.", cognates: "space (공간), spaciously (넓게)" },
+                { word: "chore", meaning: "(집안의) 자질구레한 일, 허드렛일", etymology: "고대 영어 cierr(일, 회전, 차례)에서 유래. 주기적으로 돌아오는 일상적이고 반복적인 가사 활동.", cognates: "charwoman (청소부 대행)" },
+                { word: "polish", meaning: "닦다, 광[윤]을 내다; (문장 등을) 다듬다", etymology: "라틴어 polire( 매끄럽게 하다). 표면을 마찰시켜 빛나게 하거나 글을 정교하게 가다듬는 행위.", cognates: "polisher (광택기), polite (공손한, 세련된)" },
+                { word: "flush", meaning: "(물·액체 등으로) 씻어 내리다; (얼굴을) 붉히다, 상기시키다", etymology: "의성어적 기원과 라틴어 fluere(흐르다)의 영향. 물이 확 쏟아져 내리거나 핏기가 얼굴로 확 솟구치는 양상.", cognates: "fluid (액체)" },
+                { word: "nap", meaning: "낮잠, 선잠; 선잠을 자다, 졸다", etymology: "고대 영어 hnappian(가볍게 졸다)에서 유래. 밤에 자는 긴 잠이 아니라 낮에 잠깐 취하는 휴식용 잠.", cognates: "naptime (낮잠 시간)" },
+                { word: "outlet", meaning: "코드 구멍, 콘센트; 할인점", etymology: "out(밖으로) + let(내보내다). 전류를 외부로 내보내는 구멍, 혹은 재고 상품을 시중으로 내보내는 상점.", cognates: "let (하게 하다)" },
+                { word: "trim", meaning: "다듬다, 손질하다; 정돈(된 상태); 잘 정돈된", etymology: "고대 영어 trymian(굳건하게 하다, 정돈하다)에서 유래. 불필요한 부분을 쳐내어 가장 알맞고 보기 좋은 상태로 만들다.", cognates: "trimmer (분형기, 다듬는 도구)" },
+                { word: "crack", meaning: "깨지다, 금이 가다; 갈라진 금, 틈", etymology: "단단한 물체가 깨지거나 부딪힐 때 발생하는 날카로운 파열음인 의성어 '크랙'에서 유래.", cognates: "cracker (크래커, 과자), crackle (탁탁 소리를 내다)" },
+                { word: "leak", meaning: "새어나옴, 누출; 새다, 누출하다", etymology: "고대 노르드어 leka(물방울이 떨어지다)에서 유래. 틈새를 통해 액체나 기체, 정보 등이 외부로 빠져나가는 현상.", cognates: "leakage (누출, 누수), leaky (구멍이 난)" },
+                { word: "run out of", meaning: "~을 다 써 버리다, ~을 바닥내다", etymology: "run(달리다/진행하다) + out of(~의 밖으로). 보유하고 있던 자원의 경계선 바깥으로 완전히 달려 나가 다 떨어지다.", cognates: "run (달리다)" },
+                { word: "hang up", meaning: "~을 걸다[매달다]; 전화를 끊다", etymology: "hang(매달다) + up(위로). 과거 전화기의 송수신기를 벽에 걸려 있는 본체 고리에 위로 '걸어두던 행위'에서 유래.", cognates: "hang (걸다), hanger (옷걸이)" }
             ]
         };
 
-        let currentDay = 3;
+        let currentDay = 5;
         let currentMode = 'list';
         let cardIndex = 0;
 
         function switchDay(day) {
             currentDay = day;
-            cardIndex = 0; // 데이 전환 시 인덱스 초기화
+            cardIndex = 0; // 데이 전환 시 인덱스 초기화 (버그 방지)
             
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-200');
@@ -258,8 +225,8 @@
             }
         }
 
-        // Init Day 3
-        switchDay(3);
+        // Init Day 5
+        switchDay(5);
     </script>
 </body>
 </html>
