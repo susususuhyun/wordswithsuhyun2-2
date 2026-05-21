@@ -19,122 +19,68 @@
 
     <div class="w-full max-w-md bg-white shadow-xl flex flex-col justify-between min-h-screen border-x border-slate-200">
         
-        <header class="bg-indigo-600 text-white p-4 text-center shadow-md">
+        <header class="bg-indigo-600 text-white p-4 text-center shadow-md z-10">
             <h1 class="text-xl font-bold tracking-wide">🦓 얼룩말영어학원</h1>
-            <p class="text-xs text-indigo-200 mt-1 font-medium">중등 고난도 5, 6과 단어장 (어원·동계어)</p>
+            <p class="text-xs text-indigo-200 mt-1 font-medium">중등고난도7 목록 단어장 (30단어 원문 순서 고정)</p>
         </header>
 
         <main class="flex-1 p-4 overflow-y-auto">
-            
-            <div class="grid grid-cols-2 gap-2 mb-4">
-                <button onclick="switchDay(5)" id="tab-5" class="tab-btn bg-indigo-600 text-white font-semibold py-2 rounded-lg text-sm transition">Day 5</button>
-                <button onclick="switchDay(6)" id="tab-6" class="tab-btn bg-slate-100 text-slate-600 font-semibold py-2 rounded-lg text-sm transition">Day 6</button>
-            </div>
 
             <div class="flex justify-end gap-2 mb-4 text-xs font-medium">
                 <button onclick="switchMode('list')" id="mode-list" class="px-3 py-1.5 rounded-full bg-slate-800 text-white shadow">목록 보기</button>
                 <button onclick="switchMode('card')" id="mode-card" class="px-3 py-1.5 rounded-full bg-slate-200 text-slate-700">카드 학습</button>
             </div>
 
-            <div id="vocab-container" class="space-y-3"></div>
+            <div id="vocab-container" class="space-y-3 pb-4"></div>
 
         </main>
 
-        <footer class="bg-slate-50 border-t border-slate-200 p-3 text-center text-xs text-slate-400" id="app-footer">
-            © 얼룩말영어학원 | 스마트 단어 학습 시스템
+        <footer class="bg-slate-50 border-t border-slate-200 p-3 text-center text-xs text-slate-500 z-10" id="app-footer">
+            <div id="footer-content" class="w-full">© 얼룩말영어학원 | 스마트 단어 학습 시스템</div>
         </footer>
     </div>
 
     <script>
-        const vocabData = {
-            5: [
-                { word: "uniform", meaning: "유니폼, 제복; 일정한, 균등한", etymology: "uni-(하나의) + form(형태). 모두가 '하나의 똑같은 형태'를 취하는 옷 또는 일관된 상태.", cognates: "uniformity (균일성), uniformly (균일하게)" },
-                { word: "costume", meaning: "의상, 복장; 분장", etymology: "라틴어 consuetudo(관습, 관례)에서 유래. 특정 시대나 지역의 관습적이고 특별한 옷차림을 뜻함.", cognates: "custom (관습), customary (관습적인)" },
-                { word: "collar", meaning: "깃, 칼라", etymology: "라틴어 collum(목)에서 유래하여 상의에서 목 부분을 둘러싸고 접혀 있는 부분이나 장식.", cognates: "collet (보석을 물리는 상자 자리)" },
-                { word: "thread", meaning: "실; 실을 꿰다", etymology: "고대 영어 thrāwan(실을 비틀어 꼬다)에서 유래하여 천을 깁거나 옷을 짓는 데 쓰는 가느다란 가닥.", cognates: "thready (실 같은, 맥박이 약한)" },
-                { word: "length", meaning: "길이, 기간", etymology: "long(긴) + 명사형 접미사 th. 물체의 한쪽 끝에서 다른 쪽 끝까지의 거리 또는 시간의 장단.", cognates: "lengthen (길게 하다), lengthy (지루하게 긴)" },
-                { word: "casual", meaning: "격식을 차리지 않은, 평상복의; 우연의", etymology: "라틴어 casus(떨어지다, 우연히 일어나다)에서 유래. 계획 없이 우연히 일어나는 일, 혹은 편안한 복장.", cognates: "casually (편해 보이게, 우연히), casualty (사상자)" },
-                { word: "fashion", meaning: "유행, 인기; 패션", etymology: "라틴어 facere(만들다)에서 유래하여 시대적으로 사람들이 만들어내고 따르는 지배적인 양식.", cognates: "fashionable (유행하는), fashionist (유행에 민감한 사람)" },
-                { word: "loose", meaning: "헐거운, 느슨한; 풀린, 벗겨진", etymology: "고대 노르드어 loss(결박되지 않은)에서 유래하여 꽉 죄지 않고 공간의 여유가 있어 편안한 상태.", cognates: "loosen (느슨하게 하다), loosely (헐겁게)" },
-                { word: "stripe", meaning: "줄무늬", etymology: "중세 네덜란드어 strīpe(선, 채찍 자국)에서 유래하여 바탕색과 다른 색으로 길게 그어진 평행선들.", cognates: "stripy (줄무늬가 많은)" },
-                { word: "comfort", meaning: "편안함; 위로, 위안; 편하게 하다; 위로하다", etymology: "com-(함께/강조) + fortis(강하게 만들다). 슬프거나 힘든 사람의 마음을 지지하여 '함께 힘을 주어 강하게 세워주다'.", cognates: "comfortable (편안한), comforter (위로하는 자, 이불)" },
-                { word: "fade", meaning: "(색이) 바래다, (색을) 바래게 하다", etymology: "라틴어 fatuus(맛이 없는, 흐릿한)에서 유래하여 빛이나 시간이 지나며 본연의 색조와 선명함을 잃다.", cognates: "fadeless (영원히 변치 않는)" },
-                { word: "fold", meaning: "(종이·천 등을) 접다", etymology: "고대 영어 faldan(겹치다)에서 유래하여 평평한 물질의 한 부분을 다른 부분 위에 겹쳐 포개다.", cognates: "folder (서류철), unfold (펼치다)" },
-                { word: "plain", meaning: "(의복 등이) 수수한; 무늬가 없는; 명백한, 분명한", etymology: "라틴어 planus(평평한, 탁 트인). 장식이 없어 복잡하지 않고 한눈에 '명백하게 잘 보이는'.", cognates: "plainly (명백하게, 솔직하게)" },
-                { word: "premium", meaning: "고가의, 고급의; 할증금, 포상금", etymology: "pre-(앞에서) + emere(사다). 남들보다 앞서서 좋은 것을 사기 위해 '추가로 지불하는 최고급 가치'.", cognates: "premier (제일의, 수상)" },
-                { word: "formal", meaning: "공식적인, 격식을 차린", etymology: "form(정해진 형태, 양식) + al. 사회적인 규칙이나 관례적 절차를 엄격히 준수하는 양식.", cognates: "formality (격식, 절차), formalize (공식화하다)" },
-                { word: "fancy", meaning: "화려한, 장식적인; 값비싼", etymology: "fantasy(공상, 상상)의 축약형. 머릿속 상상을 현실에 화려하고 기발하게 장식물로 구현해 낸 것.", cognates: "fanciful (상상력이 풍부한)" },
-                { word: "outfit", meaning: "(특별한 날 입는) 옷, 의상 한 벌", etymology: "out(밖으로) + fit(알맞게 장비를 갖추다). 특정 목적이나 외출을 위해 상하의 및 장신구를 갖춘 상태.", cognates: "outfitter (의류 유통업자)" },
-                { word: "sew", meaning: "바느질하다, (바느질로) 만들다", etymology: "라틴어 suere(바느질하다)에서 유래하여 바늘과 실을 사용해 옷감을 이어 붙이거나 고정하는 작업.", cognates: "sewing (바느질), sewing-machine (재봉틀)" },
-                { word: "alter", meaning: "변경하다, (옷을) 고쳐 만들다", etymology: "라틴어 alter(다른 것)에서 유래하여 기존의 상태나 옷의 치수를 '다르게 바꾸다'라는 의미.", cognates: "alteration (변경, 개조), alternative (대안)" },
-                { word: "trousers", meaning: "바지", etymology: "게일어 triubhas(엉덩이와 다리를 감싸는 옷)에서 파생되어 두 다리를 따로 집어넣어 입는 하의.", cognates: "trouser (바지의 가닥)" },
-                { word: "suit", meaning: "정장; 어울리다, 잘 맞다", etymology: "라틴어 sequi(따르다). 상의와 하의가 원단과 스타일 면에서 '서로 세트로 같이 따라다니다'에서 유래.", cognates: "suitable (적절한), suitor (소송인, 구혼자)" },
-                { word: "vest", meaning: "조끼", etymology: "라틴어 vestis(옷, 의복)에서 유래하여 소매가 없고 재킷 안에 받쳐 입는 몸통만의 상의.", cognates: "vestment (제복, 의복), invest (권리를 부여하다, 투자하다)" },
-                { word: "fabric", meaning: "천, 직물; 직물의 짜임새", etymology: "라틴어 fabrica(작업장, 구조물)에서 유래하여 실을 정교하게 짜 맞추어 만든 구조체나 옷감을 뜻함.", cognates: "fabricate (조작하다, 제작하다), fabrication (제작, 위조)" },
-                { word: "cotton", meaning: "솜, 면화; 면직물, 무명실", etymology: "아랍어 quṭn(목화 고치)에서 스페인어와 프랑스어를 거쳐 유래한 식물성 천연 섬유의 대명사.", cognates: "cottony (솜털 같은)" },
-                { word: "fur", meaning: "모피", etymology: "고대 프랑스어 forrer(칼집으로 감싸다, 안감을 대다)에서 유래하여 동물의 부드러운 털이 붙은 가죽.", cognates: "furry (털로 뒤덮인)" },
-                { word: "laundry", meaning: "세탁물; 세탁소", etymology: "라틴어 lavandaria(물로 씻어내야 할 옷가지들)에서 유래하여 옷을 빨고 말리는 일련의 과정.", cognates: "launder (세탁하다), launderette (코인 세탁소)" },
-                { word: "detergent", meaning: "세탁 세제, 세정제", etymology: "de-(멀리) + tergere(닦아내다). 옷감 사이에 박힌 때와 오염물질을 '깨끗하게 밀어내어 씻어내는 물질'.", cognates: "deterge (깨끗이 씻어내다)" },
-                { word: "dress up", meaning: "옷을 갖춰[격식을 차려] 입다", etymology: "dress(올바르게 정돈하다) + 부사 up(완전히). 파티나 공식 석상에 맞춰 아주 단정하고 화려하게 입다.", cognates: "dressy (옷을 잘 입는)" },
-                { word: "wear out", meaning: "많이 써서 낡게 하다, 닳다; 지치게 하다", etymology: "wear(입다, 마찰로 닳다) + out(소진하여 밖으로 폐기하다). 마찰로 물건의 수명이 다하거나 에너지를 다 쓰다.", cognates: "worn-out (닳아해진, 녹초가 된)" },
-                { word: "show off", meaning: "~을 과시하다", etymology: "show(보여주다) + off(분리하여 도드라지게). 자기가 가진 장점이나 재산을 남들 앞에 돋보이도록 자랑하다.", cognates: "show-off (과시가 심한 사람)" }
-            ],
-            6: [
-                { word: "cottage", meaning: "(시골의) 작은 집, 오두막집; (교외의) 작은 주택 [별장]", etymology: "중세 영어 cot(막사, 작은 집)에서 유래. 주로 시골이나 전원에 있는 아담하고 소박한 가옥.", cognates: "cot (아기 침대), cottager (시골집 거주자)" },
-                { word: "priceless", meaning: "값을 매길 수 없는, 대단히 귀중한", etymology: "price(가격, 가치) + less(~이 없는). 가치가 너무나 압도적이어서 숫자로 가격을 매길 수 없음을 의미.", cognates: "pricey (비싼), pricelessness (돈으로 살 수 없음)" },
-                { word: "tap", meaning: "(수도 등의) 꼭지, (통의) 주둥이, 마개", etymology: "고대 영어 tæppa(통의 마개)에서 유래. 액체의 흐름을 통제하기 위해 끼우거나 돌리는 장치.", cognates: "tap water (수도수), tap dance (탭댄스)" },
-                { word: "alarm", meaning: "경보기; 자명종; 놀람, 공포; 놀라게 하다", etymology: "이탈리아어 all'arme(무기 앞으로!, 무장하라!)에서 유래. 비상상황이 발생했음을 알리는 다급한 신호.", cognates: "alarming (우려스러운), alarmist (공포 조장자)" },
-                { word: "mess", meaning: "어질러진 것, 쓰레기 더미; 어수선함, 혼잡", etymology: "라틴어 missus(한 코스의 요리, 내놓은 음식)에서 유래. 음식을 마구 섞어 먹거나 남겨서 지저분해진 상태로 의미가 변형.", cognates: "messy (지저분한)" },
-                { word: "usual", meaning: "평소의, 일상의", etymology: "라틴어 usus(사용, 습관)에서 유래. 늘 사용하거나 반복하여 굳어진 습관적인 상태를 뜻함.", cognates: "usually (보통, 대개), unusual (특이한)" },
-                { word: "routine", meaning: "판에 박힌 일, 일과; 일상적인, 판에 박힌", etymology: "route(길, 정해진 행로) + 명사형 접미사 ine. 매일 똑같이 밟아 나가는 '정해진 일상의 길'.", cognates: "routinely (일상적으로, 틀에 박혀)" },
-                { word: "rely", meaning: "믿다, 의지[의존]하다", etymology: "re-(다시/뒤로) + ligare(묶다). 서로 단단하게 끈으로 연결되어 있어 '등을 기대고 전적으로 믿다'.", cognates: "reliable (믿을 수 있는), reliance (의존), reliant (의존하는)" },
-                { word: "dust", meaning: "먼지를 털다; 먼지, 흙", etymology: "고대 영어 dust(공중에 날리는 미세한 입자)에서 유래하여, 명사로 '먼지'이자 동사로 '먼지를 제거하다'라는 상반된 의미를 모두 가짐.", cognates: "dusty (먼지투성이의), duster (먼지떨이)" },
-                { word: "spread", meaning: "펴다, 펼치다, 퍼지다", etymology: "고대 영어 sprædan(넓게 확장하다)에서 유래. 한 지점에 뭉쳐 있던 것을 사방으로 넓게 두루 펼치는 행위.", cognates: "widespread (광범위한), spreadsheet (스프레드시트)" },
-                { word: "cleanse", meaning: "세척하다, 씻다; 정화하다", etymology: "clean(깨끗한) + 동사형 접미사 se. 표면의 오염물질을 제거하여 도덕적이나 물리적으로 완전히 깨끗하게 만들다.", cognates: "cleanser (클렌저), cleansing (정화)" },
-                { word: "wipe", meaning: "닦다, 훔치다, 가볍게 문지르다", etymology: "고대 영어 wipian(문지르다)에서 유래. 천이나 손을 사용하여 표면에 묻은 액체나 더러운 것을 쓸어내는 행위.", cognates: "wiper (와이퍼)" },
-                { word: "mop", meaning: "(대걸레로) 닦다; 대걸레", etymology: "라틴어 mappa(천, 냅킨)에서 유래. 바닥을 닦기 위해 자루 끝에 끈이나 천 뭉치를 달아놓은 청소 도구.", cognates: "mopping (걸레질)" },
-                { word: "drawer", meaning: "서랍; (항상 복수형) 장롱", etymology: "draw(끌어당기다) + er(물건). 사용하기 위해 앞으로 '잡아당겨 열 수 있도록 만든 수납함'.", cognates: "draw (당기다), drawing (데생, 인출)" },
-                { word: "stair", meaning: "(보통 복수형) 계단", etymology: "고대 영어 stæger(오르다)에서 유래. 높은 곳으로 걸어 올라갈 수 있도록 단을 만들어 놓은 구조물.", cognates: "staircase (계단), stairway (계단 통로)" },
-                { word: "rubbish", meaning: "쓰레기, 폐물", etymology: "고대 프랑스어 robe(약탈품, 버려진 옷가지)에서 파생됨. 가치를 잃어 쓸모없어진 잡동사니나 찌꺼기.", cognates: "rubbishy (형편없는)" },
-                { word: "dispose", meaning: "처리하다, 처분하다", etymology: "dis-(사방으로) + pose(놓다). 물건들을 각각 있어야 할 자리에 적절히 분류하여 배치하거나 없애다.", cognates: "disposal (처분), disposable (일회용의)" },
-                { word: "discard", meaning: "(불필요한 것을) 버리다, 처분하다", etymology: "dis-(벗어나다) + card(카드). 카드 게임을 할 때 쓸모없는 패를 손쥐고 있던 더미 밖으로 '버리는 행위'에서 유래.", cognates: "card (카드)" },
-                { word: "appliance", meaning: "(가정용) 기구, 장치, 전기 제품", etymology: "apply(적용하다, 사용하다) + ance. 특정한 가사 노동의 목적을 달성하기 위해 알맞게 갖추어 쓰는 기계 장치.", cognates: "apply (적용하다), applicable (적용 가능한)" },
-                { word: "spacious", meaning: "넓은, 광대한", etymology: "space(공간) + ious(가득 찬). 공간적 여유가 넘쳐나서 사방이 탁 트이고 시원한 상태를 묘사.", cognates: "space (공간), spaciously (넓게)" },
-                { word: "chore", meaning: "(집안의) 자질구레한 일, 허드렛일", etymology: "고대 영어 cierr(일, 회전, 차례)에서 유래. 주기적으로 돌아오는 일상적이고 반복적인 가사 활동.", cognates: "charwoman (청소부 대행)" },
-                { word: "polish", meaning: "닦다, 광[윤]을 내다; (문장 등을) 다듬다", etymology: "라틴어 polire( 매끄럽게 하다). 표면을 마찰시켜 빛나게 하거나 글을 정교하게 가다듬는 행위.", cognates: "polisher (광택기), polite (공손한, 세련된)" },
-                { word: "flush", meaning: "(물·액체 등으로) 씻어 내리다; (얼굴을) 붉히다, 상기시키다", etymology: "의성어적 기원과 라틴어 fluere(흐르다)의 영향. 물이 확 쏟아져 내리거나 핏기가 얼굴로 확 솟구치는 양상.", cognates: "fluid (액체)" },
-                { word: "nap", meaning: "낮잠, 선잠; 선잠을 자다, 졸다", etymology: "고대 영어 hnappian(가볍게 졸다)에서 유래. 밤에 자는 긴 잠이 아니라 낮에 잠깐 취하는 휴식용 잠.", cognates: "naptime (낮잠 시간)" },
-                { word: "outlet", meaning: "코드 구멍, 콘센트; 할인점", etymology: "out(밖으로) + let(내보내다). 전류를 외부로 내보내는 구멍, 혹은 재고 상품을 시중으로 내보내는 상점.", cognates: "let (하게 하다)" },
-                { word: "trim", meaning: "다듬다, 손질하다; 정돈(된 상태); 잘 정돈된", etymology: "고대 영어 trymian(굳건하게 하다, 정돈하다)에서 유래. 불필요한 부분을 쳐내어 가장 알맞고 보기 좋은 상태로 만들다.", cognates: "trimmer (분형기, 다듬는 도구)" },
-                { word: "crack", meaning: "깨지다, 금이 가다; 갈라진 금, 틈", etymology: "단단한 물체가 깨지거나 부딪힐 때 발생하는 날카로운 파열음인 의성어 '크랙'에서 유래.", cognates: "cracker (크래커, 과자), crackle (탁탁 소리를 내다)" },
-                { word: "leak", meaning: "새어나옴, 누출; 새다, 누출하다", etymology: "고대 노르드어 leka(물방울이 떨어지다)에서 유래. 틈새를 통해 액체나 기체, 정보 등이 외부로 빠져나가는 현상.", cognates: "leakage (누출, 누수), leaky (구멍이 난)" },
-                { word: "run out of", meaning: "~을 다 써 버리다, ~을 바닥내다", etymology: "run(달리다/진행하다) + out of(~의 밖으로). 보유하고 있던 자원의 경계선 바깥으로 완전히 달려 나가 다 떨어지다.", cognates: "run (달리다)" },
-                { word: "hang up", meaning: "~을 걸다[매달다]; 전화를 끊다", etymology: "hang(매달다) + up(위로). 과거 전화기의 송수신기를 벽에 걸려 있는 본체 고리에 위로 '걸어두던 행위'에서 유래.", cognates: "hang (걸다), hanger (옷걸이)" }
-            ]
-        };
+        // 7과 목록 원본 데이터 30개 고정 순서 배치 완료 
+        const vocabData = [
+            { word: "fluent", meaning: "(말·글이) 유창한", etymology: "라틴어 fluere(흐르다)에서 유래. 말이나 글이 막힘없이 물 흐르듯 매끄럽게 흘러나오는 상태.", cognates: "fluently (유창하게), fluency (유창함), fluid (유체, 액체)" },
+            { word: "physics", meaning: "물리학", etymology: "그리스어 physis(자연, 자연의 본질)에서 유래. 자연 만물의 물질적 대원칙과 법칙을 연구하는 학문.", cognates: "physical (신체의, 물질적인), physicist (물리학자)" },
+            { word: "linguistics", meaning: "언어학", etymology: "라틴어 lingua(혀, 언어) + ist + ics. 인간이 사용하는 언어의 구조, 역사, 체계를 과학적으로 연구하는 학문.", cognates: "linguist (언어학자), linguistic (언어의)" },
+            { word: "figure", meaning: "그림; 수치; (사람의) 모습, 인물", etymology: "라틴어 fingere(형태를 만들다). 겉으로 드러나는 구체적인 모양새, 숫자 형태, 혹은 서적 안의 삽화.", cognates: "figurative (비유적인), figure out (~을 이해하다)" },
+            { word: "insight", meaning: "통찰력, 간파", etymology: "in(안으로) + sight(보는 능력). 사물의 겉모습만 보는 것이 아니라, 그 내면의 본질을 꿰뚫어 보는 안목.", cognates: "insightful (통찰력 있는)" },
+            { word: "intelligence", meaning: "지능, 이해력, 영리함", etymology: "inter(~ 사이에) + 라틴어 legere(고르다, 이해하다). 수많은 정보 사이에서 올바른 지식을 선택하고 이해하는 지적 역량.", cognates: "intelligent (영리한), intellectual (지적인)" },
+            { word: "dwell on", meaning: "~을 깊이 생각하다. ~을 자세히 이야기하다", etymology: "dwell(거주하다, 머무르다) + 전치사 on. 마음이나 시선이 다른 곳으로 가지 않고 특정 주제 위에 오랫동안 멈물러 있는 양상.", cognates: "dweller (거주자)" },
+            { word: "review", meaning: "복습하다. 다시 검토하다; 비평, 평론", etymology: "re-(다시) + view(바라보다). 지나온 길이나 이미 작성된 글을 다시 쳐다보며 교정하거나 되새기는 행위.", cognates: "reviewer (비평가)" },
+            { word: "essence", meaning: "본질, 기초", etymology: "라틴어 esse(존재하다). 어떤 사물이 그 사물로서 존재하기 위해 결코 없어서는 안 되는 가장 핵심적인 내면 가치.", cognates: "essential (필수적인, 본질적인), essentially (본질적으로)" },
+            { word: "statistics", meaning: "통계학, 통계 자료", etymology: "라틴어 status(국가 상태, 정치적 상황). 과거 국가의 인구와 재산을 파악하기 위해 수치를 모으던 학문에서 유래.", cognates: "statistical (통계적인), statistician (통계학자)" },
+            { word: "geology", meaning: "지질학", etymology: "geo(지구, 땅) + logy(학문). 우리가 딛고 서 있는 지구와 암석의 역사, 구조, 성분을 연구하는 학문 분야.", cognates: "geologist (지질학자), geological (지질학과의)" },
+            { word: "scholar", meaning: "학자, 장학생", etymology: "라틴어 schola(학교, 여가)에서 파생. 생계 활동 대신 학문 연구와 지식 탐구에 평생을 바치는 사람.", cognates: "scholarship (장학금, 학문), scholarly (학자적인)" },
+            { word: "refer", meaning: "언급하다. 참고하다", etymology: "re-(뒤로) + 라틴어 ferre(나르다, 운반하다). 다른 곳에 서술된 정보나 대상을 대화 속으로 이끌어와 지칭하는 행위.", cognates: "reference (참고, 언급), referee (심판)" },
+            { word: "concept", meaning: "개념, 발상", etymology: "con-(함께) + 라틴어 capere(마음속으로 붙잡다). 여러 현상 속에서 공통된 핵심 구조나 생각을 한데 묶어 마음속에 정립한 것.", cognates: "conception (개념, 임신), conceptual (개념적인)" },
+            { word: "define", meaning: "정의하다. 명확히 하다", etymology: "de-(완전히) + 라틴어 finis(경계, 끝). 단어나 개념의 테두리에 명확한 경계선을 그어 뜻을 확실하게 한정 짓다.", cognates: "definition (정의), definite (명확한)" },
+            { word: "demonstrate", meaning: "보여 주다, 증명하다. 설명하다; 시위하다", etymology: "de-(강조) + 라틴어 monstrare(가리키다, 보여주다). 말로만 하지 않고 구체적인 물증이나 행동을 눈앞에 직접 꺼내어 증명하다.", cognates: "demonstration (입증, 시위)" },
+            { word: "look up", meaning: "(사전·컴퓨터 등에서 정보를) 찾아보고 조사하다", etymology: "look(시선을 던지다) + 부사 up(완전히 위로). 책장이나 화면을 위로 넘겨가며 필요한 정밀한 지식을 추적하여 찾아내는 행위.", cognates: "look (보다)" },
+            { word: "improve", meaning: "향상시키다. 나아지다", etymology: "프랑스어 en(안으로) + prou(이익, 가치). 어떤 대상에 노력과 투자를 가해 질적인 가치를 안으로 높여주는 과정.", cognates: "improvement (개선, 향상)" },
+            { word: "theory", meaning: "이론, 학설", etymology: "그리스어 theoria(정신적 관조, 깊이 바라봄). 단순한 추측에 그치지 않고 체계적인 관찰을 통해 정립한 논리적 지식 체계.", cognates: "theoretical (이론적인), theorist (이론가)" },
+            { word: "diameter", meaning: "지름", etymology: "dia(가로질러) + meter(측정, 단위). 원이나 구체의 중심을 정중앙으로 관통하여 끝에서 끝까지 측정한 직선의 길이.", cognates: "metric (미터법의)" },
+            { word: "literal", meaning: "글자 그대로의, 정확한", etymology: "라틴어 litera(문자, 글자). 비유적이거나 과장된 표현을 배제하고 오직 기록된 글자 본연의 정직한 의미를 뜻함.", cognates: "literally (말 그대로), literature (문학), literate (읽고 쓸 줄 아는)" },
+            { word: "conclude", meaning: "끝내다. 결론 내리다", etymology: "con-(함께) + 라틴어 claudere(문을 닫다). 여러 논의와 주장을 한데 모아 정리한 뒤 최종적으로 문을 닫아 마무리 짓다.", cognates: "conclusion (결론), conclusive (결정적인)" },
+            { word: "academic", meaning: "학업의, 학구적인", etymology: "그리스 아테네의 철학 학당인 '아카데미아(Akademia)'에서 유래. 순수한 학교 교육이나 고등 학문 연구와 관련된 성격.", cognates: "academy (학원, 한림원)" },
+            { word: "go over", meaning: "~을 점검 [검토]하다, ~을 주의 깊게 살피다", etymology: "go(이동하다) + over(대상의 표면 전체를 가로질러). 서류나 데이터의 처음부터 끝까지 전체를 밟아가며 오류를 확인하는 행위.", cognates: "go (가다)" },
+            { word: "expose", meaning: "노출시키다. 드러내다", etymology: "ex-(밖으로) + 라틴어 ponere(놓다). 안쪽에 안전하게 숨겨져 있던 대상을 바깥쪽 거친 환경에 그대로 꺼내어 놓다.", cognates: "exposure (노출), exposition (박람회, 설명)" },
+            { word: "literate", meaning: "읽고 쓸 줄 아는, 교양 있는", etymology: "라틴어 litera(문자, 글자) + ate. 문자를 인지하고 해독하여 지식을 습득할 수 있는 기초적인 지적 능력을 갖춘.", cognates: "literacy (문해력), illiterate (문맹의)" },
+            { word: "solve", meaning: "풀다. 해결하다", etymology: "라틴어 solvere(느슨하게 풀다, 밧줄을 해체하다). 꽁꽁 묶여 풀리지 않던 복잡한 문제나 매듭을 느슨하게 풀어 자유롭게 하다.", cognates: "solution (해결책, 용액), soluble (녹는, 해결 가능한)" },
+            { word: "principle", meaning: "원리, 원칙", etymology: "라틴어 princeps(가장 첫 번째의 것, 군주). 모든 하위 규칙이나 행동 양식보다 가장 앞서서 기본 뼈대를 이루는 대전제.", cognates: "principal (교장, 주요한)" },
+            { word: "content", meaning: "내용, 목차; 만족하는 만족시키다", etymology: "con-(함께) + 라틴어 tenere(쥐다, 보유하다). 용기나 책 속에 담겨 소유되어 있는 구성물, 혹은 마음이 꽉 차서 평온한 상태.", cognates: "contention (논쟁)" },
+            { word: "inspire", meaning: "격려하다. 영감을 주다", etymology: "in-(안으로) + 라틴어 spirare(숨을 불어넣다). 침체되어 있는 타인의 마음속 깊은 곳에 새로운 예술적·도덕적 기운을 불어넣다.", cognates: "inspiration (영감), respiratory (호흡기계의)" }
+        ];
 
-        let currentDay = 5;
         let currentMode = 'list';
         let cardIndex = 0;
 
-        function switchDay(day) {
-            currentDay = day;
-            cardIndex = 0; // 데이 전환 시 인덱스 초기화 (버그 방지)
-            
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-200');
-                btn.classList.add('bg-slate-100', 'text-slate-600');
-            });
-            const activeTab = document.getElementById(`tab-${day}`);
-            activeTab.classList.remove('bg-slate-100', 'text-slate-600');
-            activeTab.classList.add('bg-indigo-600', 'text-white');
-
-            renderContent();
-        }
-
         function switchMode(mode) {
             currentMode = mode;
-            cardIndex = 0; // 모드 전환 시 인덱스 초기화
+            cardIndex = 0; 
             const listBtn = document.getElementById('mode-list');
             const cardBtn = document.getElementById('mode-card');
 
@@ -150,12 +96,13 @@
 
         function renderContent() {
             const container = document.getElementById('vocab-container');
-            const footer = document.getElementById('app-footer');
-            const data = vocabData[currentDay];
+            const footerContent = document.getElementById('footer-content');
 
             if (currentMode === 'list') {
-                footer.innerHTML = `© 얼룩말영어학원 | 스마트 단어 학습 시스템`;
-                container.innerHTML = data.map((item, idx) => `
+                footerContent.className = "w-full text-slate-400 text-center py-1";
+                footerContent.innerHTML = `© 얼룩말영어학원 | 스마트 단어 학습 시스템`;
+                
+                container.innerHTML = vocabData.map((item, idx) => `
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 shadow-sm">
                         <div class="flex justify-between items-start">
                             <span class="text-xs text-indigo-500 font-bold uppercase tracking-wider">No. ${idx + 1}</span>
@@ -173,13 +120,13 @@
                     </div>
                 `).join('');
             } else {
-                const item = data[cardIndex];
-                footer.innerHTML = `
-                    <div class="flex justify-between items-center px-4 py-1">
-                        <button onclick="prevCard()" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg ${cardIndex === 0 ? 'opacity-50 pointer-events-none' : ''}">이전</button>
-                        <span class="font-semibold text-slate-600">${cardIndex + 1} / ${data.length}</span>
-                        <button onclick="nextCard()" class="px-4 py-2 bg-indigo-600 text-white font-bold rounded-lg ${cardIndex === data.length - 1 ? 'opacity-50 pointer-events-none' : ''}">다음</button>
-                    </div>
+                const item = vocabData[cardIndex];
+                
+                footerContent.className = "w-full flex justify-between items-center px-2";
+                footerContent.innerHTML = `
+                    <button onclick="prevCard()" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg ${cardIndex === 0 ? 'opacity-50 pointer-events-none' : ''}">이전</button>
+                    <span class="font-semibold text-slate-600">${cardIndex + 1} / ${vocabData.length}</span>
+                    <button onclick="nextCard()" class="px-4 py-2 bg-indigo-600 text-white font-bold rounded-lg ${cardIndex === vocabData.length - 1 ? 'opacity-50 pointer-events-none' : ''}">다음</button>
                 `;
                 
                 container.innerHTML = `
@@ -188,7 +135,7 @@
                         <div id="card-inner" class="card-inner w-full h-full relative rounded-2xl shadow-lg border border-slate-200">
                             <div class="card-front absolute w-full h-full bg-indigo-50 flex flex-col justify-center items-center rounded-2xl p-6">
                                 <span class="text-xs text-indigo-400 font-bold tracking-widest mb-4">WORD</span>
-                                <h2 class="text-4xl font-extrabold text-indigo-700 tracking-tight">${item.word}</h2>
+                                <h2 class="text-3xl font-extrabold text-indigo-700 tracking-tight">${item.word}</h2>
                             </div>
                             <div class="card-back absolute w-full h-full bg-white flex flex-col justify-between rounded-2xl p-6 overflow-y-auto">
                                 <div>
@@ -212,7 +159,7 @@
         }
 
         function nextCard() {
-            if (cardIndex < vocabData[currentDay].length - 1) {
+            if (cardIndex < vocabData.length - 1) {
                 cardIndex++;
                 renderContent();
             }
@@ -225,8 +172,8 @@
             }
         }
 
-        // Init Day 5
-        switchDay(5);
+        // Initialize App
+        renderContent();
     </script>
 </body>
 </html>
