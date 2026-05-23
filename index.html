@@ -3,177 +3,541 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>얼룩말영어학원 고난도 단어장</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>얼룩말영어학원 - 중등 고난도 단어장</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
-        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; }
-        .card-flip { perspective: 1000px; }
-        .card-inner { transition: transform 0.5s; transform-style: preserve-3d; }
-        .card-flipped { transform: rotateY(180deg); }
-        .card-front, .card-back { backface-visibility: hidden; }
-        .card-back { transform: rotateY(180deg); }
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #ffd700;
+            --bg-color: #f5f6fa;
+            --card-bg: #ffffff;
+            --text-main: #2f3640;
+            --text-sub: #718093;
+            --border-color: #dcdde1;
+            
+            /* 테스트 피드백용 색상 추가 */
+            --color-correct: #10ac84;
+            --color-wrong: #ee5253;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding-bottom: 60px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            margin-top: 2px;
+        }
+
+        .tab-menu {
+            display: flex;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            border: none;
+            background: none;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--text-sub);
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn-ctrl {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--primary-color);
+            background: #ffffff;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-ctrl.active {
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .word-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .word-num {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            font-weight: bold;
+        }
+
+        .word-eng {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #111;
+        }
+
+        .word-kor {
+            font-size: 1.05rem;
+            color: #d63031;
+            font-weight: bold;
+            margin-top: 5px;
+            word-break: keep-all;
+        }
+
+        .etymology-box {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--border-color);
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .etymology-box strong {
+            color: #2e86de;
+        }
+
+        .hide-eng .word-eng { opacity: 0; }
+        .hide-kor .word-kor { opacity: 0; }
+
+        /* 테스트 섹션 스타일 */
+        .test-setup {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .btn-start {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 15px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .test-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: none;
+        }
+
+        .test-q-num {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 5px;
+        }
+
+        .test-question {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-btn {
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            background: #fff;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        /* [버그 수정 반영] 정답/오답 상태 스타일 정의 */
+        .option-btn.correct {
+            background-color: var(--color-correct) !important;
+            color: white !important;
+            border-color: var(--color-correct) !important;
+        }
+
+        .option-btn.wrong {
+            background-color: var(--color-wrong) !important;
+            color: white !important;
+            border-color: var(--color-wrong) !important;
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
+        .option-btn.correct:disabled, .option-btn.wrong:disabled {
+            opacity: 1; /* 선택된 정/오답 버튼은 선명하게 유지 */
+        }
+
+        .score-view {
+            text-align: center;
+            display: none;
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 12px;
+        }
+
+        .score-num {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #10ac84;
+            margin: 15px 0;
+        }
     </style>
 </head>
-<body class="flex justify-center min-h-screen">
+<body>
 
-    <div class="w-full max-w-md bg-white shadow-xl flex flex-col justify-between min-h-screen border-x border-slate-200">
-        
-        <header class="bg-indigo-600 text-white p-4 text-center shadow-md z-10">
-            <h1 class="text-xl font-bold tracking-wide">🦓 얼룩말영어학원</h1>
-            <p class="text-xs text-indigo-200 mt-1 font-medium">중등고난도7 목록 단어장 (30단어 원문 순서 고정)</p>
-        </header>
+    <header>
+        <h1>얼룩말영어학원</h1>
+        <p>중등 고난도 마스터 단어장 (8 & 9과)</p>
+    </header>
 
-        <main class="flex-1 p-4 overflow-y-auto">
+    <div class="tab-menu">
+        <button class="tab-btn active" onclick="switchTab('study')">📖 단어 학습</button>
+        <button class="tab-btn" onclick="switchTab('test')">📝 실시간 테스트</button>
+    </div>
 
-            <div class="flex justify-end gap-2 mb-4 text-xs font-medium">
-                <button onclick="switchMode('list')" id="mode-list" class="px-3 py-1.5 rounded-full bg-slate-800 text-white shadow">목록 보기</button>
-                <button onclick="switchMode('card')" id="mode-card" class="px-3 py-1.5 rounded-full bg-slate-200 text-slate-700">카드 학습</button>
+    <div class="container">
+        <div id="study-panel" class="panel active">
+            <div class="controls">
+                <button id="btn-show-all" class="btn-ctrl active" onclick="setDisplayMode('all')">모두 보기</button>
+                <button id="btn-hide-eng" class="btn-ctrl" onclick="setDisplayMode('eng')">영어 가리기</button>
+                <button id="btn-hide-kor" class="btn-ctrl" onclick="setDisplayMode('kor')">뜻 가리기</button>
+            </div>
+            <div id="word-list-container"></div>
+        </div>
+
+        <div id="test-panel" class="panel">
+            <div id="test-setup-box" class="test-setup">
+                <h3>VOCA 실력 점검 테스트</h3>
+                <p style="margin-top: 8px; color: var(--text-sub); font-size: 0.9rem;">
+                    통합 60단어 중 무작위 10문항이 사지선다형으로 출제됩니다.
+                </p>
+                <button class="btn-start" onclick="startTest()">테스트 시작하기</button>
             </div>
 
-            <div id="vocab-container" class="space-y-3 pb-4"></div>
+            <div id="test-main-box" class="test-box">
+                <div class="test-q-num"><span id="curr-q-idx">1</span> / 10</div>
+                <div id="test-question-text" class="test-question">question</div>
+                <div id="test-options" class="options-list"></div>
+            </div>
 
-        </main>
-
-        <footer class="bg-slate-50 border-t border-slate-200 p-3 text-center text-xs text-slate-500 z-10" id="app-footer">
-            <div id="footer-content" class="w-full">© 얼룩말영어학원 | 스마트 단어 학습 시스템</div>
-        </footer>
+            <div id="test-score-box" class="score-view">
+                <h3>테스트 결과</h3>
+                <div id="final-score" class="score-num">0 / 10</div>
+                <p id="score-comment" style="color: var(--text-sub); margin-bottom: 20px;"></p>
+                <button class="btn-start" onclick="resetTest()">다시 도전하기</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        // 7과 목록 원본 데이터 30개 고정 순서 배치 완료 
+        // PDF 8과 및 9과 전체 통합 데이터 (총 60개 단어 완벽 유지)
         const vocabData = [
-            { word: "fluent", meaning: "(말·글이) 유창한", etymology: "라틴어 fluere(흐르다)에서 유래. 말이나 글이 막힘없이 물 흐르듯 매끄럽게 흘러나오는 상태.", cognates: "fluently (유창하게), fluency (유창함), fluid (유체, 액체)" },
-            { word: "physics", meaning: "물리학", etymology: "그리스어 physis(자연, 자연의 본질)에서 유래. 자연 만물의 물질적 대원칙과 법칙을 연구하는 학문.", cognates: "physical (신체의, 물질적인), physicist (물리학자)" },
-            { word: "linguistics", meaning: "언어학", etymology: "라틴어 lingua(혀, 언어) + ist + ics. 인간이 사용하는 언어의 구조, 역사, 체계를 과학적으로 연구하는 학문.", cognates: "linguist (언어학자), linguistic (언어의)" },
-            { word: "figure", meaning: "그림; 수치; (사람의) 모습, 인물", etymology: "라틴어 fingere(형태를 만들다). 겉으로 드러나는 구체적인 모양새, 숫자 형태, 혹은 서적 안의 삽화.", cognates: "figurative (비유적인), figure out (~을 이해하다)" },
-            { word: "insight", meaning: "통찰력, 간파", etymology: "in(안으로) + sight(보는 능력). 사물의 겉모습만 보는 것이 아니라, 그 내면의 본질을 꿰뚫어 보는 안목.", cognates: "insightful (통찰력 있는)" },
-            { word: "intelligence", meaning: "지능, 이해력, 영리함", etymology: "inter(~ 사이에) + 라틴어 legere(고르다, 이해하다). 수많은 정보 사이에서 올바른 지식을 선택하고 이해하는 지적 역량.", cognates: "intelligent (영리한), intellectual (지적인)" },
-            { word: "dwell on", meaning: "~을 깊이 생각하다. ~을 자세히 이야기하다", etymology: "dwell(거주하다, 머무르다) + 전치사 on. 마음이나 시선이 다른 곳으로 가지 않고 특정 주제 위에 오랫동안 멈물러 있는 양상.", cognates: "dweller (거주자)" },
-            { word: "review", meaning: "복습하다. 다시 검토하다; 비평, 평론", etymology: "re-(다시) + view(바라보다). 지나온 길이나 이미 작성된 글을 다시 쳐다보며 교정하거나 되새기는 행위.", cognates: "reviewer (비평가)" },
-            { word: "essence", meaning: "본질, 기초", etymology: "라틴어 esse(존재하다). 어떤 사물이 그 사물로서 존재하기 위해 결코 없어서는 안 되는 가장 핵심적인 내면 가치.", cognates: "essential (필수적인, 본질적인), essentially (본질적으로)" },
-            { word: "statistics", meaning: "통계학, 통계 자료", etymology: "라틴어 status(국가 상태, 정치적 상황). 과거 국가의 인구와 재산을 파악하기 위해 수치를 모으던 학문에서 유래.", cognates: "statistical (통계적인), statistician (통계학자)" },
-            { word: "geology", meaning: "지질학", etymology: "geo(지구, 땅) + logy(학문). 우리가 딛고 서 있는 지구와 암석의 역사, 구조, 성분을 연구하는 학문 분야.", cognates: "geologist (지질학자), geological (지질학과의)" },
-            { word: "scholar", meaning: "학자, 장학생", etymology: "라틴어 schola(학교, 여가)에서 파생. 생계 활동 대신 학문 연구와 지식 탐구에 평생을 바치는 사람.", cognates: "scholarship (장학금, 학문), scholarly (학자적인)" },
-            { word: "refer", meaning: "언급하다. 참고하다", etymology: "re-(뒤로) + 라틴어 ferre(나르다, 운반하다). 다른 곳에 서술된 정보나 대상을 대화 속으로 이끌어와 지칭하는 행위.", cognates: "reference (참고, 언급), referee (심판)" },
-            { word: "concept", meaning: "개념, 발상", etymology: "con-(함께) + 라틴어 capere(마음속으로 붙잡다). 여러 현상 속에서 공통된 핵심 구조나 생각을 한데 묶어 마음속에 정립한 것.", cognates: "conception (개념, 임신), conceptual (개념적인)" },
-            { word: "define", meaning: "정의하다. 명확히 하다", etymology: "de-(완전히) + 라틴어 finis(경계, 끝). 단어나 개념의 테두리에 명확한 경계선을 그어 뜻을 확실하게 한정 짓다.", cognates: "definition (정의), definite (명확한)" },
-            { word: "demonstrate", meaning: "보여 주다, 증명하다. 설명하다; 시위하다", etymology: "de-(강조) + 라틴어 monstrare(가리키다, 보여주다). 말로만 하지 않고 구체적인 물증이나 행동을 눈앞에 직접 꺼내어 증명하다.", cognates: "demonstration (입증, 시위)" },
-            { word: "look up", meaning: "(사전·컴퓨터 등에서 정보를) 찾아보고 조사하다", etymology: "look(시선을 던지다) + 부사 up(완전히 위로). 책장이나 화면을 위로 넘겨가며 필요한 정밀한 지식을 추적하여 찾아내는 행위.", cognates: "look (보다)" },
-            { word: "improve", meaning: "향상시키다. 나아지다", etymology: "프랑스어 en(안으로) + prou(이익, 가치). 어떤 대상에 노력과 투자를 가해 질적인 가치를 안으로 높여주는 과정.", cognates: "improvement (개선, 향상)" },
-            { word: "theory", meaning: "이론, 학설", etymology: "그리스어 theoria(정신적 관조, 깊이 바라봄). 단순한 추측에 그치지 않고 체계적인 관찰을 통해 정립한 논리적 지식 체계.", cognates: "theoretical (이론적인), theorist (이론가)" },
-            { word: "diameter", meaning: "지름", etymology: "dia(가로질러) + meter(측정, 단위). 원이나 구체의 중심을 정중앙으로 관통하여 끝에서 끝까지 측정한 직선의 길이.", cognates: "metric (미터법의)" },
-            { word: "literal", meaning: "글자 그대로의, 정확한", etymology: "라틴어 litera(문자, 글자). 비유적이거나 과장된 표현을 배제하고 오직 기록된 글자 본연의 정직한 의미를 뜻함.", cognates: "literally (말 그대로), literature (문학), literate (읽고 쓸 줄 아는)" },
-            { word: "conclude", meaning: "끝내다. 결론 내리다", etymology: "con-(함께) + 라틴어 claudere(문을 닫다). 여러 논의와 주장을 한데 모아 정리한 뒤 최종적으로 문을 닫아 마무리 짓다.", cognates: "conclusion (결론), conclusive (결정적인)" },
-            { word: "academic", meaning: "학업의, 학구적인", etymology: "그리스 아테네의 철학 학당인 '아카데미아(Akademia)'에서 유래. 순수한 학교 교육이나 고등 학문 연구와 관련된 성격.", cognates: "academy (학원, 한림원)" },
-            { word: "go over", meaning: "~을 점검 [검토]하다, ~을 주의 깊게 살피다", etymology: "go(이동하다) + over(대상의 표면 전체를 가로질러). 서류나 데이터의 처음부터 끝까지 전체를 밟아가며 오류를 확인하는 행위.", cognates: "go (가다)" },
-            { word: "expose", meaning: "노출시키다. 드러내다", etymology: "ex-(밖으로) + 라틴어 ponere(놓다). 안쪽에 안전하게 숨겨져 있던 대상을 바깥쪽 거친 환경에 그대로 꺼내어 놓다.", cognates: "exposure (노출), exposition (박람회, 설명)" },
-            { word: "literate", meaning: "읽고 쓸 줄 아는, 교양 있는", etymology: "라틴어 litera(문자, 글자) + ate. 문자를 인지하고 해독하여 지식을 습득할 수 있는 기초적인 지적 능력을 갖춘.", cognates: "literacy (문해력), illiterate (문맹의)" },
-            { word: "solve", meaning: "풀다. 해결하다", etymology: "라틴어 solvere(느슨하게 풀다, 밧줄을 해체하다). 꽁꽁 묶여 풀리지 않던 복잡한 문제나 매듭을 느슨하게 풀어 자유롭게 하다.", cognates: "solution (해결책, 용액), soluble (녹는, 해결 가능한)" },
-            { word: "principle", meaning: "원리, 원칙", etymology: "라틴어 princeps(가장 첫 번째의 것, 군주). 모든 하위 규칙이나 행동 양식보다 가장 앞서서 기본 뼈대를 이루는 대전제.", cognates: "principal (교장, 주요한)" },
-            { word: "content", meaning: "내용, 목차; 만족하는 만족시키다", etymology: "con-(함께) + 라틴어 tenere(쥐다, 보유하다). 용기나 책 속에 담겨 소유되어 있는 구성물, 혹은 마음이 꽉 차서 평온한 상태.", cognates: "contention (논쟁)" },
-            { word: "inspire", meaning: "격려하다. 영감을 주다", etymology: "in-(안으로) + 라틴어 spirare(숨을 불어넣다). 침체되어 있는 타인의 마음속 깊은 곳에 새로운 예술적·도덕적 기운을 불어넣다.", cognates: "inspiration (영감), respiratory (호흡기계의)" }
+            // 중등고난도 9과 [cite: 2]
+            { eng: "secretary", kor: "비서; 장관", ety: "secret(비밀) + ary(사람 접미사). 원래 '비밀을 지키는 사람'에서 유래.", cog: "secret (비밀), secretive (비밀스러운)" }, // [cite: 4, 5]
+            { eng: "proficient", kor: "익숙한, 능숙한", ety: "pro(앞으로) + fic(만들다, 행하다) + ient. 앞으로 나아가 잘 행하는 상태.", cog: "proficiency (숙달), efficient (효율적인)" }, // [cite: 6, 7]
+            { eng: "architect", kor: "건축가, 설계자: 설계하다", ety: "archi(주요한, 우두머리) + tect(짓는 사람). 장인의 우두머리.", cog: "architecture (건축학), architectural (건축의)" }, // [cite: 8, 9]
+            { eng: "superior", kor: "상사, 윗사람: 우수한, 상위의", ety: "super(위에) + ior(비교급 접미사). 타인보다 더 위에 있는.", cog: "superiority (우월성), supreme (최고의)" }, // [cite: 10, 11]
+            { eng: "shift", kor: "교체, 교대, 교대조; 바꾸다. 이동시키다", ety: "고대 영어 sciftan(나누다, 배열하다)에서 유래. 위치나 차례를 바꿈.", cog: "shifty (구렁이 담 넘어가듯 하는), makeshift (임시변통의)" }, // [cite: 12, 13]
+            { eng: "psychologist", kor: "심리학자", ety: "psycho(영혼, 정신) + logy(학문) + ist(사람). 인간의 정신을 연구하는 사람.", cog: "psychology (심리학), psychological (정신적인)" }, // [cite: 14, 15]
+            { eng: "barber", kor: "이발사", ety: "barba(수염)에서 유래. 옛날에 수염을 깎아주던 사람에서 발전.", cog: "barbershop (이발소)" }, // [cite: 16, 17]
+            { eng: "supervise", kor: "감독하다. 관리하다. 지휘하다", ety: "super(위에서) + vise(보다). 위에서 아래를 내려다보며 감시하다.", cog: "supervisor (관리자), supervision (감독)" }, // [cite: 18, 19]
+            { eng: "retire", kor: "퇴직하다. 은퇴하다", ety: "re(뒤로) + tire(끌다/물러나다). 현역에서 한 걸음 뒤로 물러나다.", cog: "retirement (은퇴), retired (은퇴한)" }, // [cite: 20, 21]
+            { eng: "accomplish", kor: "달성하다. 이루다", ety: "ad(~로) + complere(가득 채우다). 목표치를 끝까지 채워 완성하다.", cog: "accomplishment (업적), accomplished (기량이 뛰어난)" }, // [cite: 22, 23]
+            { eng: "expert", kor: "전문가, 숙련가, 달인; 숙련된, 노련한", ety: "ex(밖으로) + peri(시도하다). 많은 시도를 거쳐 밖으로 증명된 사람.", cog: "expertise (전문 지식), experience (경험)" }, // [cite: 24, 25]
+            { eng: "counselor", kor: "지도 교사, 카운슬러: 상담역, 조언자", ety: "counsel(조언, 협의) + or(사람). 고민을 듣고 함께 의논해주는 사람.", cog: "counsel (상담; 조언하다), counseling (상담 활동)" }, // [cite: 26, 27]
+            { eng: "career", kor: "경력, 이력: (전문성이 있는) 직업", ety: "라틴어 carrus(마차)에서 유래. 마차가 달려온 길, 인생의 궤적.", cog: "carry (나르다), carriage (마차; 몸가짐)" }, // [cite: 28, 29]
+            { eng: "reward", kor: "보상, 보수; 보답하다. 보수를 주다", ety: "re(다시) + ward(지켜보다/돌려주다). 행한 일에 대해 다시 돌려주다.", cog: "rewarding (보람 있는)" }, // [cite: 30, 31]
+            { eng: "profession", kor: "직업, 전문직", ety: "pro(앞으로) + fess(말하다, 선언하다). 대중 앞에서 자격을 선언하는 직업.", cog: "profess (공언하다), professional (전문적인)" }, // [cite: 32, 33]
+            { eng: "operate", kor: "관리하다. 운영하다: 움직이다. 작동하다", ety: "라틴어 opus(일, 작품)의 동사형 operari(일하다)에서 유래.", cog: "operation (운영; 수술), operator (조작자)" }, // [cite: 34, 35]
+            { eng: "manufacture", kor: "(대량으로 상품을) 제조 [생산]하다: (이야기 등을) 지어내다: (상품의 대량) 제조[생산]", ety: "manu(손) + facture(만들기). 원래 손으로 만들다에서 대량 제조로 발전.", cog: "manual (손으로 하는; 설명서), factory (공장)" }, // [cite: 36, 37, 38]
+            { eng: "wage", kor: "임금, 급료; 임금의", ety: "고대 프랑스어 wagier(저당 잡히다, 약속하다)에서 유래. 노동에 대한 대가 지급 약속.", cog: "wager (내기, 도박)" }, // [cite: 39, 40]
+            { eng: "prompt", kor: "신속한 시간을 엄수하는", ety: "pro(앞으로) + emere(가져오다). 생각이나 행동을 바로 앞으로 끄집어내는.", cog: "promptly (즉시), promptness (민첩함)" }, // [cite: 41, 42]
+            { eng: "salary", kor: "봉급, 급여", ety: "sal(소금) + ary. 고대 로마 군인들이 소금을 사기 위해 받던 수당에서 유래.", cog: "salad (소금을 친 채소에서 유래)" }, // [cite: 43, 44]
+            { eng: "insist on", kor: "~을 주장하다. ~을 (강력히) 고집 [요구]하다", ety: "in(위에) + sistere(서다). 자신의 의견 위에 굳건히 발을 디디고 서 있다.", cog: "insistence (주장), insistent (집요한)" }, // [cite: 45, 46]
+            { eng: "application", kor: "신청서, 원서, 응모", ety: "ad(~에) + plicare(접다). 어떤 목적에 마음을 딱 맞게 접어 붙임.", cog: "apply (지원하다; 적용하다), applicant (지원자)" }, // [cite: 47, 48]
+            { eng: "manage", kor: "경영 [관리]하다. 운영하다: 그럭저럭 해내다(to)", ety: "라틴어 manus(손)에서 유래. 야생마를 손으로 길들이고 다루다.", cog: "management (경영), manager (경영자)" }, // [cite: 49, 50]
+            { eng: "requirement", kor: "필요조건, 자격; 필요한 것", ety: "re(강조) + quaerere(구하다, 요청하다). 공식적으로 강력하게 요구되는 것.", cog: "require (요구하다), requisite (필요한)" }, // [cite: 51, 52]
+            { eng: "labor", kor: "노동, 일, 업무", ety: "라틴어 labor(고된 일, 고통)에서 유래. 육체적/정신적으로 힘을 들이는 일.", cog: "laborer (노동자), laboratory (실험실 - 노동하는 곳)" }, // [cite: 59, 60]
+            { eng: "personnel", kor: "전 직원, 인원 인사과; 직원의", ety: "person(사람)의 프랑스어 변형. 조직에 속한 사람들의 집합.", cog: "personal (개인의), personality (개성)" }, // [cite: 61, 62]
+            { eng: "vend", kor: "행상하다. 팔다", ety: "라틴어 vendere(판매하다)에서 유래. 물건을 가지고 다니며 파는 행위.", cog: "vending machine (자판기), vendor (노점상, 판매업체)" }, // [cite: 63, 64]
+            { eng: "senior", kor: "선임의, 선배의, 손위의 선임자, 선배, 연장자", ety: "라틴어 senex(나이 많은)의 비교급. 나이나 계급이 더 높은 사람.", cog: "senility (노쇠), senate (상원의회 - 원로원)" }, // [cite: 65, 66]
+            { eng: "experienced", kor: "경험이 있는, 숙달한", ety: "ex(밖으로) + peri(시도하다) + enced. 밖으로 여러 번 시도해 본.", cog: "experience (경험), expert (전문가)" }, // [cite: 67, 68]
+            { eng: "turn down", kor: "거절하다. 거부하다", ety: "아래로(down) 돌리다(turn). 제안서나 요청을 아래로 뒤집어 거부함을 뜻함.", cog: "turn up (나타나다), turn off (끄다)" }, // [cite: 69, 70]
+
+            // 중등고난도 8과 [cite: 77]
+            { eng: "peer", kor: "(나이·신분 등이) 동등한 사람, 또래", ety: "라틴어 par(동등한)에서 유래. 사회적 지위나 나이가 같은 사람.", cog: "peerless (비할 데 없는), parity (동등함)" }, // [cite: 79, 81]
+            { eng: "drop out (of)", kor: "중퇴하다: 빠지다. 손을 떼다", ety: "대열 밖으로(out) 떨어져 나가다(drop). 학업이나 대열을 중도 포기함.", cog: "dropout (중퇴자)" }, // [cite: 82, 83]
+            { eng: "aisle", kor: "(교실·극장·버스 등의) 통로, 복도", ety: "라틴어 ala(날개)에서 유래. 건물의 중심축 옆에 날개처럼 붙은 통로.", cog: "island (어원은 다르나 혼동하여 s가 묵음으로 정착함)" }, // [cite: 84, 85]
+            { eng: "educate", kor: "교육하다", ety: "e(밖으로) + ducere(이끌다). 내면의 잠재력을 밖으로 이끌어내다.", cog: "education (교육), induce (유도하다), conduct (지휘하다)" }, // [cite: 86, 87]
+            { eng: "get along with", kor: "~와 잘 지내다", ety: "~와 함께(with) 조화를 이루며 나란히 전진하다(get along)라는 의미.", cog: "alongside (~옆에)" }, // [cite: 88, 89]
+            { eng: "laboratory", kor: "실험실, 연구실", ety: "labor(일하다, 노동하다) + atory(장소). 연구와 실험이라는 노동을 하는 곳.", cog: "labor (노동), collaborate (협력하다)" }, // [cite: 90, 91]
+            { eng: "dormitory", kor: "기숙사", ety: "라틴어 dormire(잠자다) + tory(장소). 단체로 잠을 자는 시설(숙소).", cog: "dormant (휴면기의, 잠자는)" }, // [cite: 92, 93]
+            { eng: "institute", kor: "(교육·연구 등을 위한) 협회, 연구소, 대학", ety: "in(안에) + statuere(세우다). 규칙이나 조직을 안착시켜 세운 기관.", cog: "institution (제도, 기관), constitution (헌법)" }, // [cite: 94, 95]
+            { eng: "principal", kor: "(학교 등의) 장: 주된", ety: "princeps(제일의, 첫째의)에서 유래. 가장 첫째가 되는 중요한 사람.", cog: "principle (원칙 - 주의할 동음이의어)" }, // [cite: 96, 97]
+            { eng: "attitude", kor: "태도, 마음가짐", ety: "라틴어 aptus(적합한)에서 유래. 특정 상황에 맞는 자세나 마음의 준비.", cog: "aptitude (적성), adapt (적응하다)" }, // [cite: 98, 99]
+            { eng: "grant", kor: "장학금: 주다: 허가하다", ety: "라틴어 credere(믿다) -> 고대 프랑스어 graunter(약속하다)에서 유래.", cog: "grand (웅장한 - 어원상 무관하나 주의)" }, // [cite: 100, 101]
+            { eng: "submit", kor: "제출하다: (어쩔 수 없이) 따르다. 굴복하다", ety: "sub(아래로) + mittere(보내다). 자신을 낮추어 아래로 의견이나 서류를 보내다.", cog: "submission (제출; 복종), missile (미사일 - 보내지는 것)" }, // [cite: 102, 103]
+            { eng: "examine", kor: "(지식·자격 등을) 시험하다: 검사 [조사]하다: 진찰하다", ety: "라틴어 examen(저울의 바늘)에서 유래. 무게를 정확히 달아 정확성을 따져보다.", cog: "examination (시험, 검사), examiner (시험관)" }, // [cite: 80, 104, 105]
+            { eng: "catch up with", kor: "(정도나 수준이 앞선 것을 따라잡다. 만회하다: (먼저 간 사람을) 따라잡다", ety: "앞서 도망치거나 나아간 대상을 붙잡아서(catch) 같은 선상에 서다.", cog: "catchy (기억하기 쉬운)" }, // [cite: 106, 107, 108]
+            { eng: "scholarship", kor: "장학금", ety: "scholar(장학생, 학자) + ship(상태, 신분). 학업에 전념할 수 있도록 주는 돈.", cog: "scholar (학자), school (학교)" }, // [cite: 109, 110]
+            { eng: "due", kor: "기일이 다 된", ety: "라틴어 debere(빚지다)에서 유래. 마땅히 갚거나 지불해야 할 때가 이른.", cog: "debt (빚), duty (의무)" }, // [cite: 111, 112]
+            { eng: "multiply", kor: "곱하다: 증식하다. 증식시키다", ety: "multus(많은) + plicare(접다). 여러 번 겹치고 접어서 양을 불리다.", cog: "multiple (다양한), multiplicity (다양성)" }, // [cite: 113, 114]
+            { eng: "term", kor: "학기: 기간; 용어", ety: "라틴어 terminus(경계선, 끝)에서 유래. 한정된 시간의 한계, 혹은 개념의 경계.", cog: "terminate (종결하다), terminal (터미널; 종착역)" }, // [cite: 115, 116]
+            { eng: "motivate", kor: "동기를 부여하다", ety: "mot(움직이다) + ivate. 행동을 취하도록 마음을 움직이게 만들다.", cog: "motive (동기), motion (움직임), emotion (감정)" }, // [cite: 117, 118]
+            { eng: "calculate", kor: "계산하다", ety: "calculus(작은 조약돌)에서 유래. 고대에 조약돌을 굴리며 셈을 하던 행위.", cog: "calculator (계산기), calculus (미적분학)" }, // [cite: 119, 120]
+            { eng: "semester", kor: "학기", ety: "sex(육, 6) + mensis(달, 월). 원래 '6개월의 기간'에서 유래하여 반년 주기의 학기를 의미.", cog: "monthly (매월의)" }, // [cite: 121, 122]
+            { eng: "absent", kor: "결석한, 불참한", ety: "ab(멀리) + esse(존재하다). 있어야 할 곳에서 멀리 떨어져 있는.", cog: "absence (결석), presence (출석)" }, // [cite: 123, 124]
+            { eng: "instruct", kor: "교육하다. 가르치다: 지시하다", ety: "in(안에) + struere(쌓다). 머릿속에 지식이나 체계를 차곡차곡 쌓아 주다.", cog: "instruction (지시, 교육), structure (구조)" }, // [cite: 125, 126]
+            { eng: "award", kor: "상: 상을 주다", ety: "ad(~로) + warder(바라보다, 주의하다). 면밀히 검토한 뒤 공식적으로 수여하다.", cog: "warden (관리인, 교도소장)" }, // [cite: 132, 133]
+            { eng: "attendance", kor: "출석, 참석", ety: "ad(~에) + tendere(뻗다). 마음과 몸을 그 장소로 향해 늘여놓다.", cog: "attend (출석하다), attention (주의, 집중)" }, // [cite: 134, 135]
+            { eng: "eager", kor: "열성적인, 간절히 ~하고자 하는", ety: "라틴어 acer(날카로운, 신랄한)에서 유래. 마음이 날카롭게 날 서 있는 상태.", cog: "acrid (매운, 콕 쏘는)" }, // [cite: 136, 144]
+            { eng: "memorize", kor: "기억하다. 암기하다", ety: "memor(기억하는) + ize(동사 접미사). 기억 속에 각인하여 저장하다.", cog: "memory (기억), memorial (기념비)" }, // [cite: 138, 145]
+            { eng: "portfolio", kor: "(그림·사진 등의) 작품 모음, 포트폴리오", ety: "portare(나르다) + foglio(나뭇잎, 종이). 서류나 작품을 담아 들고 다니는 가방.", cog: "portable (휴대용의), foliage (나뭇잎)" }, // [cite: 139, 140]
+            { eng: "lecture", kor: "강의: 훈계: 강의하다: 훈계하다", ety: "라틴어 legere(읽다)에서 유래. 텍스트를 소리 내어 읽고 설명해 주는 것.", cog: "legend (전설 - 읽히는 것), legible (읽기 쉬운)" }, // [cite: 141, 142]
+            { eng: "entrance", kor: "입학: 입장: 입구", ety: "enter(들어가다) + ance(명사 접미사). 안으로 들어가는 행위 또는 문.", cog: "enter (들어가다), entry (출입)" } // [cite: 143, 146]
         ];
 
-        let currentMode = 'list';
-        let cardIndex = 0;
+        let currentMode = 'all';
+        let testQuestions = [];
+        let currentQIdx = 0;
+        let score = 0;
 
-        function switchMode(mode) {
+        window.onload = function() {
+            renderWordList();
+        };
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(panel => panel.classList.remove('active'));
+
+            if (tabName === 'study') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('study-panel').classList.add('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('test-panel').classList.add('active');
+                resetTest();
+            }
+        }
+
+        function setDisplayMode(mode) {
             currentMode = mode;
-            cardIndex = 0; 
-            const listBtn = document.getElementById('mode-list');
-            const cardBtn = document.getElementById('mode-card');
+            document.querySelectorAll('.btn-ctrl').forEach(btn => btn.classList.remove('active'));
+            
+            const listContainer = document.getElementById('word-list-container');
+            listContainer.className = ''; 
 
-            if(mode === 'list') {
-                listBtn.className = "px-3 py-1.5 rounded-full bg-slate-800 text-white shadow";
-                cardBtn.className = "px-3 py-1.5 rounded-full bg-slate-200 text-slate-700";
-            } else {
-                cardBtn.className = "px-3 py-1.5 rounded-full bg-slate-800 text-white shadow";
-                listBtn.className = "px-3 py-1.5 rounded-full bg-slate-200 text-slate-700";
+            if (mode === 'all') {
+                document.getElementById('btn-show-all').classList.add('active');
+            } else if (mode === 'eng') {
+                document.getElementById('btn-hide-eng').classList.add('active');
+                listContainer.classList.add('hide-eng');
+            } else if (mode === 'kor') {
+                document.getElementById('btn-hide-kor').classList.add('active');
+                listContainer.classList.add('hide-kor');
             }
-            renderContent();
         }
 
-        function renderContent() {
-            const container = document.getElementById('vocab-container');
-            const footerContent = document.getElementById('footer-content');
+        function renderWordList() {
+            const container = document.getElementById('word-list-container');
+            container.innerHTML = '';
 
-            if (currentMode === 'list') {
-                footerContent.className = "w-full text-slate-400 text-center py-1";
-                footerContent.innerHTML = `© 얼룩말영어학원 | 스마트 단어 학습 시스템`;
+            vocabData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'word-card';
                 
-                container.innerHTML = vocabData.map((item, idx) => `
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 shadow-sm">
-                        <div class="flex justify-between items-start">
-                            <span class="text-xs text-indigo-500 font-bold uppercase tracking-wider">No. ${idx + 1}</span>
-                            <span class="text-xl font-bold text-slate-800">${item.word}</span>
-                        </div>
-                        <div class="mt-2 text-sm font-medium text-slate-600 border-t border-slate-200/60 pt-2">
-                            <span class="text-indigo-600">뜻:</span> ${item.meaning}
-                        </div>
-                        <div class="mt-2 text-xs text-slate-500 bg-white p-2 rounded border border-slate-100">
-                            <strong class="text-amber-600">💡 어원:</strong> ${item.etymology}
-                        </div>
-                        <div class="mt-1 text-xs text-slate-500 bg-white p-2 rounded border border-slate-100">
-                            <strong class="text-emerald-600">🌿 동계어:</strong> ${item.cognates}
-                        </div>
+                const lessonTag = index < 30 ? "중등고난도 9" : "중등고난도 8"; // [cite: 2, 77]
+                const displayNum = index < 30 ? (index + 1) : (index - 29);
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="word-num">${lessonTag} - No. ${displayNum}</span>
                     </div>
-                `).join('');
-            } else {
-                const item = vocabData[cardIndex];
-                
-                footerContent.className = "w-full flex justify-between items-center px-2";
-                footerContent.innerHTML = `
-                    <button onclick="prevCard()" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg ${cardIndex === 0 ? 'opacity-50 pointer-events-none' : ''}">이전</button>
-                    <span class="font-semibold text-slate-600">${cardIndex + 1} / ${vocabData.length}</span>
-                    <button onclick="nextCard()" class="px-4 py-2 bg-indigo-600 text-white font-bold rounded-lg ${cardIndex === vocabData.length - 1 ? 'opacity-50 pointer-events-none' : ''}">다음</button>
-                `;
-                
-                container.innerHTML = `
-                    <div class="text-center text-xs text-slate-400 mb-2">💡 카드를 터치하면 뜻과 어원이 나타납니다.</div>
-                    <div class="card-flip w-full h-80 cursor-pointer" onclick="flipCard()">
-                        <div id="card-inner" class="card-inner w-full h-full relative rounded-2xl shadow-lg border border-slate-200">
-                            <div class="card-front absolute w-full h-full bg-indigo-50 flex flex-col justify-center items-center rounded-2xl p-6">
-                                <span class="text-xs text-indigo-400 font-bold tracking-widest mb-4">WORD</span>
-                                <h2 class="text-3xl font-extrabold text-indigo-700 tracking-tight">${item.word}</h2>
-                            </div>
-                            <div class="card-back absolute w-full h-full bg-white flex flex-col justify-between rounded-2xl p-6 overflow-y-auto">
-                                <div>
-                                    <span class="text-xs text-emerald-500 font-bold tracking-widest block mb-2">MEANING</span>
-                                    <h3 class="text-xl font-bold text-slate-800 border-b pb-2 border-slate-100">${item.meaning}</h3>
-                                </div>
-                                <div class="my-3 text-left space-y-2">
-                                    <p class="text-xs text-slate-600"><strong class="text-amber-600 block mb-0.5">💡 어원</strong> ${item.etymology}</p>
-                                    <p class="text-xs text-slate-600"><strong class="text-emerald-600 block mb-0.5">🌿 동계어</strong> ${item.cognates}</p>
-                                </div>
-                                <span class="text-[10px] text-slate-300">다시 터치하면 앞면으로 돌아갑니다.</span>
-                            </div>
-                        </div>
+                    <div class="word-eng">${item.eng}</div>
+                    <div class="word-kor">${item.kor}</div>
+                    <div class="etymology-box">
+                        <strong>어원:</strong> ${item.ety}<br>
+                        <strong>동계어:</strong> ${item.cog}
                     </div>
                 `;
+                container.appendChild(card);
+            });
+        }
+
+        function startTest() {
+            document.getElementById('test-setup-box').style.display = 'none';
+            document.getElementById('test-main-box').style.display = 'block';
+            document.getElementById('test-score-box').style.display = 'none';
+            
+            const shuffled = [...vocabData].sort(() => 0.5 - Math.random());
+            testQuestions = shuffled.slice(0, 10);
+            
+            currentQIdx = 0;
+            score = 0;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (currentQIdx >= 10) {
+                endTest();
+                return;
             }
+
+            document.getElementById('curr-q-idx').innerText = currentQIdx + 1;
+            const currentQ = testQuestions[currentQIdx];
+            
+            document.getElementById('test-question-text').innerText = currentQ.eng;
+
+            let wrongOptions = vocabData
+                .filter(item => item.eng !== currentQ.eng)
+                .sort(() => 0.5 - Math.random())
+                .slice(0, 3)
+                .map(item => item.kor);
+
+            let options = [currentQ.kor, ...wrongOptions].sort(() => 0.5 - Math.random());
+
+            const optionsContainer = document.getElementById('test-options');
+            optionsContainer.innerHTML = '';
+
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                // 클릭 시 현재 버튼 객체와 정답 여부를 판단하도록 인수 수정
+                btn.onclick = (e) => checkAnswer(e.target, opt, currentQ.kor);
+                optionsContainer.appendChild(btn);
+            });
         }
 
-        function flipCard() {
-            document.getElementById('card-inner').classList.toggle('card-flipped');
-        }
+        /* [핵심 버그 수정] 정답 확인 및 버튼 비활성화 로직 구현 */
+        function checkAnswer(clickedButton, selected, correct) {
+            const allButtons = document.querySelectorAll('.option-btn');
+            
+            // 1. 점수 오염 방지: 모든 보기 버튼을 즉시 비활성화 처리
+            allButtons.forEach(btn => {
+                btn.disabled = true;
+                // 유저가 찍기 전에 정답이 무엇이었는지 피드백 시각화 (선택지 힌트)
+                if (btn.innerText === correct) {
+                    btn.classList.add('correct');
+                }
+            });
 
-        function nextCard() {
-            if (cardIndex < vocabData.length - 1) {
-                cardIndex++;
-                renderContent();
+            // 2. 유저가 고른 답변 검증 및 점수 반영
+            if (selected === correct) {
+                score++;
+            } else {
+                // 틀렸을 경우 유저가 고른 버튼에 오답 색상(빨간색) 부여
+                clickedButton.classList.add('wrong');
             }
+
+            // 3. 점수 변동 리스크를 막은 뒤, 1초(1000ms) 후에 안전하게 다음 문제로 전환
+            setTimeout(() => {
+                currentQIdx++;
+                showQuestion();
+            }, 1000);
         }
 
-        function prevCard() {
-            if (cardIndex > 0) {
-                cardIndex--;
-                renderContent();
-            }
+        function endTest() {
+            document.getElementById('test-main-box').style.display = 'none';
+            document.getElementById('test-score-box').style.display = 'block';
+            
+            document.getElementById('final-score').innerText = `${score} / 10`;
+            
+            let comment = "";
+            if (score === 10) comment = "👑 대단합니다! 완벽하게 마스터하셨네요!";
+            else if (score >= 8) comment = "👍 우수한 성적입니다! 조금만 더 하면 만점!";
+            else if (score >= 5) comment = "✍️ 아는 단어가 많지만, 헷갈리는 어원 위주로 복습해보세요.";
+            else comment = "📚 단어장을 켜고 가리기 기능을 활용하여 재학습을 권장합니다.";
+            
+            document.getElementById('score-comment').innerText = comment;
         }
 
-        // Initialize App
-        renderContent();
+        function resetTest() {
+            document.getElementById('test-setup-box').style.display = 'block';
+            document.getElementById('test-main-box').style.display = 'none';
+            document.getElementById('test-score-box').style.display = 'none';
+        }
     </script>
 </body>
 </html>
