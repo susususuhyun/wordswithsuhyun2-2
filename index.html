@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>메타인지 어원 단어장</title>
+    <title>메타인지 어원 단어장 (17~18)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -35,7 +35,7 @@
     <header class="bg-indigo-600 text-white p-4 sticky top-0 z-20 flex justify-between items-center shadow-md rounded-b-xl">
         <div>
             <h1 class="text-xl font-bold tracking-wide"><i class="fa-solid fa-brain mr-2"></i>메타인지 단어장</h1>
-            <p class="text-xs text-indigo-200 mt-1">중등 고난도 16 - 어원 학습법</p>
+            <p class="text-xs text-indigo-200 mt-1">중등 고난도 17, 18 - 어원 학습법</p>
         </div>
         <button onclick="toggleMode()" id="modeToggleBtn" class="bg-white text-indigo-600 px-3 py-1.5 rounded-full text-sm font-semibold shadow-sm hover:bg-indigo-50 transition">
             <i class="fa-solid fa-clone mr-1"></i> 카드모드
@@ -51,7 +51,7 @@
     <div id="flashcardView" class="hidden absolute inset-0 bg-gray-900 bg-opacity-95 z-30 flex-col pb-10">
         <!-- 헤더 -->
         <div class="flex justify-between items-center p-4 text-white">
-            <span id="flashcardCounter" class="text-sm font-medium bg-gray-800 px-3 py-1 rounded-full border border-gray-700">1 / 30</span>
+            <span id="flashcardCounter" class="text-sm font-medium bg-gray-800 px-3 py-1 rounded-full border border-gray-700">1 / 60</span>
             <button onclick="toggleMode()" class="text-gray-300 hover:text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
 
@@ -62,7 +62,7 @@
                 <!-- 앞면 (단어) -->
                 <div class="absolute inset-0 w-full h-full bg-white rounded-3xl shadow-2xl backface-hidden flex flex-col justify-center items-center p-8 text-center border-4 border-indigo-50">
                     <span id="cardGroup" class="absolute top-6 text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full">그룹</span>
-                    <h2 id="cardWord" class="text-4xl font-bold text-gray-800 mb-2">Word</h2>
+                    <h2 id="cardWord" class="text-4xl font-bold text-gray-800 mb-2 break-all">Word</h2>
                     <p class="text-gray-400 text-sm mt-4 animate-pulse"><i class="fa-solid fa-hand-pointer mr-1"></i> 탭하여 뜻/어원 보기</p>
                 </div>
 
@@ -98,51 +98,79 @@
 </div>
 
 <script>
-    // 전체 30개 단어 및 어원 데이터베이스
+    // 전체 60개 단어 및 어원 데이터베이스
     const wordData = [
-        // 그룹 1: 이끌다, 향하다 (Lead & Direct)
-        { word: "conduct", meaning: "지휘하다; 행동하다, 실시하다; 지휘; 행동", root: "con(함께) + duct(이끌다) → 함께 이끌다", cognates: "educate(교육하다), product(생산품)", group: "1. 이끌다, 향하다 (-duct-, -rect-)" },
-        { word: "director", meaning: "감독, 연출자, 지도자", root: "di(멀리) + rect(똑바로) + or(~사람) → 올바르게 향하도록 이끄는 사람", cognates: "direct(직접의), correct(정확한)", group: "1. 이끌다, 향하다 (-duct-, -rect-)" },
-        { word: "version", meaning: "번역, 번역서; 각색, 개작", root: "vers(돌다) + ion(명사) → 방향을 돌려 바꾼 형태", cognates: "reverse(반대의), universe(우주)", group: "1. 이끌다, 향하다 (-duct-, -rect-)" },
+        // 그룹 1: 의학, 질병, 건강 (Medicine & Health)
+        { word: "medical", meaning: "의학의, 의술의, 의료용의", root: "med(치료하다) + ical(형용사)", cognates: "medicine(약), remedy(치료법)", group: "1. 의학, 질병, 건강 (-med-, -san-)" },
+        { word: "dental", meaning: "치아의", root: "dent(치아) + al(형용사)", cognates: "dentist(치과의사), indent(들여쓰기)", group: "1. 의학, 질병, 건강 (-med-, -san-)" },
+        { word: "sanitary", meaning: "위생의, 위생적인, 깨끗한", root: "san(건강한) + itary(형용사)", cognates: "sane(제정신의), sanitation(위생 설비)", group: "1. 의학, 질병, 건강 (-med-, -san-)" },
+        { word: "immune", meaning: "면역의", root: "im(없는) + mun(의무/병)", cognates: "community(공동체), immunity(면역력)", group: "1. 의학, 질병, 건강 (-med-, -san-)" },
+        { word: "heal", meaning: "치유되다, 치료하다, 고치다", root: "고대 영어 hælan (온전하게 하다)", cognates: "health(건강), whole(전체의)", group: "1. 의학, 질병, 건강 (-med-, -san-)" },
+        { word: "recover", meaning: "회복하다, 되찾다", root: "re(다시) + cover(덮다/찾다) → 잃었던 것을 되찾다", cognates: "cover(덮다), discover(발견하다)", group: "1. 의학, 질병, 건강 (-med-, -san-)" },
+        { word: "tablet", meaning: "알약, 정제", root: "tabula(판) + et(작은) → 작고 납작한 약", cognates: "table(탁자), tabular(표의)", group: "1. 의학, 질병, 건강 (-med-, -san-)" },
+        { word: "allergy", meaning: "알레르기", root: "allos(다른) + ergon(작용) → 다르게 작용하는 이상 반응", cognates: "energy(에너지), synergy(시너지)", group: "1. 의학, 질병, 건강 (-med-, -san-)" },
+        { word: "prescribe", meaning: "처방하다", root: "pre(미리) + scrib(쓰다) → 약사에게 미리 약을 적어주다", cognates: "script(대본), describe(묘사하다)", group: "1. 의학, 질병, 건강 (-med-, -san-)" },
+        { word: "inject", meaning: "주사하다, 투여하다", root: "in(안으로) + ject(던지다) → 몸 안으로 약을 쏘아 넣다", cognates: "project(투영하다), reject(거절하다)", group: "1. 의학, 질병, 건강 (-med-, -san-)" },
+        { word: "infection", meaning: "감염, 전염(병)", root: "in(안에) + fect(만들다/오염시키다) + ion(명사)", cognates: "affect(영향을 미치다), perfect(완벽한)", group: "1. 의학, 질병, 건강 (-med-, -san-)" },
 
-        // 그룹 2: 엮다, 두다, 분리하다 (Structure & Place)
-        { word: "compose", meaning: "작곡하다, 작문하다; 구성하다; 가라앉히다", root: "com(함께) + pose(두다) → 함께 모아 두다", cognates: "position(위치), deposit(예금하다)", group: "2. 엮다, 두다, 공간 (-pos-, -text-, -val-)" },
-        { word: "context", meaning: "문맥, 전후 관계; 정황, 주변 상황", root: "con(함께) + text(짜다/엮다) → 함께 엮인 것", cognates: "text(글), textile(직물)", group: "2. 엮다, 두다, 공간 (-pos-, -text-, -val-)" },
-        { word: "distinct", meaning: "다른, 별개의; 뚜렷한", root: "dis(분리하여) + stinct(찌르다) → 찔러서 구별해 놓은", cognates: "instinct(본능), extinguish(불을 끄다)", group: "2. 엮다, 두다, 공간 (-pos-, -text-, -val-)" },
-        { word: "interval", meaning: "(연극·연주 등의) 막간, 휴식 시간; 간격", root: "inter(~사이에) + val(벽) → 두 장벽 사이의 공간/시간", cognates: "wall(벽 - val과 어원 공유)", group: "2. 엮다, 두다, 공간 (-pos-, -text-, -val-)" },
-        { word: "exhibit", meaning: "전시하다, 전시회를 열다; 전시, 전람", root: "ex(밖으로) + hibit(가지다/두다) → 밖으로 내어 두다", cognates: "habit(습관), prohibit(금지하다)", group: "2. 엮다, 두다, 공간 (-pos-, -text-, -val-)" },
+        // 그룹 2: 신체, 증상, 상처 (Body, Symptoms & Injury)
+        { word: "symptom", meaning: "징후, 증상", root: "sym(함께) + ptom(떨어지다) → 질병과 함께 나타나는 현상", cognates: "asymptote(점근선)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
+        { word: "joint", meaning: "관절, 접합", root: "jungere(연결하다) → 뼈와 뼈를 잇는 부분", cognates: "join(합류하다), junction(교차로)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
+        { word: "spine", meaning: "척추, 등뼈", root: "spina(가시, 등뼈)", cognates: "spin(돌다), porcupine(호저)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
+        { word: "pulse", meaning: "맥박, 고동", root: "pellere(밀다/치다) → 피를 밀어내는 박동", cognates: "compel(강요하다), impulse(충동)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
+        { word: "sight", meaning: "시각, 시력", root: "고대 영어 sihth (보다)", cognates: "see(보다), sightsee(관광하다)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
+        { word: "digest", meaning: "소화하다", root: "di(따로) + ger(나르다) → 음식을 분해해서 보내다", cognates: "gesture(몸짓), suggest(제안하다)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
+        { word: "mental", meaning: "정신의, 심적인", root: "ment(마음) + al(형용사)", cognates: "mention(언급하다), memory(기억)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
+        { word: "wound", meaning: "상처, 부상; 상처입히다, 상하게 하다", root: "고대 영어 wund (상처)", cognates: "wind(감다 - 붕대를 감는 모습 연관)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
+        { word: "injure", meaning: "상처를 입히다, 다치게 하다", root: "in(아닌) + jur(법/올바름) → 올바르지 않게 해를 가하다", cognates: "justice(정의), jury(배심원)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
+        { word: "bruise", meaning: "멍, 타박상, 좌상; 타박상을 입히다", root: "briser(부수다) → 피부 밑 혈관이 부서진 것", cognates: "bristle(짧고 뻣뻣한 털)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
+        { word: "strain", meaning: "긴장, 큰 부담; 긴장시키다, (발목을) 접질리다", root: "stringere(팽팽하게 묶다)", cognates: "strict(엄격한), stress(스트레스)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
+        { word: "disabled", meaning: "장애를 입은, 장애의", root: "dis(반대/상실) + able(할 수 있는) + d", cognates: "ability(능력), enable(가능하게 하다)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
+        { word: "disorder", meaning: "장애[이상], 가벼운 병; 무질서, 혼란(상태)", root: "dis(부정) + order(순서/질서) → 신체 체계가 무너진 상태", cognates: "order(명령/질서), ordinary(평범한)", group: "2. 신체, 증상, 상처 (-ptom-, -ger-, -jur-)" },
 
-        // 그룹 3: 말하다, 소리 (Speak & Sound)
-        { word: "exclaim", meaning: "(감동하여) 외치다", root: "ex(밖으로) + claim(외치다) → 밖으로 크게 소리치다", cognates: "claim(주장하다), proclaim(선언하다)", group: "3. 말하다, 소리 (-claim-, -log-, tone)" },
-        { word: "monologue", meaning: "(극의) 독백", root: "mono(하나) + logue(말하다) → 혼자 말하기", cognates: "dialogue(대화), logic(논리)", group: "3. 말하다, 소리 (-claim-, -log-, tone)" },
-        { word: "chorus", meaning: "합창, 합창곡; 합창단", root: "그리스어 khoros (춤, 합창)에서 유래", cognates: "choir(성가대), choreograph(안무를 짜다)", group: "3. 말하다, 소리 (-claim-, -log-, tone)" },
-        { word: "tone", meaning: "어조; 음색, 음조", root: "그리스어 tonos (잡아당기다, 팽팽함 → 현의 음높이)", cognates: "intonation(억양), tune(곡조)", group: "3. 말하다, 소리 (-claim-, -log-, tone)" },
-        { word: "tune", meaning: "조율하다, 프로그램에 맞추다; 곡조, 가락", root: "tone의 변형 (음조, 가락)", cognates: "tone(어조), attune(조율하다)", group: "3. 말하다, 소리 (-claim-, -log-, tone)" },
+        // 그룹 3: 농업, 자연, 물질 (Agriculture, Nature & Materials)
+        { word: "agriculture", meaning: "농업", root: "agri(밭) + culture(경작)", cognates: "agrochemical(농약), cultivate(경작하다)", group: "3. 농업, 자연, 물질 (-agri-, -cult-, -mat-)" },
+        { word: "cultivate", meaning: "경작하다, 재배하다", root: "cult(경작하다/돌보다) + ate(동사)", cognates: "culture(문화), colony(식민지)", group: "3. 농업, 자연, 물질 (-agri-, -cult-, -mat-)" },
+        { word: "pasture", meaning: "목초지", root: "past(먹이다) + ure(명사) → 가축을 먹이는 땅", cognates: "pastor(목사), repast(식사)", group: "3. 농업, 자연, 물질 (-agri-, -cult-, -mat-)" },
+        { word: "graze", meaning: "(가축이) 풀을 뜯어 먹다", root: "고대 영어 grasian (풀을 먹다)", cognates: "grass(풀)", group: "3. 농업, 자연, 물질 (-agri-, -cult-, -mat-)" },
+        { word: "cattle", meaning: "소; 가축", root: "caput(머리, 재산) → 예전에는 가축이 주요 재산이었음", cognates: "capital(자본/수도), captain(선장)", group: "3. 농업, 자연, 물질 (-agri-, -cult-, -mat-)" },
+        { word: "herd", meaning: "(가축의) 떼, 무리", root: "고대 영어 heord (동물의 무리)", cognates: "hoard(비축하다)", group: "3. 농업, 자연, 물질 (-agri-, -cult-, -mat-)" },
+        { word: "pollution", meaning: "오염, 공해", root: "pol(더럽히다) + lut(씻다) + ion(명사)", cognates: "pollute(오염시키다)", group: "3. 농업, 자연, 물질 (-agri-, -cult-, -mat-)" },
+        { word: "chemical", meaning: "화학 물질; 화학의, 화학적인", root: "chemia(연금술) + ical(형용사)", cognates: "alchemy(연금술), chemistry(화학)", group: "3. 농업, 자연, 물질 (-agri-, -cult-, -mat-)" },
+        { word: "material", meaning: "물질, 재료; 물질적인, 세속적인", root: "mater(어머니, 근원) + ial(형용사)", cognates: "mother(어머니), matter(물질/문제)", group: "3. 농업, 자연, 물질 (-agri-, -cult-, -mat-)" },
+        { word: "barrel", meaning: "배럴(약 159리터 단위); 통", root: "라틴어 barriclus (작은 통)", cognates: "bar(막대), barrier(장벽)", group: "3. 농업, 자연, 물질 (-agri-, -cult-, -mat-)" },
 
-        // 그룹 4: 가치, 전달, 기록 (Value & Record)
-        { word: "appreciate", meaning: "감상하다, 평가하다; 감사하다", root: "ad(~에) + preci(가치/가격) + ate(동사) → 가치를 매기다", cognates: "price(가격), precious(귀중한)", group: "4. 가치, 전달, 글 (-preci-, -dit-, -liter-)" },
-        { word: "tradition", meaning: "전통, 관례", root: "trans(건너서) + dit(주다) + ion(명사) → 세대를 건너 전해 주는 것", cognates: "edit(편집하다), render(주다)", group: "4. 가치, 전달, 글 (-preci-, -dit-, -liter-)" },
-        { word: "literature", meaning: "문학", root: "liter(글자) + ature(명사)", cognates: "literal(문자 그대로의), letter(편지)", group: "4. 가치, 전달, 글 (-preci-, -dit-, -liter-)" },
-        { word: "copyright", meaning: "판권, 저작권; 저작권이 있는; 저작권을 취득하다", root: "copy(복사/풍부함) + right(권리)", cognates: "copious(방대한) - 라틴어 copia(풍부함)에서 유래", group: "4. 가치, 전달, 글 (-preci-, -dit-, -liter-)" },
+        // 그룹 4: 건설, 조립, 사업 (Construction, Assembly & Business)
+        { word: "construct", meaning: "건설하다, 조립하다", root: "con(함께) + struct(세우다)", cognates: "structure(구조), destroy(파괴하다)", group: "4. 건설, 사업, 경제 (-struct-, -port-)" },
+        { word: "assemble", meaning: "조립하다; 모으다", root: "ad(~로) + simul(함께) → 한곳으로 모으다", cognates: "similar(비슷한), simultaneous(동시의)", group: "4. 건설, 사업, 경제 (-struct-, -port-)" },
+        { word: "concrete", meaning: "콘크리트; 구체적인; 콘크리트의", root: "con(함께) + cret(자라다) → 여러 재료가 뭉쳐 단단해진", cognates: "create(창조하다), increase(증가하다)", group: "4. 건설, 사업, 경제 (-struct-, -port-)" },
+        { word: "crane", meaning: "기중기", root: "새 이름(두루미, 학)에서 유래 → 목이 긴 형태가 닮음", cognates: "cranberry(크랜베리 - 두루미가 먹는 열매)", group: "4. 건설, 사업, 경제 (-struct-, -port-)" },
+        { word: "enterprise", meaning: "기업, 회사; (특히 모험적인) 사업", root: "enter(사이에) + pris(잡다) → 여러 사이에서 기회를 잡는 일", cognates: "surprise(놀라게 하다), prison(감옥)", group: "4. 건설, 사업, 경제 (-struct-, -port-)" },
+        { word: "invest", meaning: "투자하다", root: "in(안에) + vest(옷을 입히다) → 돈을 어떤 곳에 입히다", cognates: "vest(조끼), divest(벗기다)", group: "4. 건설, 사업, 경제 (-struct-, -port-)" },
+        { word: "export", meaning: "수출하다; 수출", root: "ex(밖으로) + port(나르다) → 항구 밖으로 내보내다", cognates: "import(수입하다), transport(수송하다)", group: "4. 건설, 사업, 경제 (-struct-, -port-)" },
+        { word: "scale", meaning: "규모; 저울; 비늘", root: "라틴어 scala(사다리) 및 고대 노르드어(저울) 혼합", cognates: "escalator(에스컬레이터)", group: "4. 건설, 사업, 경제 (-struct-, -port-)" },
+        { word: "provide", meaning: "공급하다(with); 준비하다(for, against)", root: "pro(앞을) + vid(보다) → 미리 앞을 내다보고 준비하다", cognates: "video(비디오), vision(시야)", group: "4. 건설, 사업, 경제 (-struct-, -port-)" },
+        { word: "proportion", meaning: "비율", root: "pro(앞에) + port(나누다) → 알맞게 나누어진 몫", cognates: "part(부분), portion(몫)", group: "4. 건설, 사업, 경제 (-struct-, -port-)" },
 
-        // 그룹 5: 창조, 기교, 모방 (Create, Skill & Imitate)
-        { word: "creature", meaning: "생물, 창조물; 동물", root: "crea(창조하다) + ture(명사)", cognates: "create(창조하다), recreation(오락)", group: "5. 창조, 모방 (-crea-, -sculp-, -im-)" },
-        { word: "sculpture", meaning: "조각(술); 조각하다", root: "sculp(조각하다) + ture(명사)", cognates: "sculptor(조각가)", group: "5. 창조, 모방 (-crea-, -sculp-, -im-)" },
-        { word: "craft", meaning: "공예(품), 기교, 기술", root: "고대 영어 cræft (힘, 기술)", cognates: "crafty(교활한), craftsman(장인)", group: "5. 창조, 모방 (-crea-, -sculp-, -im-)" },
-        { word: "imitate", meaning: "모방하다; 모조하다, 모사하다", root: "im(모방하다) + itate(동사)", cognates: "image(이미지), imagine(상상하다)", group: "5. 창조, 모방 (-crea-, -sculp-, -im-)" },
-        { word: "rehearse", meaning: "(연극·연설·음악의) 예행연습을 하다", root: "re(다시) + hearse(써레질하다) → 밭을 다시 갈듯 반복하다", cognates: "hearse(영구차 - 써레 모양에서 유래)", group: "5. 창조, 모방 (-crea-, -sculp-, -im-)" },
+        // 그룹 5: 변화, 상태, 평가 (Change, State & Assessment)
+        { word: "expand", meaning: "확장하다; 팽창하다", root: "ex(밖으로) + pand(펼치다)", cognates: "span(기간/폭), compass(나침반)", group: "5. 변화, 상태, 평가 (-pand-, -nov-)" },
+        { word: "surpass", meaning: "초월하다, ~보다 낫다", root: "sur(위로/넘어서) + pass(지나가다)", cognates: "pass(통과하다), surface(표면)", group: "5. 변화, 상태, 평가 (-pand-, -nov-)" },
+        { word: "generate", meaning: "발생시키다", root: "gen(낳다, 종족) + ate(동사)", cognates: "gene(유전자), gentle(온화한)", group: "5. 변화, 상태, 평가 (-pand-, -nov-)" },
+        { word: "innovative", meaning: "획기적인, 혁신적인", root: "in(안으로) + nov(새로운) + ative(형용사)", cognates: "novel(소설/새로운), renovate(개조하다)", group: "5. 변화, 상태, 평가 (-pand-, -nov-)" },
+        { word: "enrich", meaning: "풍부하게 하다, 부유하게 하다", root: "en(~만들다) + rich(부유한)", cognates: "rich(부유한), reach(도달하다)", group: "5. 변화, 상태, 평가 (-pand-, -nov-)" },
+        { word: "worsen", meaning: "악화되다", root: "worse(더 나쁜) + en(동사화)", cognates: "bad(나쁜), worst(최악의)", group: "5. 변화, 상태, 평가 (-pand-, -nov-)" },
+        { word: "condition", meaning: "건강 상태, 컨디션; 상황, 조건", root: "con(함께) + dic(말하다) → 함께 합의된 상태나 조건", cognates: "dictate(받아쓰게 하다), dictionary(사전)", group: "5. 변화, 상태, 평가 (-pand-, -nov-)" },
+        { word: "emergency", meaning: "비상사태, 위급", root: "e(밖으로) + merg(잠기다/뜨다) → 갑자기 물 위로 떠오른 긴급상황", cognates: "merge(합병하다), emerge(나타나다)", group: "5. 변화, 상태, 평가 (-pand-, -nov-)" },
+        { word: "crisis", meaning: "위기", root: "krinein(결정하다) → 생사를 가르는 결정적 순간", cognates: "critic(비평가), crime(범죄)", group: "5. 변화, 상태, 평가 (-pand-, -nov-)" },
+        { word: "constant", meaning: "일정한, 지속적인", root: "con(함께/완전히) + stant(서 있는) → 항상 변함없이 서 있는", cognates: "stand(서다), state(상태/국가)", group: "5. 변화, 상태, 평가 (-pand-, -nov-)" },
+        { word: "optimistic", meaning: "낙관적인", root: "optimus(최고의) + istic(형용사) → 모든 것을 최고로 좋게 보는", cognates: "optimal(최적의), optimum(최고의 상태)", group: "5. 변화, 상태, 평가 (-pand-, -nov-)" },
 
-        // 그룹 6: 예술, 계급, 특성 (Art & Class)
-        { word: "classic", meaning: "(예술품이) 일류의, 고전의; 일류 작가, 일류 작품", root: "class(계급, 함대) + ic(형용사) → 최고 계급의", cognates: "class(학급, 계급), classify(분류하다)", group: "6. 뛰어남, 극 (-class-, master, tragedy)" },
-        { word: "masterpiece", meaning: "걸작, 명작", root: "master(거장/뛰어난) + piece(작품)", cognates: "master(주인), magnitude(거대함 - magister 어원)", group: "6. 뛰어남, 극 (-class-, master, tragedy)" },
-        { word: "theme", meaning: "주제, 테마", root: "그리스어 thema (놓인 것, 주제)", cognates: "thesis(논문), anathema(저주)", group: "6. 뛰어남, 극 (-class-, master, tragedy)" },
-        { word: "tragedy", meaning: "비극(작품); 재난, 참사", root: "tragos(염소) + oide(노래) → 염소의 노래(제전)", cognates: "tragic(비극의), comedy(희극 - oide 노래 어원 공유)", group: "6. 뛰어남, 극 (-class-, master, tragedy)" },
-        { word: "noble", meaning: "고귀한, 고상한; 귀족의; 귀족", root: "no/gno(알다) + ble(할 수 있는) → 널리 알려진, 명망 있는", cognates: "know(알다), recognize(알아보다)", group: "6. 뛰어남, 극 (-class-, master, tragedy)" },
-
-        // 그룹 7: 구동사 (Phrasal Verbs)
-        { word: "be into", meaning: "~에 푹 빠져 있다, ~에 관심이 많다", root: "be(상태) + into(~안으로 향하는) → 마음이 쏠린 상태", cognates: "in, to, into", group: "7. 구동사 (Phrasal Verbs)" },
-        { word: "live up to", meaning: "(다른 사람의 기대에) 부응하다", root: "live(살다) + up(위로/완전히) + to(~에) → 기대치까지 다다르게 살다", cognates: "live, up, to", group: "7. 구동사 (Phrasal Verbs)" },
-        { word: "line up", meaning: "줄을 서다", root: "line(선) + up(완전히) → 선을 지어 늘어서다", cognates: "line(선), linear(선의)", group: "7. 구동사 (Phrasal Verbs)" }
+        // 그룹 6: 구동사 (Phrasal Verbs)
+        { word: "come down with", meaning: "~의 병에 걸리다", root: "come(오다) + down(아래로) + with(~와 함께) → 병과 함께 쓰러지다", cognates: "come, down, with", group: "6. 구동사 (Phrasal Verbs)" },
+        { word: "ease off", meaning: "누그러지다, 완화되다[시키다]", root: "ease(편안해지다) + off(떨어져) → 긴장이나 고통이 떨어져 편안해지다", cognates: "easy(쉬운), disease(질병)", group: "6. 구동사 (Phrasal Verbs)" },
+        { word: "shut down", meaning: "문을 닫다, 폐쇄하다", root: "shut(닫다) + down(아래로) → 셔터를 아래로 내려 완전히 닫다", cognates: "shut, down", group: "6. 구동사 (Phrasal Verbs)" },
+        { word: "undertake", meaning: "떠맡다, 착수하다", root: "under(아래에) + take(취하다) → 책임을 짊어지기 위해 아래로 들어가 취하다", cognates: "take(잡다), overtake(추월하다)", group: "6. 구동사 (Phrasal Verbs)" },
+        { word: "set up", meaning: "시작하다, 창설하다, 건립하다", root: "set(놓다) + up(위로) → 기둥을 위로 세워 기초를 잡다", cognates: "set, up, setup(설정)", group: "6. 구동사 (Phrasal Verbs)" }
     ];
 
     // 그룹별 데이터 정렬 구조화
@@ -152,7 +180,7 @@
         return acc;
     }, {});
 
-    // 플래시카드용 1차원 배열 (원래 순서 혹은 그룹핑된 순서)
+    // 플래시카드용 1차원 배열
     const flatWordList = [];
     Object.values(groupedData).forEach(group => flatWordList.push(...group));
     
@@ -214,14 +242,6 @@
             content.classList.remove('open');
             icon.classList.remove('rotate-180');
         } else {
-            // 다른 열린 아코디언 모두 닫기 (선택적)
-            /*
-            document.querySelectorAll('.accordion-content.open').forEach(el => {
-                el.classList.remove('open');
-                const prevIcon = document.getElementById(el.id.replace('content-', 'icon-'));
-                if(prevIcon) prevIcon.classList.remove('rotate-180');
-            });
-            */
             content.classList.add('open');
             icon.classList.add('rotate-180');
         }
