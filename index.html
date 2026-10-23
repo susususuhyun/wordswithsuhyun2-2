@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>어원 기반 모바일 단어장 (1~20강)</title>
+    <title>어원 기반 모바일 단어장 (1~30강)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -119,7 +119,7 @@
         <main id="view-home" class="view active overflow-y-auto hide-scrollbar p-5 pb-20 bg-surface">
             <div class="mb-6">
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">학습하기</h2>
-                <p class="text-gray-500 text-sm">원하는 강의를 선택하세요. (1강 ~ 20강 완벽 분류)</p>
+                <p class="text-gray-500 text-sm">원하는 강의를 선택하세요. (1강 ~ 30강 완벽 분류)</p>
             </div>
             <div id="lesson-list" class="space-y-4">
                 <!-- JavaScript가 채움 -->
@@ -1448,7 +1448,7 @@
                 lesson: "19강",
                 groups: [
                     {
-                        root: "경제, 자본 (Economy & Capital)",
+                        root: "경제, 자본, 금융 (Economy & Finance)",
                         words: [
                             { e: "economy", k: "경제", ety: "eco(집) + nom(관리) -> 집안살림", cog: "economic(경제의)" },
                             { e: "economist", k: "경제학자", ety: "economy + ist", cog: "economics(경제학)" },
@@ -1460,31 +1460,42 @@
                             { e: "money, effects", k: "자산, 재산, 돈", ety: "화폐 / 효과(결과물)", cog: "monetary(화폐의)" },
                             { e: "possessions", k: "재산, 소유물", ety: "pos(할수있다) + sess(앉다) -> 차지한것", cog: "possess(소유하다)" },
                             { e: "possession", k: "소유", ety: "소유하는 상태", cog: "possessive(소유욕이강한)" },
-                            { e: "own", k: "소유하다, 가지다", ety: "자신의 것", cog: "owner(소유자)" }
+                            { e: "own", k: "소유하다, 가지다", ety: "자신의 것", cog: "owner(소유자)" },
+                            { e: "accountant", k: "회계사", ety: "ad(~에) + computare(계산하다)", cog: "account(계좌), compute(계산하다)" },
+                            { e: "have an account with", k: "~와 거래가 있다, ~에 계좌가 있다", ety: "account(계좌, 장부) 활용 관용구", cog: "accounting(회계)" }
                         ]
                     },
                     {
-                        root: "수입, 지출 (Income & Expense)",
+                        root: "수입, 지출, 계산 (Income & Calculation)",
                         words: [
                             { e: "earnings", k: "수입, 소득", ety: "earn(벌다) + ing + s", cog: "earn(돈을벌다)" },
                             { e: "expenditure", k: "지출", ety: "ex(밖으로) + pend(무게달다/지불하다) + iture", cog: "expense(비용)" },
                             { e: "expensive", k: "값비싼", ety: "ex(밖으로) + pend(지불하다) + ive", cog: "expend(쓰다)" },
                             { e: "shares", k: "주식, 주", ety: "share(몫, 나누다)의 복수형", cog: "shareholder(주주)" },
                             { e: "evaluate", k: "평가하다, 견적하다", ety: "e(밖으로) + valu(가치) + ate", cog: "value(가치)" },
-                            { e: "make a budget", k: "예산을 편성하다", ety: "budget(예산: 가죽주머니에서 유래)을 만들다", cog: "budget(예산)" }
+                            { e: "make a budget", k: "예산을 편성하다", ety: "budget(예산: 가죽주머니에서 유래)을 만들다", cog: "budget(예산)" },
+                            { e: "estimated sum", k: "견적액, 견적 비용", ety: "estimate(평가하다) + sum(합계)", cog: "esteem(존중하다), summary(요약)" }
                         ]
                     },
                     {
-                        root: "위험, 상태 변화 (Risk & State Change)",
+                        root: "고용, 협상, 상태 (Work & State)",
+                        words: [
+                            { e: "unemployment rate", k: "실업률", ety: "un(부정) + employ(고용) + ment / rate(비율)", cog: "employee(직원)" },
+                            { e: "employed", k: "고용된", ety: "em(안에) + plicare(접다) -> 얽히다, 고용되다", cog: "employer(고용주), imply(암시하다)" },
+                            { e: "negotiation", k: "협상", ety: "neg(아닌) + otium(여가) -> 한가하지 않은 사업/협상", cog: "negotiate(협상하다)" },
+                            { e: "decrease", k: "감소하다", ety: "de(아래로) + crease(자라다)", cog: "increase(증가하다)" },
+                            { e: "plan, approach", k: "전략, 계획", ety: "계획 / ad(~로)+proach(가까이)->접근법", cog: "plan(계획)" }
+                        ]
+                    },
+                    {
+                        root: "위험, 잠재력 (Risk & Potential)",
                         words: [
                             { e: "risky", k: "위험한", ety: "risk(위험) + y", cog: "risk(위험)" },
                             { e: "at risk", k: "위험한 상태에", ety: "risk(위험) 상태에", cog: "risky(위험한)" },
                             { e: "danger, hazard", k: "위험, 모험", ety: "지배력(위험) / 주사위 게임(우연, 위험)", cog: "dangerous(위험한)" },
                             { e: "fortunate", k: "운 좋은", ety: "fortune(운) + ate", cog: "fortune(재산, 운)" },
                             { e: "potentially", k: "잠재적으로", ety: "potent(힘있는) + ial + ly", cog: "potential(잠재적인)" },
-                            { e: "latent", k: "잠재적인, 발전 가능성이 있는", ety: "숨어있는", cog: "latency(잠복기)" },
-                            { e: "unemployment rate", k: "실업률", ety: "un(부정) + employ(고용) + ment / rate(비율)", cog: "employee(직원)" },
-                            { e: "decrease", k: "감소하다", ety: "de(아래로) + crease(자라다)", cog: "increase(증가하다)" }
+                            { e: "latent", k: "잠재적인, 발전 가능성이 있는", ety: "숨어있는", cog: "latency(잠복기)" }
                         ]
                     },
                     {
@@ -1494,80 +1505,658 @@
                             { e: "permanent", k: "영구적인, 불멸의", ety: "per(완전히) + man(머물다) + ent", cog: "remain(남다)" },
                             { e: "current", k: "통용되는; 현재의", ety: "curr(흐르다) + ent -> 현재 흐르고 있는", cog: "currency(통화)" },
                             { e: "annually", k: "매년, 해마다", ety: "ann(년) + ual + ly", cog: "annual(연간의)" },
-                            { e: "effect", k: "결과(물), 성과", ety: "ef(밖으로) + fect(만들다)", cog: "effective(효과적인)" },
-                            { e: "plan, approach", k: "전략, 계획", ety: "계획 / ad(~로)+proach(가까이)->접근법", cog: "plan(계획)" },
+                            { e: "effect", k: "결과(물), (구체적인) 성과", ety: "ef(밖으로) + fect(만들다)", cog: "effective(효과적인)" },
                             { e: "capital punishment", k: "사형, 극형", ety: "capital(머리의, 생명의) + punishment(벌)", cog: "capital(수도, 자본)" }
                         ]
                     }
                 ]
             },
             {
-                lesson: "20강",
+                lesson: "21강",
                 groups: [
                     {
-                        root: "정치, 행정 (Politics & Admin)",
+                        root: "사회, 도덕, 평등 (soci, moral, equ)",
                         words: [
-                            { e: "Federal Government", k: "연방 정부", ety: "feder(동맹) + al / govern(통치하다) + ment", cog: "federal(연방의), governor(주지사)" },
-                            { e: "cabinet council", k: "각료 회의, 국무 회의", ety: "cabinet(작은방, 내각) + council(회의)", cog: "cabinet(내각, 보관장)" },
-                            { e: "office", k: "사무실; 공직, 관직", ety: "opus(일) + fic(만들다) -> 일하는 곳/자리", cog: "official(공식적인)" },
-                            { e: "officiate", k: "공무를 수행하다", ety: "office + iate", cog: "officer(장교, 공무원)" },
-                            { e: "sessional", k: "개정 중의, 회기마다의", ety: "sess(앉다) + ion(회의) + al", cog: "session(회의, 기간)" },
-                            { e: "elective", k: "선거의", ety: "e(밖으로) + lect(고르다) + ive", cog: "elect(선출하다)" },
-                            { e: "election", k: "선거", ety: "e(밖으로) + lect(고르다) + ion", cog: "select(선택하다)" },
-                            { e: "progressive", k: "진보적인", ety: "pro(앞으로) + gress(가다) + ive", cog: "progress(전진)" },
-                            { e: "conservatism", k: "보수주의", ety: "con(함께) + serv(지키다) + atism", cog: "conserve(보존하다)" },
-                            { e: "unionize", k: "연합하다", ety: "uni(하나) + on + ize(만들다)", cog: "union(조합, 연합)" }
+                            { e: "society", k: "사회", ety: "soci(동료) + ety", cog: "social(사회의), associate(연관짓다)" },
+                            { e: "socialize", k: "사회화하다", ety: "social + ize(만들다)", cog: "socialization(사회화)" },
+                            { e: "ethics", k: "윤리학", ety: "ethos(관습, 성격) + ics(학문)", cog: "ethical(윤리적인)" },
+                            { e: "ethical", k: "윤리의", ety: "ethic + al", cog: "ethics(윤리학)" },
+                            { e: "immoral", k: "부도덕한", ety: "im(부정) + moral(도덕적인)", cog: "morality(도덕성)" },
+                            { e: "morality", k: "도덕성", ety: "moral(도덕의) + ity", cog: "moral(도덕적인)" },
+                            { e: "adequate", k: "적당한", ety: "ad(~에) + equ(같은) + ate -> 똑같이 맞춘", cog: "equal(같은)" },
+                            { e: "inadequacy", k: "불충분, 결점", ety: "in(부정) + adequate + cy", cog: "inadequate(불충분한)" },
+                            { e: "voluntary", k: "자발적인", ety: "volunt(의지) + ary", cog: "volunteer(자원봉사자)" },
+                            { e: "charitable", k: "자비로운", ety: "charity(자선, 자비) + able", cog: "charity(자선)" },
+                            { e: "advantage", k: "이익", ety: "ab(~로부터) + ante(앞에) -> 앞서 있음", cog: "advance(전진하다)" },
+                            { e: "disadvantage", k: "불이익", ety: "dis(반대) + advantage", cog: "advantageous(이로운)" },
+                            { e: "advantageous", k: "유리한, 이로운", ety: "advantage(이점) + ous", cog: "advantage(이점)" }
                         ]
                     },
                     {
-                        root: "권위, 명령 (Authority & Order)",
+                        root: "조직, 상황, 기준 (organ, posit, stand)",
                         words: [
-                            { e: "commander", k: "지휘관, 사령관", ety: "com(강조) + mand(명령하다) + er", cog: "command(명령하다)" },
-                            { e: "power", k: "권위, 권한", ety: "할 수 있는 힘", cog: "powerful(강력한)" },
-                            { e: "lead", k: "(군대 등을) 지휘하다", ety: "이끌다", cog: "leader(지도자)" },
-                            { e: "order", k: "명령하다", ety: "순서, 질서, 명령", cog: "ordinary(보통의)" },
-                            { e: "demand", k: "요구하다, 고집하다", ety: "de(완전히) + mand(명령하다)", cog: "command(명령하다)" },
-                            { e: "allow", k: "찬성하다, 승인하다", ety: "ad(~에) + laud(칭찬하다) -> 허락하다", cog: "allowance(수당)" },
-                            { e: "approval", k: "찬성, 승인", ety: "ap(~에) + prov(증명하다) + al -> 좋다고 인정함", cog: "approve(승인하다)" },
-                            { e: "achievement", k: "업적", ety: "achieve(성취하다) + ment", cog: "achieve(성취하다)" },
-                            { e: "fame", k: "명성, 덕망", ety: "fama(소문)", cog: "famous(유명한)" },
-                            { e: "reputational", k: "명성의, 평판의", ety: "reputation(명성) + al", cog: "reputation(명성)" }
+                            { e: "organize", k: "조직하다", ety: "organ(도구, 기관) + ize(만들다)", cog: "organ(장기)" },
+                            { e: "organizational", k: "조직의", ety: "organize + ational", cog: "organization(조직)" },
+                            { e: "position", k: "지위, 신분", ety: "pos(놓다) + ition -> 놓여진 자리", cog: "pose(자세)" },
+                            { e: "condition", k: "상황, 환경", ety: "con(함께) + dicere(말하다) -> 합의된 상태", cog: "conditional(조건부의)" },
+                            { e: "standardize", k: "표준화하다", ety: "standard(표준) + ize", cog: "standard(표준)" },
+                            { e: "criterion", k: "표준, 기준", ety: "krites(판단하는 사람)에서 유래", cog: "critic(비평가)" },
+                            { e: "indicator", k: "지시자; 지표", ety: "indicate(가리키다) + or", cog: "indicate(가리키다)" },
+                            { e: "indication", k: "암시, 지적", ety: "indicate + ion", cog: "index(지표)" },
+                            { e: "tendency", k: "경향", ety: "tend(뻗다) + ency", cog: "extend(연장하다)" },
+                            { e: "have a tendency to", k: "~하는 경향이 있다", ety: "tendency 활용 구문", cog: "tendency(경향)" },
+                            { e: "security", k: "안전, 보안", ety: "se(떨어져) + cur(근심) + ity -> 걱정이 없는", cog: "secure(안전한)" },
+                            { e: "insecure", k: "불안정한", ety: "in(부정) + secure", cog: "security(안전)" }
                         ]
                     },
                     {
-                        root: "주장, 설득 (Argument & Persuasion)",
+                        root: "습득, 기회, 자유 (acquir, facil, free)",
                         words: [
-                            { e: "persuade", k: "(설득하여) 납득시키다", ety: "per(완전히) + suad(권고하다)", cog: "persuasion(설득)" },
-                            { e: "persuasion", k: "설득", ety: "persuade의 명사형", cog: "persuasive(설득력있는)" },
-                            { e: "argue", k: "논쟁하다", ety: "arg(빛나다, 분명히하다) -> 이유를 밝히다", cog: "argument(논쟁)" },
-                            { e: "argument", k: "논쟁", ety: "argue + ment", cog: "argue(주장하다)" },
-                            { e: "assure", k: "확신시키다", ety: "ad(~에) + sure(확실한)", cog: "sure(확실한)" },
-                            { e: "conviction", k: "확신", ety: "con(완전히) + vict(이기다) + ion", cog: "convince(납득시키다)" },
-                            { e: "declaration", k: "선언, 신고(서)", ety: "declare(선언하다) + ation", cog: "declare(선언하다)" },
-                            { e: "announce", k: "선언하다, 공표하다", ety: "ad(~에게) + nounc(알리다)", cog: "announcement(발표)" },
-                            { e: "insistent", k: "강요하는, 끈질긴", ety: "in(안에) + sist(서다) + ent -> 굳게 버티는", cog: "insist(주장하다)" },
-                            { e: "with insistence", k: "끈질기게, 집요하게", ety: "insistence(고집)을 가지고", cog: "insist(주장하다)" }
+                            { e: "acquisition", k: "습득", ety: "ac(강조) + quisit(구하다) + ion", cog: "acquire(얻다)" },
+                            { e: "acquired", k: "후천적인", ety: "acquire(얻다) + d", cog: "acquire(얻다)" },
+                            { e: "get", k: "얻다, 습득하다", ety: "얻다", cog: "forget(잊다)" },
+                            { e: "golden opportunity", k: "절호의 기회", ety: "golden(황금같은) + opportunity(기회)", cog: "opportune(시의적절한)" },
+                            { e: "chance", k: "기회", ety: "cadere(떨어지다) -> 우연히 일어난 일", cog: "casual(우연한)" },
+                            { e: "facilitate", k: "용이하게 하다", ety: "facil(쉬운) + itate", cog: "facility(시설)" },
+                            { e: "prospective", k: "유망한", ety: "pro(앞으로) + spect(보다) + ive", cog: "prospect(전망)" },
+                            { e: "allowance", k: "승인; 용돈", ety: "allow(허락하다) + ance", cog: "allow(허락하다)" },
+                            { e: "freedom", k: "자유", ety: "free(자유로운) + dom(상태)", cog: "free(자유로운)" },
+                            { e: "safe", k: "안전한", ety: "안전한", cog: "safety(안전)" }
                         ]
                     },
                     {
-                        root: "대립, 태도 (Conflict & Attitude)",
+                        root: "복잡, 종료, 편견 (plex, fin, typ)",
                         words: [
-                            { e: "hostility", k: "적의, 적개심", ety: "hostile(적대적인) + ity", cog: "hostile(적대적인)" },
-                            { e: "unfriendly", k: "적대적인", ety: "un(부정) + friendly(친절한)", cog: "friend(친구)" },
-                            { e: "friendly", k: "친절한", ety: "friend(친구) + ly", cog: "friendship(우정)" },
-                            { e: "unconcerned", k: "무관심한", ety: "un(부정) + concern(관심) + ed", cog: "concern(관심)" },
-                            { e: "indifference", k: "무관심", ety: "in(부정) + difference(차이) -> 차이가 없다고 느낌", cog: "different(다른)" },
-                            { e: "resist", k: "반대하다, 대항하다", ety: "re(뒤로, 대항하여) + sist(서다)", cog: "resistance(저항)" },
-                            { e: "opposite", k: "반대편의", ety: "ob(반대하여) + pos(놓다) + ite", cog: "oppose(반대하다)" },
-                            { e: "divide, split", k: "나누다, 분열시키다", ety: "둘 이상으로 쪼개다", cog: "division(분할)" },
-                            { e: "action, conduct", k: "행위", ety: "행동 / con(함께)+duct(이끌다)", cog: "active(활동적인), conductor(지휘자)" },
-                            { e: "instant", k: "즉각적인", ety: "in(안에) + stans(서있는) -> 가까이 다가온", cog: "instantly(즉시)" },
-                            { e: "immediately", k: "즉시; 직접", ety: "im(부정) + mediate(중간의) + ly", cog: "medium(중간)" },
-                            { e: "put off, delay", k: "연기하다, 미루다", ety: "뒤로 미뤄두다", cog: "delay(지연)" },
-                            { e: "assumption", k: "가정, 가설", ety: "assume(가정하다) + ption", cog: "assume(가정하다)" },
-                            { e: "suppose", k: "추측하다, 가정하다", ety: "sup(아래에) + pos(놓다)", cog: "propose(제안하다)" },
-                            { e: "assuming[supposing] that", k: "~라고 가정하면", ety: "assume/suppose 활용 구문", cog: "assume(가정하다)" },
-                            { e: "nearest", k: "직접적인, 가장 가까운", ety: "near(가까운)의 최상급", cog: "near(가까운)" }
+                            { e: "complicated", k: "복잡한", ety: "com(함께) + plic(접다) + ated -> 여러번 접힌", cog: "complicate(복잡하게하다)" },
+                            { e: "leisure complex", k: "종합 레저 건물", ety: "leisure + com(함께) + plex(접다/얽히다)", cog: "complex(복합단지)" },
+                            { e: "expiration", k: "종료, 만기", ety: "ex(밖으로) + spir(숨쉬다) + ation -> 숨을 다함", cog: "expire(만료되다)" },
+                            { e: "end", k: "만기가 되다", ety: "끝나다", cog: "endless(끝없는)" },
+                            { e: "racial stereotypes", k: "인종적 고정 관념", ety: "racial(인종의) + stereo(단단한) + type(형태)", cog: "race(인종)" },
+                            { e: "improper", k: "부적절한", ety: "im(부정) + proper(적절한)", cog: "proper(적절한)" },
+                            { e: "influence", k: "~에 영향을 미치다", ety: "in(안으로) + flu(흐르다) + ence", cog: "fluent(유창한)" },
+                            { e: "simple", k: "단순한", ety: "sim(하나로) + ple(접힌)", cog: "simplify(단순화하다)" }
+                        ]
+                    }
+                ]
+            },
+            {
+                lesson: "22강",
+                groups: [
+                    {
+                        root: "범죄, 유죄, 조사 (crimin, vestig, quir)",
+                        words: [
+                            { e: "criminal", k: "유죄의, 범죄자", ety: "crimin(죄) + al", cog: "crime(범죄)" },
+                            { e: "guilt", k: "유죄", ety: "죄책감, 유죄", cog: "guilty(유죄의)" },
+                            { e: "offender", k: "범인, 범죄자", ety: "ob(~에 맞서) + fend(치다) + er", cog: "offend(불쾌하게하다)" },
+                            { e: "robbery", k: "강도질, 강탈", ety: "rob(강탈하다) + ery", cog: "rob(강탈하다)" },
+                            { e: "rob", k: "강탈하다", ety: "훔치다, 털다", cog: "robber(강도)" },
+                            { e: "cheat", k: "속이다, 기만하다", ety: "재산을 몰수당하다에서 유래 -> 속이다", cog: "cheater(사기꾼)" },
+                            { e: "commit suicide", k: "자살하다", ety: "commit(저지르다) + suicide(자살: sui+cid)", cog: "suicide(자살)" },
+                            { e: "investigate", k: "조사하다", ety: "in(안으로) + vestig(발자취) + ate", cog: "investigation(조사)" },
+                            { e: "investigation", k: "조사", ety: "investigate + ion", cog: "investigator(수사관)" },
+                            { e: "investigator", k: "수사관", ety: "investigate + or", cog: "investigate(조사하다)" },
+                            { e: "inquiry", k: "질문, 조사", ety: "in(안으로) + quir(구하다) + y", cog: "inquire(묻다)" },
+                            { e: "suspicion", k: "의심, 혐의", ety: "sub(아래서) + spic(보다) + ion", cog: "suspect(의심하다)" },
+                            { e: "suspicious", k: "의심스러운", ety: "suspicion의 형용사형", cog: "suspect(용의자)" },
+                            { e: "accidental", k: "우연한", ety: "ad(~에) + cid(떨어지다) + ental", cog: "accident(사고)" }
+                        ]
+                    },
+                    {
+                        root: "체포, 판결, 속임 (cept, vict, fess)",
+                        words: [
+                            { e: "capture", k: "(덫으로) 잡다", ety: "cap(잡다) + ture", cog: "captive(포로)" },
+                            { e: "arrestment", k: "체포", ety: "ad(~에) + rest(멈추다) + ment", cog: "arrest(체포하다)" },
+                            { e: "sentence", k: "유죄를 선고하다", ety: "sentire(느끼다, 의견을말하다) -> 판결", cog: "sense(감각)" },
+                            { e: "conviction", k: "유죄 선고, 확신", ety: "con(완전히) + vict(이기다) + ion", cog: "convict(유죄를선고하다)" },
+                            { e: "innocent", k: "무고한", ety: "in(부정) + noc(해치다) + ent", cog: "innocence(결백)" },
+                            { e: "confession", k: "자백", ety: "con(함께) + fess(말하다) + ion", cog: "confess(고백하다)" },
+                            { e: "deception", k: "속임, 기만, 거짓", ety: "de(아래로) + cept(잡다) + ion", cog: "deceive(속이다)" },
+                            { e: "deceptive", k: "속이는", ety: "deceive(속이다) + ive", cog: "deception(기만)" },
+                            { e: "evidence", k: "증거", ety: "e(밖으로) + vid(보다) + ence", cog: "evident(명백한)" },
+                            { e: "evidently", k: "명백히", ety: "evident(명백한) + ly", cog: "evidence(증거)" },
+                            { e: "obvious", k: "분명한, 명백한", ety: "ob(~에 맞서) + via(길) -> 길에 버티고 선", cog: "obviously(명백하게)" },
+                            { e: "plain", k: "분명한, 명백한", ety: "planus(평평한) -> 잘 보이는", cog: "plane(평면)" }
+                        ]
+                    },
+                    {
+                        root: "제한, 금지, 위반 (strict, hibit, viol)",
+                        words: [
+                            { e: "restriction", k: "제한", ety: "re(뒤로) + strict(당기다) + ion", cog: "restrict(제한하다)" },
+                            { e: "restrictive", k: "제한하는", ety: "restrict(제한하다) + ive", cog: "strict(엄격한)" },
+                            { e: "limit", k: "제한하다", ety: "limes(경계)", cog: "limitation(제한)" },
+                            { e: "prohibit", k: "금하다", ety: "pro(앞에) + hibit(두다) -> 앞을 막다", cog: "prohibition(금지)" },
+                            { e: "forbidden", k: "금지된", ety: "for(멀리) + bid(명령하다) + den", cog: "forbid(금지하다)" },
+                            { e: "prevention", k: "방지", ety: "pre(미리) + vent(오다) + ion -> 먼저 와서 막음", cog: "prevent(예방하다)" },
+                            { e: "stop", k: "막다, ~하지 못하게 하다", ety: "멈추게 하다", cog: "stoppage(중단)" },
+                            { e: "deny", k: "부인하다", ety: "de(완전히) + neg(부정하다)", cog: "negative(부정적인)" },
+                            { e: "break", k: "위반하다", ety: "깨다, 부수다", cog: "breakdown(고장)" },
+                            { e: "violation", k: "위반", ety: "violate(위반하다) + ion", cog: "violate(위반하다)" },
+                            { e: "offensive", k: "무례한", ety: "offend(불쾌하게하다) + ive", cog: "offense(위반)" }
+                        ]
+                    },
+                    {
+                        root: "통제, 의도, 허가 (reg, tend, mit)",
+                        words: [
+                            { e: "control", k: "규제하다, 통제하다", ety: "contra(반대로) + roll(회전) -> 대조확인", cog: "controller(관리자)" },
+                            { e: "regulation", k: "규제", ety: "regul(규칙) + ation", cog: "regular(규칙적인)" },
+                            { e: "intention", k: "의도, 목적", ety: "in(안으로) + tent(뻗다) + ion", cog: "intend(의도하다)" },
+                            { e: "intentionally", k: "고의로", ety: "intention + al + ly", cog: "intentional(의도적인)" },
+                            { e: "deliberate", k: "의도적인, 계획된", ety: "de(완전히) + liber(저울) + ate", cog: "liberty(자유)" },
+                            { e: "permit", k: "허가하다", ety: "per(통과하여) + mit(보내다)", cog: "permission(허락)" },
+                            { e: "admission", k: "인정", ety: "ad(~로) + miss(보내다) + ion", cog: "admit(인정하다)" },
+                            { e: "appealing", k: "호소하는, 매력 있는", ety: "appeal(호소하다) + ing", cog: "appeal(호소, 항소)" },
+                            { e: "identification", k: "신원 확인, 신분증", ety: "ident(동일한) + fic(만들다) + ation", cog: "identify(확인하다)" }
+                        ]
+                    }
+                ]
+            },
+            {
+                lesson: "23강",
+                groups: [
+                    {
+                        root: "충돌, 혼란, 갈등 (lid, fus)",
+                        words: [
+                            { e: "crash", k: "충돌하다", ety: "부서지는 소리 (의성어)", cog: "crash(추락)" },
+                            { e: "collide", k: "충돌하다", ety: "col(함께) + lid(치다)", cog: "collision(충돌)" },
+                            { e: "collision", k: "충돌", ety: "collide의 명사형", cog: "collide(충돌하다)" },
+                            { e: "confusion", k: "혼란", ety: "con(함께) + fus(붓다) + ion -> 섞여버림", cog: "confuse(혼란시키다)" },
+                            { e: "difference", k: "차이", ety: "dif(멀리) + fer(나르다) + ence", cog: "different(다른)" },
+                            { e: "generation gap", k: "세대 차이", ety: "generation(세대) + gap(차이)", cog: "generate(발생시키다)" },
+                            { e: "violence", k: "폭력", ety: "violent(폭력적인) + ence", cog: "violent(폭력적인)" },
+                            { e: "child abuse", k: "어린이 학대", ety: "child + ab(나쁘게) + use(사용하다)", cog: "abuse(남용하다)" },
+                            { e: "barrier", k: "장애, 장애물, 난관", ety: "bar(막대기)로 막은 것", cog: "barricade(바리케이드)" }
+                        ]
+                    },
+                    {
+                        root: "분리, 고립, 부족 (par, isol, fect)",
+                        words: [
+                            { e: "separate", k: "분리하다", ety: "se(따로) + par(준비하다) + ate", cog: "separation(분리)" },
+                            { e: "segregate", k: "고립시키다, 격리시키다", ety: "se(떨어져) + greg(무리) + ate", cog: "congregate(모이다)" },
+                            { e: "isolation", k: "고립, 격리", ety: "insula(섬) -> 섬처럼 떨어짐", cog: "isolate(고립시키다)" },
+                            { e: "be isolated from", k: "~로부터 고립되다", ety: "isolate 수동태 구문", cog: "isolated(고립된)" },
+                            { e: "minority", k: "소수", ety: "minor(더작은) + ity", cog: "minor(소수의)" },
+                            { e: "in defect", k: "결핍하여", ety: "de(떨어져) + fect(만들다) -> 불완전하게 만들어진", cog: "defect(결함)" },
+                            { e: "defective", k: "결함이 있는", ety: "defect + ive", cog: "defective(불량품)" },
+                            { e: "lack", k: "부족, 결핍", ety: "모자라다", cog: "lack(부족하다)" },
+                            { e: "give up", k: "버리다, 포기하다", ety: "완전히(up) 내어주다(give)", cog: "give(주다)" },
+                            { e: "in the negative", k: "부정적으로", ety: "negative(부정적인: neg(아닌)+ative)", cog: "deny(부인하다)" }
+                        ]
+                    },
+                    {
+                        root: "중독, 비정상, 사건 (dict, norm, vent)",
+                        words: [
+                            { e: "addiction", k: "중독, 탐닉", ety: "addict(중독되다) + ion", cog: "addictive(중독성의)" },
+                            { e: "addictive", k: "중독성의", ety: "addict + ive", cog: "addiction(중독)" },
+                            { e: "be addicted to", k: "~에 중독되다", ety: "ad(~에) + dict(말하다) -> 얽매이다", cog: "addict(중독자)" },
+                            { e: "abnormally", k: "비정상적으로", ety: "ab(멀리) + normal(정상적인) + ly", cog: "normal(정상적인)" },
+                            { e: "unusual", k: "비정상적인", ety: "un(부정) + usual(평소의)", cog: "usual(보통의)" },
+                            { e: "normal", k: "정상적인", ety: "norma(규칙) + al", cog: "abnormal(비정상적인)" },
+                            { e: "event", k: "사건, 사고", ety: "e(밖으로) + vent(오다) -> 일어난 일", cog: "advent(출현)" },
+                            { e: "without incident", k: "무사히", ety: "incident(사고, 사건) 없이", cog: "incident(사건)" },
+                            { e: "premature birth", k: "조산", ety: "pre(미리) + mature(성숙한) / birth(탄생)", cog: "mature(성숙한)" },
+                            { e: "tempt", k: "유혹하다", ety: "temptare(시험하다, 만져보다)", cog: "temptation(유혹)" }
+                        ]
+                    },
+                    {
+                        root: "극복, 통합, 통제 (uni, pos, trol)",
+                        words: [
+                            { e: "overcome an obstacle", k: "장애를 극복하다", ety: "overcome(극복하다) + obstacle(장애물: ob+sta)", cog: "obstacle(장애물)" },
+                            { e: "rise up", k: "일어나다, 나타나다", ety: "위로 올라오다", cog: "rise(오르다)" },
+                            { e: "positive", k: "긍정의", ety: "pos(놓다) -> 확고하게 놓여진", cog: "position(위치)" },
+                            { e: "unify", k: "통합", ety: "uni(하나) + fy(만들다)", cog: "union(결합)" },
+                            { e: "in all aspects", k: "모든 면에서", ety: "aspect(측면: ad+spect(보다))", cog: "spectacle(장관)" },
+                            { e: "control", k: "조종하다, 조작하다", ety: "대조하여 확인하다", cog: "controller(조종기)" },
+                            { e: "populate", k: "살다, 거주하다", ety: "populus(사람들) + ate", cog: "population(인구)" },
+                            { e: "wealth", k: "부", ety: "weal(복지, 재산) + th", cog: "wealthy(부유한)" }
+                        ]
+                    }
+                ]
+            },
+            {
+                lesson: "24강",
+                groups: [
+                    {
+                        root: "이주, 지역, 영토",
+                        words: [
+                            { e: "immigrate", k: "이주해 들어오다", ety: "im(안으로) + migr(이동하다) + ate", cog: "immigrant(이민자)" },
+                            { e: "immigration", k: "(다른 나라에 살러 오는) 이주[이민], 입국 심사", ety: "immigrate + ation", cog: "migrate(이동하다)" },
+                            { e: "emigrate", k: "타국으로 이주하다", ety: "e(밖으로) + migr(이동하다) + ate", cog: "emigrant(이민가는사람)" },
+                            { e: "emigration", k: "(타국으로의) 이주[이민]", ety: "emigrate + ation", cog: "migrate(이동하다)" },
+                            { e: "resident", k: "거주자", ety: "re(뒤에) + sid(앉다) + ent", cog: "reside(거주하다)" },
+                            { e: "resident", k: "지방민, 주민", ety: "re(뒤에) + sid(앉다) + ent", cog: "reside(거주하다)" },
+                            { e: "regional", k: "지역의", ety: "region(지역) + al", cog: "region(지역)" },
+                            { e: "zone", k: "영역, 영토", ety: "띠, 구역", cog: "timezone(시간대)" },
+                            { e: "global", k: "전 세계의", ety: "globe(지구) + al", cog: "globe(구, 지구)" },
+                            { e: "outer", k: "외부의", ety: "out(밖) + er", cog: "out(밖)" },
+                            { e: "internal", k: "내부의", ety: "inter(안쪽) + nal", cog: "interior(내부)" },
+                            { e: "port", k: "항구, 항만", ety: "portus(항구)", cog: "passport(여권)" },
+                            { e: "civil", k: "국내의", ety: "civis(시민) + il", cog: "civilize(문명화하다)" },
+                            { e: "domestic", k: "국내의", ety: "domus(집) + estic", cog: "dome(둥근지붕)" },
+                            { e: "international", k: "국제적인", ety: "inter(사이에) + nation(국가) + al", cog: "nation(국가)" },
+                            { e: "civic", k: "시민의", ety: "civis(시민) + ic", cog: "civil(시민의)" }
+                        ]
+                    },
+                    {
+                        root: "평등, 인종, 권리",
+                        words: [
+                            { e: "the same", k: "같은, 평등한", ety: "동일한", cog: "same(같은)" },
+                            { e: "equal right", k: "평등권", ety: "equal(같은: equ+al) + right", cog: "equality(평등)" },
+                            { e: "equality", k: "평등", ety: "equal(같은) + ity", cog: "equal(같은)" },
+                            { e: "racial", k: "민족의, 인종의", ety: "race(인종) + al", cog: "race(경주, 인종)" },
+                            { e: "ethnic", k: "인종의", ety: "ethnos(국민, 인종) + ic", cog: "ethnicity(민족성)" },
+                            { e: "race", k: "인종", ety: "경주, 인종", cog: "racial(인종의)" },
+                            { e: "racial discrimination", k: "인종 차별", ety: "racial(인종의) + discrimination(차별)", cog: "discriminate(차별하다)" },
+                            { e: "independent", k: "독립된", ety: "in(부정) + dependent(의존하는)", cog: "independence(독립)" },
+                            { e: "dependence", k: "의존", ety: "de(아래로) + pend(매달리다) + ence", cog: "depend(의존하다)" },
+                            { e: "Civil War", k: "미국 남북 전쟁", ety: "civil(시민의, 국내의) + war(전쟁)", cog: "civil(시민의)" },
+                            { e: "invasion", k: "침입, 침략", ety: "in(안으로) + vad(가다) + ion", cog: "invade(침략하다)" },
+                            { e: "tribal", k: "종족의, 부족의; 동족적인", ety: "tribe(부족) + al", cog: "tribe(부족)" }
+                        ]
+                    },
+                    {
+                        root: "태도, 협력, 대립",
+                        words: [
+                            { e: "oppose", k: "저항하다", ety: "ob(반대하여) + pose(놓다)", cog: "opponent(반대자)" },
+                            { e: "resistance", k: "저항", ety: "re(대항하여) + sist(서다) + ance", cog: "resist(저항하다)" },
+                            { e: "consist in", k: "~에 있다", ety: "con(함께) + sist(서다) -> 안에 존재하다", cog: "consist(구성되다)" },
+                            { e: "make an attempt", k: "시도하다", ety: "attempt(시도: ad+tempt(시험하다))", cog: "tempt(유혹하다)" },
+                            { e: "try", k: "시도", ety: "시도하다", cog: "trial(시도, 재판)" },
+                            { e: "cooperate with A for B", k: "B를 위해 A와 협동하다", ety: "co(함께) + oper(일하다) + ate", cog: "operation(수술, 작동)" },
+                            { e: "consist with", k: "~와 일치하다", ety: "con(함께) + sist(서다) -> 같이 서다", cog: "consistent(일관된)" },
+                            { e: "intention", k: "의도", ety: "in(안으로) + tent(뻗다) + ion", cog: "intend(의도하다)" },
+                            { e: "mean", k: "~할 작정이다, 의도하다", ety: "의미하다", cog: "meaning(의미)" },
+                            { e: "inner strength", k: "내면의 힘", ety: "inner(내부의) + strength(힘)", cog: "strong(강한)" },
+                            { e: "use up", k: "소진시키다", ety: "완전히 사용하다", cog: "useful(유용한)" },
+                            { e: "event", k: "특별한 일", ety: "e(밖으로) + vent(오다)", cog: "advent(출현)" },
+                            { e: "customs office", k: "세관", ety: "customs(관세) + office", cog: "custom(관습)" },
+                            { e: "reservation", k: "보류; 예약", ety: "re(뒤로) + serv(지키다) + ation -> 남겨둠", cog: "reserve(예약하다)" },
+                            { e: "wish, yearn, crave", k: "~을 갈망하다[그리워하다]", ety: "바라다, 열망하다 유의어", cog: "wishful(바라는)" },
+                            { e: "duty", k: "세금", ety: "의무, 관세", cog: "dutiful(의무를다하는)" },
+                            { e: "tax free", k: "면세의, 비과세의", ety: "tax(세금) + free(없는)", cog: "tax(세금)" },
+                            { e: "live", k: "거주하다", ety: "살다", cog: "living(살아있는)" },
+                            { e: "dominant", k: "지배적인", ety: "dominus(주인) + ant", cog: "dominance(지배)" },
+                            { e: "dominance", k: "지배", ety: "dominus(주인) + ance", cog: "dominate(지배하다)" },
+                            { e: "tradition", k: "풍습", ety: "trans(넘겨서) + dit(주다) + ion", cog: "traditional(전통적인)" },
+                            { e: "domestic animal", k: "가축", ety: "domestic(국내의, 집안의) + animal(동물)", cog: "domestic(가정의)" },
+                            { e: "characteristic", k: "특성, 특색", ety: "character(특징) + istic", cog: "character(특징)" }
+                        ]
+                    }
+                ]
+            },
+            {
+                lesson: "25강",
+                groups: [
+                    {
+                        root: "보존, 에너지, 환경 (serv, erg, tam)",
+                        words: [
+                            { e: "preservation", k: "보존", ety: "pre(미리) + serv(지키다) + ation", cog: "preserve(보존하다)" },
+                            { e: "protect", k: "보호하다, 지키다", ety: "pro(앞에서) + tect(덮다)", cog: "protection(보호)" },
+                            { e: "endangered species", k: "멸종 위기의 동식물", ety: "en(안에) + danger(위험) + ed / species(종)", cog: "danger(위험)" },
+                            { e: "alternative energy", k: "대체 에너지", ety: "alter(다른) + nat(태어나다) -> 다른 방향으로 도는", cog: "alter(바꾸다)" },
+                            { e: "contamination", k: "오염", ety: "con(함께) + tang(만지다) -> 접촉하여 더러워짐", cog: "contaminate(오염시키다)" },
+                            { e: "starvation, hunger", k: "기근, 배고픔", ety: "starve(굶주리다) + ation", cog: "starve(굶주리다)" },
+                            { e: "refugee", k: "난민", ety: "re(뒤로) + fug(도망치다) + ee", cog: "refuge(피난처)" },
+                            { e: "deficiency", k: "부족, 결핍", ety: "de(아래로) + fic(만들다) + iency -> 부족하게 만듦", cog: "deficient(부족한)" },
+                            { e: "short", k: "부족한; 짧은", ety: "길이나 양이 짧은/적은", cog: "shortage(부족)" }
+                        ]
+                    },
+                    {
+                        root: "통합, 협력, 교역 (uni, soci, trade)",
+                        words: [
+                            { e: "unite", k: "통합하다, 단결하다", ety: "uni(하나) + ite", cog: "union(연합)" },
+                            { e: "universe", k: "전 인류, 전 세계", ety: "uni(하나로) + vers(돌다) -> 우주", cog: "universal(보편적인)" },
+                            { e: "integration", k: "통합", ety: "in(안에) + tang(만지다) -> 손대지않아 완전한", cog: "integrate(통합하다)" },
+                            { e: "be associated with", k: "~와 관련되다", ety: "ad(~에) + soci(동료) + ate", cog: "associate(연관짓다)" },
+                            { e: "companion", k: "동료", ety: "com(함께) + pan(빵) + ion -> 빵을 나눠먹는 사람", cog: "company(회사)" },
+                            { e: "cooperate, help, aid", k: "원조하다, 돕다", ety: "co(함께) + oper(일하다)", cog: "cooperation(협동)" },
+                            { e: "assistance", k: "원조", ety: "assist(돕다) + ance", cog: "assist(돕다)" },
+                            { e: "assistant", k: "조수, 보조", ety: "as(~에) + sist(서다) + ant -> 곁에 선 사람", cog: "assist(돕다)" },
+                            { e: "agreement", k: "일치, 조화", ety: "a(~에) + gre(기쁘게하다) + ment -> 합의", cog: "agree(동의하다)" },
+                            { e: "with one accord", k: "이구동성으로, 만장일치로", ety: "accord(ac+cord(마음): 일치)를 가지고", cog: "accord(일치)" },
+                            { e: "external trade", k: "대외 무역", ety: "external(외부의: ex+tern) + trade", cog: "exterior(외부)" },
+                            { e: "foreign affairs", k: "외무, 외교 문제", ety: "foreign(외국의) + affairs(문제: ad+facere)", cog: "foreign(외국의)" }
+                        ]
+                    },
+                    {
+                        root: "충돌, 폭발, 개입 (bat, rupt, fer)",
+                        words: [
+                            { e: "combat, battle", k: "충돌, 갈등", ety: "com(함께) + bat(치다) / 싸움", cog: "battery(배터리, 구타)" },
+                            { e: "come into conflict with", k: "~와 싸우다, 충돌하다", ety: "conflict(갈등: con+flict(치다))", cog: "conflict(갈등)" },
+                            { e: "explosion", k: "폭발", ety: "explode의 명사형", cog: "explode(폭발하다)" },
+                            { e: "explosive", k: "폭발성의", ety: "ex(밖으로) + plaud(박수치다) + ive -> 터져나오는", cog: "explosion(폭발)" },
+                            { e: "interfere with", k: "~을 방해하다, 지장을 주다", ety: "inter(사이에) + fer(나르다) -> 끼어들다", cog: "interference(방해)" },
+                            { e: "danger", k: "위험", ety: "지배력, 위험", cog: "dangerous(위험한)" },
+                            { e: "urgent", k: "긴급한, 다급한", ety: "urgere(밀어붙이다) + ent", cog: "urge(촉구하다)" }
+                        ]
+                    },
+                    {
+                        root: "통역, 제안, 변화 (pret, vari, alter)",
+                        words: [
+                            { e: "interpretation", k: "해석, 통역", ety: "inter(사이에) + pret(설명하다) + ation", cog: "interpret(통역하다)" },
+                            { e: "interpreter", k: "통역사", ety: "interpret + er", cog: "interpretation(해석)" },
+                            { e: "translate", k: "해석하다, 통역하다", ety: "trans(건너서) + late(나르다)", cog: "translation(번역)" },
+                            { e: "remarkable", k: "주목할 만한", ety: "re(다시) + mark(표시) + able", cog: "remark(언급)" },
+                            { e: "make remarks", k: "비평하다, 말하다", ety: "remark(발언)를 하다", cog: "remarkable(놀라운)" },
+                            { e: "comment", k: "발언, 비평", ety: "com(강조) + ment(마음) -> 생각", cog: "mental(정신의)" },
+                            { e: "suggestion", k: "제안", ety: "sug(아래에서) + gest(나르다) + ion", cog: "suggest(제안하다)" },
+                            { e: "proposal", k: "제안; 청혼", ety: "pro(앞으로) + pos(놓다) + al", cog: "propose(제안하다)" },
+                            { e: "variety", k: "다양성, 여러 가지", ety: "varius(다양한) + ety", cog: "vary(다르다)" },
+                            { e: "various", k: "다양한", ety: "vary(다르다) + ous", cog: "variety(다양성)" },
+                            { e: "alter, modify", k: "바꾸다, 수정하다", ety: "alter(다른) / mod(방식)+ify", cog: "alternative(대안)" },
+                            { e: "substitute", k: "대안, 양자택일", ety: "sub(대신하여) + stitut(세우다)", cog: "institute(기관)" },
+                            { e: "particular", k: "특별한", ety: "part(부분) + icular -> 특정 부분의", cog: "particle(입자)" },
+                            { e: "awareness", k: "인식", ety: "aware(알고있는) + ness", cog: "aware(알고있는)" },
+                            { e: "be aware of", k: "~을 알다, 알아차리다", ety: "aware(알고있는) 상태다", cog: "awareness(인식)" },
+                            { e: "internal", k: "내부의, 대내적인", ety: "inter(안쪽) + nal", cog: "interior(내부)" }
+                        ]
+                    }
+                ]
+            },
+            {
+                lesson: "26강",
+                groups: [
+                    {
+                        root: "순서, 기원, 변화 (sequ, scend, orig)",
+                        words: [
+                            { e: "sequential", k: "순차적인", ety: "sequi(따르다) + ential", cog: "sequence(순서)" },
+                            { e: "out of sequence", k: "순서가 엉망인", ety: "sequence(순서)를 벗어난", cog: "sequence(순서)" },
+                            { e: "gradually", k: "점차로", ety: "gradus(걸음, 단계) + al + ly", cog: "grade(등급)" },
+                            { e: "ascend", k: "올라가다", ety: "ad(~를 향해) + scend(오르다)", cog: "descend(내려가다)" },
+                            { e: "descend from", k: "~의 자손이다", ety: "de(아래로) + scend(오르다) -> 아래로 내려오다", cog: "descendant(자손)" },
+                            { e: "descendant", k: "자손", ety: "descend + ant", cog: "ascend(오르다)" },
+                            { e: "originate", k: "유래하다", ety: "origin(기원) + ate", cog: "origin(기원)" },
+                            { e: "original", k: "원래의", ety: "origin(기원) + al", cog: "origin(기원)" },
+                            { e: "earlier", k: "이전의, 앞의", ety: "early(일찍)의 비교급", cog: "early(일찍)" },
+                            { e: "previous", k: "이전의, 우선하는", ety: "pre(미리) + via(길) + ous -> 앞서가는", cog: "via(~를경유하여)" },
+                            { e: "later", k: "뒤의, 나중의", ety: "late(늦은)의 비교급", cog: "late(늦은)" },
+                            { e: "sudden", k: "갑작스러운", ety: "sub(비밀리에) + it(가다)", cog: "suddenly(갑자기)" },
+                            { e: "appear", k: "나타나다", ety: "ad(~쪽으로) + parere(보이다)", cog: "appearance(외모)" },
+                            { e: "vanish", k: "사라지다", ety: "vanus(텅빈)에서 유래", cog: "vain(헛된)" },
+                            { e: "disappearance", k: "소멸, 실종", ety: "dis(반대) + appear(나타나다) + ance", cog: "appear(나타나다)" }
+                        ]
+                    },
+                    {
+                        root: "문화, 종교, 보존 (cult, relig, serv)",
+                        words: [
+                            { e: "culture", k: "문명, 문화", ety: "cult(경작하다) + ure -> 마음을 가꿈", cog: "cultivate(경작하다)" },
+                            { e: "civilize", k: "문명화하다", ety: "civil(시민의) + ize", cog: "civilization(문명)" },
+                            { e: "religious", k: "신성한, 성스러운, 종교적인", ety: "religio(신에 대한 의무) + ous", cog: "religion(종교)" },
+                            { e: "sacredness", k: "신성함", ety: "sacred(신성한) + ness", cog: "sacred(신성한)" },
+                            { e: "belief", k: "신념, 믿음", ety: "believe(믿다)의 명사형", cog: "believe(믿다)" },
+                            { e: "faithful", k: "충실한", ety: "faith(믿음) + ful", cog: "faith(믿음)" },
+                            { e: "devoted", k: "헌신적인", ety: "de(완전히) + vot(맹세하다) + ed", cog: "devote(바치다)" },
+                            { e: "devotion", k: "헌신, 전념", ety: "devote + ion", cog: "devote(바치다)" },
+                            { e: "devote oneself to", k: "~에 몰두하다", ety: "자신을 맹세하여 바치다", cog: "devoted(헌신적인)" },
+                            { e: "preserve", k: "보존하다", ety: "pre(미리) + serv(지키다)", cog: "conservation(보호)" },
+                            { e: "conservation", k: "보존, 보호", ety: "con(함께) + serv(지키다) + ation", cog: "conserve(보존하다)" },
+                            { e: "conservative", k: "보수적인", ety: "con(함께) + serv(지키다) + ative", cog: "conserve(보존하다)" },
+                            { e: "pass down", k: "~을 전하다, 후세에 물려주다", ety: "아래로(down) 전달하다(pass)", cog: "pass(지나가다)" },
+                            { e: "settlement", k: "정착; 합의, 해결", ety: "settle(정착하다) + ment", cog: "settle(해결하다)" }
+                        ]
+                    },
+                    {
+                        root: "평가, 중요성, 지위 (valu, sign, major)",
+                        words: [
+                            { e: "evaluation", k: "평가", ety: "e(밖으로) + valu(가치) + ation", cog: "value(가치)" },
+                            { e: "assess", k: "평가하다", ety: "ad(~옆에) + sess(앉다) -> 세금매김", cog: "assessment(평가)" },
+                            { e: "significant", k: "중요한, 의미 있는", ety: "sign(표시) + fic(만들다) + ant -> 표시해둘만한", cog: "sign(기호)" },
+                            { e: "significance", k: "중요성, 의미", ety: "significant의 명사형", cog: "signify(의미하다)" },
+                            { e: "priority", k: "우선하는 것", ety: "prior(이전의) + ity", cog: "prior(이전의)" },
+                            { e: "majority", k: "다수", ety: "major(주요한, 더큰) + ity", cog: "major(주요한)" },
+                            { e: "minor", k: "소수의", ety: "더 작은", cog: "minority(소수)" },
+                            { e: "royalty", k: "왕위, 왕권", ety: "royal(왕의) + ty", cog: "royal(왕의)" },
+                            { e: "biographer", k: "전기 작가", ety: "bio(생명) + graph(쓰다) + er", cog: "biology(생물학)" },
+                            { e: "mission", k: "임무, 선교", ety: "miss(보내다) + ion", cog: "missile(미사일)" }
+                        ]
+                    },
+                    {
+                        root: "대체, 제거, 의미 (place, stitut, rid)",
+                        words: [
+                            { e: "replace A with B", k: "A를 B로 바꾸다", ety: "re(다시) + place(두다)", cog: "replacement(대체)" },
+                            { e: "replacement", k: "대체, 교환", ety: "replace + ment", cog: "place(장소)" },
+                            { e: "substitute", k: "대신하다, 대체하다", ety: "sub(대신하여) + stitut(세우다)", cog: "institute(설립하다)" },
+                            { e: "rid A of B", k: "A에서 B를 없애다", ety: "rid(제거하다) 활용구", cog: "rid(제거하다)" },
+                            { e: "get rid of", k: "~을 제거하다, 해소하다", ety: "제거된 상태를 얻다", cog: "rid(제거하다)" },
+                            { e: "mean", k: "의미하다, 나타내다", ety: "의미하다", cog: "meaning(의미)" },
+                            { e: "revolutionary", k: "혁명의", ety: "re(다시) + volv(돌다) + utionary -> 뒤집어엎는", cog: "revolve(회전하다)" }
+                        ]
+                    }
+                ]
+            },
+            {
+                lesson: "27강",
+                groups: [
+                    {
+                        root: "화학, 물질, 상태",
+                        words: [
+                            { e: "dissolve", k: "녹다, 녹이다", ety: "dis(떨어져) + solv(풀다)", cog: "solve(풀다)" },
+                            { e: "elementary", k: "기본이 되는; 원소의; 초등학교의", ety: "element(요소) + ary", cog: "element(요소)" },
+                            { e: "chemist", k: "화학자", ety: "chem(연금술) + ist", cog: "chemistry(화학)" },
+                            { e: "steamy", k: "증기의", ety: "steam(증기) + y", cog: "steam(증기)" },
+                            { e: "material", k: "물질", ety: "mater(어머니, 근원) + ial", cog: "maternal(어머니의)" },
+                            { e: "melt away", k: "서서히 사라지다", ety: "녹아서(melt) 없어지다(away)", cog: "melt(녹다)" },
+                            { e: "chemical element", k: "화학 원소", ety: "chemical(화학의) + element(요소)", cog: "chemical(화학물질)" },
+                            { e: "freeze", k: "얼다", ety: "얼다", cog: "freezing(몹시 추운)" },
+                            { e: "meltable", k: "녹기 쉬운", ety: "melt(녹다) + able", cog: "melt(녹다)" },
+                            { e: "mix", k: "섞다, 혼합하다", ety: "섞다", cog: "mixture(혼합물)" },
+                            { e: "be absorbed in", k: "~에 몰두하다", ety: "ab(멀리) + sorb(빨아들이다) -> 흡수되다", cog: "absorb(흡수하다)" },
+                            { e: "chemical", k: "화학의; 화학 제품, 화학 약품", ety: "chem + ical", cog: "chemistry(화학)" },
+                            { e: "acidic", k: "[화학] 산(성)의", ety: "acid(산) + ic", cog: "acid(산성)" }
+                        ]
+                    },
+                    {
+                        root: "생물, 유전, 세포",
+                        words: [
+                            { e: "reproduction", k: "재생, 복제, 번식", ety: "re(다시) + pro(앞으로) + duc(이끌다) + tion", cog: "reproduce(번식하다)" },
+                            { e: "biologist", k: "생물학자", ety: "bio(생명) + log(학문) + ist", cog: "biology(생물학)" },
+                            { e: "the higher[lower] mammals", k: "고등[하등] 포유동물", ety: "mammal(포유류: mamma(젖통)에서 유래)", cog: "mammal(포유류)" },
+                            { e: "inanimate", k: "죽은, 무생물의", ety: "in(부정) + anim(생명) + ate", cog: "animal(동물)" },
+                            { e: "evolve", k: "전개되다, 진화하다", ety: "e(밖으로) + volv(구르다)", cog: "evolution(진화)" },
+                            { e: "red[white] blood cell", k: "적[백]혈구", ety: "blood(피) + cell(세포)", cog: "cell(세포)" },
+                            { e: "cellular", k: "세포의", ety: "cell(세포) + ular", cog: "cell(세포)" },
+                            { e: "biological", k: "생물학의", ety: "bio(생명) + log(학문) + ical", cog: "biology(생물학)" },
+                            { e: "living", k: "살아 있는, 생물인", ety: "live(살다) + ing", cog: "live(살다)" },
+                            { e: "living", k: "살아 있는", ety: "live(살다) + ing", cog: "live(살다)" },
+                            { e: "genetic", k: "유전의, 유전학의", ety: "gen(발생) + etic", cog: "generate(발생시키다)" },
+                            { e: "genetics", k: "유전학", ety: "gen(발생) + etics", cog: "gene(유전자)" },
+                            { e: "identical", k: "동일한", ety: "ident(같은) + ical", cog: "identity(정체성)" },
+                            { e: "identical twins", k: "일란성 쌍둥이", ety: "identical(동일한: ident(같은)) + twins", cog: "identify(확인하다)" }
+                        ]
+                    },
+                    {
+                        root: "독, 멸종, 관찰",
+                        words: [
+                            { e: "toxin", k: "독소, 독성 물질", ety: "tox(독) + in", cog: "toxic(유독한)" },
+                            { e: "distinguish", k: "~을 구별[구분]하다", ety: "di(따로) + stinguere(찌르다, 끄다)", cog: "extinguish(불을 끄다)" },
+                            { e: "microscopic", k: "현미경의, 현미경으로만 볼 수 있을 정도로 작은", ety: "micro(작은) + scop(보다) + ic", cog: "microscope(현미경)" },
+                            { e: "extinction", k: "멸종, 소멸", ety: "ex(밖으로) + stinguere(끄다) + tion", cog: "extinct(멸종된)" },
+                            { e: "poisonous", k: "유독한", ety: "poison(독) + ous", cog: "poison(독)" },
+                            { e: "beam", k: "빛, 광선", ety: "광선", cog: "beam(비추다)" }
+                        ]
+                    },
+                    {
+                        root: "보관, 분리, 복제",
+                        words: [
+                            { e: "store", k: "저장하다", ety: "가게, 저장하다", cog: "storage(저장고)" },
+                            { e: "room", k: "작은 방, 독방", ety: "방, 공간", cog: "roomy(널찍한)" },
+                            { e: "attach", k: "붙이다", ety: "ad(~에) + tach(못)", cog: "attachment(애착, 부착물)" },
+                            { e: "detach oneself from", k: "~에서 벗어나다, 이탈하다", ety: "de(분리) + tach(못) -> 떼어내다", cog: "detach(분리하다)" },
+                            { e: "detachment", k: "분리, 이탈", ety: "detach + ment", cog: "detach(분리하다)" },
+                            { e: "copy", k: "복제하다", ety: "복사하다", cog: "copious(풍부한)" }
+                        ]
+                    }
+                ]
+            },
+            {
+                lesson: "28강",
+                groups: [
+                    {
+                        root: "자연, 기상, 재해 (nat, aster, rupt)",
+                        words: [
+                            { e: "Antarctic", k: "남극의", ety: "anti(반대) + arctic(북극의: 곰 별자리)", cog: "Arctic(북극의)" },
+                            { e: "weather forecast", k: "일기 예보", ety: "weather + fore(미리) + cast(던지다)", cog: "forecast(예측하다)" },
+                            { e: "natural resources", k: "천연자원", ety: "natural(자연의) + re(다시)+source(솟아오르다)", cog: "nature(자연)" },
+                            { e: "natural disaster", k: "자연 재해", ety: "natural + dis(떨어져)+aster(별) -> 불길한별", cog: "disaster(재앙)" },
+                            { e: "severe weather conditions", k: "악천후", ety: "severe(심각한) + weather + conditions", cog: "severe(가혹한)" },
+                            { e: "eruption", k: "(화산의) 폭발, 분출", ety: "erupt(분출하다) + ion", cog: "bankrupt(파산한)" },
+                            { e: "erupt", k: "내뿜다, 배출하다", ety: "e(밖으로) + rupt(깨다)", cog: "eruption(폭발)" },
+                            { e: "eject", k: "폭발하다, 분출하다", ety: "e(밖으로) + ject(던지다)", cog: "inject(주입하다)" },
+                            { e: "ejection", k: "배출", ety: "e(밖으로) + ject(던지다) + ion", cog: "eject(분출하다)" },
+                            { e: "occurrence", k: "발생", ety: "ob(~를 향해) + curr(흐르다) + ence", cog: "occur(발생하다)" },
+                            { e: "happen", k: "발생하다, 일어나다", ety: "hap(운) -> 우연히 발생하다", cog: "happy(행복한)" }
+                        ]
+                    },
+                    {
+                        root: "파괴, 소비, 건설 (stroy, sume, struct)",
+                        words: [
+                            { e: "destroy", k: "난파하다, 파괴하다", ety: "de(반대) + stroy(세우다)", cog: "destruction(파괴)" },
+                            { e: "deplete", k: "다 써 버리다", ety: "de(반대) + plet(채우다) -> 비우다", cog: "complete(완전한)" },
+                            { e: "consume", k: "소비하다, 소모하다", ety: "con(완전히) + sume(취하다)", cog: "consumer(소비자)" },
+                            { e: "constructive", k: "건설적인", ety: "con(함께) + struct(세우다) + ive", cog: "construction(건설)" },
+                            { e: "protect", k: "보호하다", ety: "pro(앞에서) + tect(덮다)", cog: "protection(보호)" },
+                            { e: "severely", k: "심하게", ety: "severe(심각한) + ly", cog: "severe(가혹한)" }
+                        ]
+                    },
+                    {
+                        root: "지형, 상태, 정화 (val, pur)",
+                        words: [
+                            { e: "valley", k: "협곡", ety: "vallis(계곡)", cog: "valley(계곡)" },
+                            { e: "marsh", k: "늪", ety: "습지", cog: "marshy(늪의)" },
+                            { e: "swampy", k: "늪에 있는", ety: "swamp(늪) + y", cog: "swamp(늪)" },
+                            { e: "swamp down", k: "꿀꺽 삼키다", ety: "swamp(늪처럼 집어삼키다)", cog: "swamp(늪)" },
+                            { e: "deep", k: "깊은", ety: "깊은", cog: "depth(깊이)" },
+                            { e: "deepen", k: "깊게 하다", ety: "deep + en", cog: "deep(깊은)" },
+                            { e: "moist", k: "습한, 촉촉한", ety: "mucus(점액)에서 유래", cog: "moisture(수분)" },
+                            { e: "pure", k: "순수한", ety: "purus(깨끗한)", cog: "purify(정화하다)" },
+                            { e: "purification", k: "정화", ety: "purify(정화하다) + cation", cog: "pure(순수한)" },
+                            { e: "centigrade", k: "섭씨", ety: "centi(100) + grade(단계)", cog: "century(100년)" }
+                        ]
+                    },
+                    {
+                        root: "반사, 예측, 둘러쌈 (flect, dict)",
+                        words: [
+                            { e: "mirror", k: "반사하다", ety: "거울, 비추다", cog: "mirage(신기루)" },
+                            { e: "reflection", k: "반사, 반영", ety: "reflect + ion", cog: "reflect(반사하다)" },
+                            { e: "reflect on", k: "~을 곰곰이 생각하다", ety: "re(뒤로/다시) + flect(구부리다) -> 되돌아보다", cog: "reflection(반사)" },
+                            { e: "predict", k: "예상하다, 예보하다", ety: "pre(미리) + dict(말하다)", cog: "prediction(예측)" },
+                            { e: "be surrounded with[by]", k: "~로 둘러싸이다", ety: "sur(위로) + round(둥근)", cog: "surround(둘러싸다)" }
+                        ]
+                    }
+                ]
+            },
+            {
+                lesson: "29강",
+                groups: [
+                    {
+                        root: "우주, 천문학 (Space & Astronomy)",
+                        words: [
+                            { e: "solar", k: "태양의", ety: "sol(태양) + ar", cog: "solar system(태양계)" },
+                            { e: "solar system", k: "태양계", ety: "solar(태양의) + system(체계)", cog: "system(시스템)" },
+                            { e: "solar eclipse", k: "일식", ety: "solar(태양의) + e(밖으로)+clips(남겨두다)", cog: "eclipse(일식/월식)" },
+                            { e: "total eclipse", k: "개기식", ety: "total(전체의) + eclipse(가려짐)", cog: "total(전체의)" },
+                            { e: "lunar", k: "달의", ety: "luna(달) + ar", cog: "lunatic(미치광이 - 달의 영향을 받는다 믿음)" },
+                            { e: "lunar eclipse", k: "월식", ety: "lunar(달의) + eclipse(가려짐)", cog: "eclipse(일식/월식)" },
+                            { e: "lunar calendar", k: "음력", ety: "lunar(달의) + calendar(달력)", cog: "calendar(달력)" },
+                            { e: "lunar new year’s day", k: "음력설", ety: "lunar + new year's day", cog: "lunar(달의)" },
+                            { e: "astronomy", k: "천문학", ety: "astro(별) + nom(법칙) + y", cog: "astronaut(우주비행사)" },
+                            { e: "orbital", k: "궤도의", ety: "orb(원, 궤도) + ital", cog: "orbit(궤도)" },
+                            { e: "gravitation", k: "중력", ety: "grav(무거운) + itation", cog: "gravity(중력)" }
+                        ]
+                    },
+                    {
+                        root: "기계, 자동화 (Machine & Automation)",
+                        words: [
+                            { e: "automatic", k: "자동의", ety: "auto(스스로) + mat(움직이다) + ic", cog: "automobile(자동차)" },
+                            { e: "automated", k: "자동의, 자동화된", ety: "auto(스스로) + mat + ed", cog: "automation(자동화)" },
+                            { e: "automatic teller machine (ATM)", k: "현금 자동 지급기", ety: "automatic + teller(계산하는 사람) + machine", cog: "tell(말하다)" },
+                            { e: "manual", k: "손의, 수동의", ety: "manu(손) + al", cog: "manufacture(제조하다)" },
+                            { e: "manual labor", k: "손일, 육체노동", ety: "manual(수동의) + labor(노동)", cog: "labor(노동)" },
+                            { e: "accelerator", k: "가속 장치", ety: "ad(~로) + celer(빠른) + ator", cog: "accelerate(가속하다)" },
+                            { e: "speed up", k: "가속하다", ety: "speed(속도)를 up(높이다)", cog: "speed(속도)" },
+                            { e: "rotation", k: "회전", ety: "rot(바퀴) + ation", cog: "rotate(회전하다)" },
+                            { e: "revolve", k: "회전하다[시키다]", ety: "re(다시) + volv(구르다)", cog: "revolution(혁명, 공전)" },
+                            { e: "gadget", k: "도구, 장치", ety: "작은 기계 장치 (어원 불명)", cog: "tool(도구)" },
+                            { e: "digital age", k: "디지털 시대", ety: "digit(손가락->숫자) + age(시대)", cog: "digital(디지털의)" }
+                        ]
+                    },
+                    {
+                        root: "효율, 조절 (Efficiency & Adjustment)",
+                        words: [
+                            { e: "efficient", k: "능률적인", ety: "ex(밖으로) + fic(만들다) + ient -> 성과를 내는", cog: "efficiency(효율성)" },
+                            { e: "effectiveness", k: "효율, 능률", ety: "ef(밖으로) + fect(만들다) + iveness", cog: "effect(효과)" },
+                            { e: "advantage", k: "이익", ety: "ab(~로부터) + ante(앞에) -> 남보다 앞서 있음", cog: "advantageous(유리한)" },
+                            { e: "adapt", k: "조절하다, 조정하다", ety: "ad(~에) + apt(맞추다)", cog: "apt(적절한)" },
+                            { e: "adjustment", k: "조절", ety: "ad(~에) + just(올바른) + ment -> 알맞게 함", cog: "adjust(조절하다)" },
+                            { e: "precise", k: "정확한", ety: "pre(미리) + cis(자르다) -> 딱 맞게 자른", cog: "precision(정확성)" },
+                            { e: "observe the principle", k: "원칙을 지키다", ety: "ob(앞에)+serv(지키다) / prin(첫째)+cip(잡다)", cog: "observe(관찰하다)" }
+                        ]
+                    },
+                    {
+                        root: "발견, 관찰 (Discovery & Observation)",
+                        words: [
+                            { e: "discovery", k: "발견", ety: "dis(반대) + cover(덮다) + y -> 덮개를 벗김", cog: "discover(발견하다)" },
+                            { e: "find out", k: "발견하다, 알아내다", ety: "find(찾다) + out(밖으로)", cog: "find(찾다)" },
+                            { e: "watch", k: "관찰하다", ety: "주의 깊게 보다", cog: "watchful(주의 깊은)" },
+                            { e: "cause", k: "~을 불러일으키다[초래하다]", ety: "이유, 원인 -> 초래하다", cog: "because(~때문에)" }
+                        ]
+                    }
+                ]
+            },
+            {
+                lesson: "30강",
+                groups: [
+                    {
+                        root: "의사소통, 응답, 매체 (spond, edit, log)",
+                        words: [
+                            { e: "respond", k: "대답하다", ety: "re(다시) + spond(약속하다)", cog: "response(응답)" },
+                            { e: "responsive", k: "응답하는, 반응하는", ety: "respond + ive", cog: "responsible(책임감있는)" },
+                            { e: "answer", k: "응답, 반응", ety: "an(~에 대항하여) + swerian(맹세하다)", cog: "swear(맹세하다)" },
+                            { e: "discuss", k: "토론하다", ety: "dis(멀리) + quatere(흔들다) -> 분해해서 살펴봄", cog: "discussion(토론)" },
+                            { e: "logical", k: "논리적인", ety: "log(말, 이성) + ical", cog: "logic(논리)" },
+                            { e: "edition", k: "판", ety: "e(밖으로) + dit(주다) + ion -> 출판", cog: "edit(편집하다)" },
+                            { e: "editor", k: "편집자", ety: "edit(편집하다) + or", cog: "edition(판)" },
+                            { e: "spoken", k: "구두의, 구술의", ety: "speak(말하다)의 과거분사", cog: "speak(말하다)" },
+                            { e: "written", k: "문자로 쓰인", ety: "write(쓰다)의 과거분사", cog: "write(쓰다)" },
+                            { e: "offline", k: "오프라인의", ety: "off(떨어져) + line(선)", cog: "online(온라인의)" },
+                            { e: "junk mail", k: "정크 메일", ety: "junk(쓰레기) + mail", cog: "junk(쓰레기)" },
+                            { e: "junk food", k: "정크 푸드", ety: "junk(쓰레기) + food", cog: "junk(쓰레기)" }
+                        ]
+                    },
+                    {
+                        root: "접근, 주의, 시야 (cess, cap, vis)",
+                        words: [
+                            { e: "have access to", k: "~에게 접근할 수 있다", ety: "ad(~에) + cess(가다) -> 접근하다", cog: "access(접근)" },
+                            { e: "accessible", k: "접근하기 쉬운", ety: "access + ible", cog: "access(접근)" },
+                            { e: "capture the attention", k: "주의를 끌다", ety: "capture(잡다: cap(잡다)+ture) + attention", cog: "capture(포착하다)" },
+                            { e: "catch", k: "(이미지 등을) 포착하다, 붙잡다", ety: "잡다", cog: "catchy(기억하기 쉬운)" },
+                            { e: "profiler", k: "범죄 심리 분석관", ety: "profile(윤곽을 그리다) + er", cog: "profile(옆모습, 개요)" },
+                            { e: "vision", k: "시야, 통찰력", ety: "vis(보다) + ion", cog: "visible(보이는)" },
+                            { e: "revise", k: "교정하다", ety: "re(다시) + vis(보다)", cog: "revision(수정)" }
+                        ]
+                    },
+                    {
+                        root: "방해, 분리, 가설 (rupt, par, pos)",
+                        words: [
+                            { e: "interrupt", k: "남의 대화에 끼어들다, 남의 말을 자르다", ety: "inter(사이에) + rupt(깨다)", cog: "interruption(방해)" },
+                            { e: "interruption", k: "방해", ety: "interrupt + ion", cog: "bankrupt(파산한)" },
+                            { e: "disturb", k: "방해하다, 중단하다", ety: "dis(완전히) + turb(어지럽히다)", cog: "disturbance(소란)" },
+                            { e: "cut off", k: "(말을) 끊다, 가로막다", ety: "잘라내다", cog: "cut(자르다)" },
+                            { e: "separate", k: "분리하다", ety: "se(따로) + par(준비하다) + ate", cog: "separation(분리)" },
+                            { e: "remove", k: "삭제하다", ety: "re(뒤로) + mov(움직이다)", cog: "move(움직이다)" },
+                            { e: "supposition", k: "상상, 추측", ety: "sup(아래) + pos(놓다) + ition -> 가설", cog: "suppose(가정하다)" },
+                            { e: "be supposed to", k: "~하기로 되어 있다", ety: "suppose(가정하다)의 수동태 구문", cog: "suppose(가정하다)" },
+                            { e: "hesitation", k: "망설임", ety: "hesitate(망설이다) + ion", cog: "hesitate(망설이다)" }
+                        ]
+                    },
+                    {
+                        root: "행동, 순환, 결합 (act, circ, bin)",
+                        words: [
+                            { e: "act", k: "행동하다", ety: "agere(행동하다)", cog: "action(행동)" },
+                            { e: "active", k: "활동적인", ety: "act + ive", cog: "actor(배우)" },
+                            { e: "spread", k: "보급시키다, 유포하다", ety: "펼치다", cog: "widespread(널리퍼진)" },
+                            { e: "circular", k: "순환하는", ety: "circul(원) + ar", cog: "circle(원)" },
+                            { e: "circulation", k: "유통, 순환", ety: "circulate(순환하다) + ion", cog: "circle(원)" },
+                            { e: "combination", k: "결합", ety: "com(함께) + bini(둘씩) + ation", cog: "combine(결합하다)" }
                         ]
                     }
                 ]
@@ -1604,7 +2193,7 @@
             const elHeaderSpacer = document.getElementById('header-spacer');
             
             if (state.currentView === 'home') {
-                elHeaderTitle.innerHTML = 'RootVoca <span class="text-sm font-normal text-indigo-200">1~20강</span>';
+                elHeaderTitle.innerHTML = 'RootVoca <span class="text-sm font-normal text-indigo-200">1~30강</span>';
                 elBtnBack.style.display = 'none';
                 elHeaderSpacer.style.display = 'none';
             } else {
